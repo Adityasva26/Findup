@@ -1,0 +1,32 @@
+{
+  "name": "forontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-react": "^6.0.0",
+    "@emotion/react": "^11.10.8",
+    "@emotion/styled": "^11.10.8",
+    "@mui/material": "^5.12.3",
+    "@mui/x-data-grid": "^6.3.1",
+    "@swc/helpers": "^0.5.1",
+    "axios": "^1.3.5",
+    "bootstrap": "^5.2.3",
+    "jquery": "^3.6.4",
+    "moment": "^2.29.4",
+    "next": "13.3.0",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.7.4",
+    "react-dom": "^18.2.0",
+    "react-elastic-carousel": "^0.11.5",
+    "react-facebook-login": "^4.1.1",
+    "react-icons": "^4.8.0",
+    "react-multi-carousel": "^2.8.3",
+    "react-toastify": "^9.1.2",
+    "use-dark-mode": "^2.3.1"
+  }
+}
