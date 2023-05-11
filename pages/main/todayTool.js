@@ -5,6 +5,7 @@ import axios from "axios";
 import Link from "next/link";
 import moment from "moment/moment";
 import { URL } from '../../utility/api';
+import { toast } from 'react-toastify';
 
 function TodayTool() {
     const [userData, setuserData] = useState({});
@@ -28,7 +29,7 @@ function TodayTool() {
         if (g == undefined) {
             toast.error('Login before adding product to Favourite!');
         } else {
-            axios.post(`${url}Favourites`, {
+            axios.post(`${URL}Favourites`, {
                 user_id: g,
                 product_id: e,
                 heart_status: h,

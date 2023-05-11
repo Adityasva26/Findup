@@ -40,8 +40,8 @@ function AiToolProject() {
 
 
                             <ul className="cat-list-cls">
-                                {data?.map((item) => <Link href={`/ai_tools/${(item.title).replace(/ /g, "_")}?id=${item.id}`} as={`/ai_tools/${(item.title).replace(/ /g, "_")}`}
-                                    passHref><li>{item.title}<span>1</span></li></Link>)}
+                                {data?.map((item) => <li><Link href={`/ai_tools/${(item.title).replace(/ /g, "_")}?id=${item.id}`} as={`/ai_tools/${(item.title).replace(/ /g, "_")}`}
+                                    passHref>{item.title}<span>{item.productCount}</span></Link></li>)}
                             </ul>
                         </div>
                     </div>

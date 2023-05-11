@@ -9,6 +9,7 @@ import { URL } from '../../utility/api';
 
 function News() {
     const [data,setData] = useState([])
+    const [category,setcategory] = useState([])
     const [userData, setuserData] = useState({});
     useEffect(()=>{
         setuserData(JSON.parse(window.localStorage.getItem('data')))
@@ -19,6 +20,39 @@ function News() {
         axios.post(`${URL}newssdata`, { user_id: e })
             .then((response) => {
                 setData(response.data.data)
+                setcategory(response.data.CategoryList)
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+    const newsbytime = (e,g) => {
+        console.log("e",e)
+        axios.post(`${URL}byTime`, { user_id: e ,sort:g})
+            .then((response) => {
+                setData(response.data.data)
+                setcategory(response.data.CategoryList)
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+    const newsbyCategory = (e,g) => {
+        console.log("e",e)
+        axios.post(`${URL}byCategory`, { user_id: e ,category:g})
+            .then((response) => {
+                setData(response.data.data)
+                setcategory(response.data.CategoryList)
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+    const sorting = (e,g) => {
+        axios.post(`${URL}newsSorting`, { user_id: e ,sort: e })
+            .then((response) => {
+                setData(response.data.data)
+                setcategory(response.data.CategoryList)
             })
             .catch((error) => {
                 console.error(error);
@@ -75,34 +109,30 @@ function News() {
                                 <div class="filter-first">
                                     <div class="filter">
                                         <label>Filter By Time</label>
-                                        <select>
-                                            <option>Today</option>
-                                            <option>This Week</option>
-                                            <option>This Month</option>
-                                            <option>All Time</option>
+                                        <select onChange={(e)=>newsbytime(userData?.id,e.target.value)}>
+                                            <option hidden>Filter By Time</option>
+                                            <option value="Today">Today</option>
+                                            <option value="Week">This Week</option>
+                                            <option value="Month">This Month</option>
+                                            <option value="All">All Time</option>
                                         </select>
                                     </div>
                                     <div class="filter second">
                                         <label>Filter By Category</label>
-                                        <select>
-                                            <option><i class="far fa-clipboard"></i> All</option>
-                                            <option><i class="far fa-newspaper"></i> Updates</option>
-                                            <option><i class="far fa-lightbulb"></i> Interesting</option>
-                                            <option><i class="far fa-file-video"></i> Video</option>
-                                            <option><i class="fas fa-podcast"></i> Podcast</option>
-                                            <option><i class="fas fa-graduation-cap"></i> Learn</option>
-                                            <option><i class="fas fa-microscope"></i> Research</option>
-                                            <option><i class="fas fa-question-circle"></i> Opinion</option>
+                                        <select onChange={(e)=>newsbyCategory(userData.id,e.target.value)}>
+                                        <option hidden>Category</option>
+                                            {category.map((value)=><option value={value.id}>{value.title}</option>)}
                                         </select>
                                     </div>
                                 </div>
                                 <div class="filter-second">
                                     <div class="filter">
                                         <label>Sort By</label>
-                                        <select>
-                                            <option><i class="fas fa-star"></i> Featured</option>
-                                            <option><i class="fas fa-clock"></i> New</option>
-                                            <option><i class="fas fa-bookmark"></i> Popular</option>
+                                        <select onChange={(e)=>sorting(e.target.value)}>
+                                            <option hidden>Sort By</option>
+                                            <option value="Verified">Verified</option>
+                                            <option value="New">New</option>
+                                            <option value="Popular">Popular</option>
                                         </select>
                                     </div>
                                 </div>

@@ -1478,6 +1478,7 @@ position: relative;
 .activity-sec .main-box .img {
   flex: 0 0 50%;
   overflow: hidden;
+  min-height: 310px;
 }
 
 .activity-sec .main-box .img img {
@@ -1537,6 +1538,7 @@ position: relative;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  word-break: break-word;
 }
 
 .activity-sec .main-box .content .trial-btn {
@@ -2497,6 +2499,11 @@ height: 200px;
 }
 .activity-sec .heading2 a:hover {
   color: #fff;
+}
+
+.category-page ul.cat-list-cls li a {
+  color: #fff;
+  text-decoration: none;
 }
 @media (max-width: 1199px){
 .activity-sec .main-box .img {

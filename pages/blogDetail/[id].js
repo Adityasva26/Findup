@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { URL } from '../../utility/api';
+import ReactHtmlParser from 'react-html-parser';
 
 function BlogDetail() {   
 	console.log("url",process.env.URL)
@@ -50,7 +51,7 @@ function BlogDetail() {
 					<div class="Blog-details-main">
 						<div class="Blog-details-content">
 							<p>Hey there, hope you all are having a fantastic weekend!</p>
-							<p>{data?.data?.paragraph}</p>
+							<p>{ReactHtmlParser(data?.data?.paragraph)}</p>	
 							<p>We have added 219 new AI tools since our last issue. Here are some of the most interesting ones -</p>
 						</div>
 

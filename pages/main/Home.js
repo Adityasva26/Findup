@@ -114,6 +114,10 @@ function HomePage() {
                 console.log(error);
             });
     }
+    const handleClear = () => {
+        handleClose()
+        setPricing([])
+    }
     const handleChecked = (e, g, h) => {
         console.log("e", e)
         console.log("g", g)
@@ -265,7 +269,7 @@ function HomePage() {
                 </div>)}
             </Modal.Body>
             <Modal.Footer>
-                <button type="button" class="theme-btn first" data-bs-dismiss="modal">clear</button>
+                <button type="button" class="theme-btn first" data-bs-dismiss="modal" onClick={()=>handleClear()}>clear</button>
                 <button type="button" class="theme-btn" onClick={() => filter(categoryId)}>Apply Filters</button>
 
             </Modal.Footer>
