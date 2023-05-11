@@ -2468,12 +2468,12 @@ height: 200px;
   padding-bottom: 40px;
 }
 
-.activity-sec .categories-box .WgpPQ .item {
+.activity-sec .categories-box .rec-item-wrapper .item {
   width: 100%;
   padding: 0px 8px;
 }
 
-.activity-sec .categories-box .WgpPQ .item a {
+.activity-sec .categories-box .rec-item-wrapper .item a {
   font-size: 14px;
 }
 
