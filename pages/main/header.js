@@ -142,7 +142,7 @@ function Header() {
                             <div class="col-4 col-lg-2">
                                 <div class="logo">
                                     <Link href="/">
-                                        <img src="../img/Logo.png" />
+                                        <img src="../img/logo.png" />
                                     </Link>
                                 </div>
                             </div>
