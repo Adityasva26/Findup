@@ -6,10 +6,10 @@ function Sidebar() {
     <div class="list-group list-group-flush">
         <Link class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/dashboard">Dashboard</Link>
         <Link class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/user">User</Link>
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Overview</a>
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
+        <Link class="list-group-item list-group-item-action list-group-item-light p-3"href="/admin/product">Product</Link>
+        <Link class="list-group-item list-group-item-action list-group-item-light p-3"href="/admin/news">News</Link>
+        <Link class="list-group-item list-group-item-action list-group-item-light p-3"href="/admin/newsletter">NewsLetter</Link>
+        {/* <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a> */}
     </div>
 </div>);
 }

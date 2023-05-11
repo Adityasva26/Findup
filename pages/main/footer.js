@@ -9,7 +9,7 @@ function Footer() {
 					<div class="col-md-5">
 						<div class="footer-logo">
 							<Link href="/">
-								<img src="../img/footer-logo.png"/>
+								<img src="../img/footer-Logo.png"/>
 							</Link>
 						</div>
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>

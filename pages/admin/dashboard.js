@@ -10,7 +10,7 @@ function Dashboard() {
             
            <Sidebar/>
             
-            <div id="page-content-wrapper">
+            <div id="page-content-wrapper" class="bg-white">
               
                 <AdminNavBar/>
               

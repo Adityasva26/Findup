@@ -11,7 +11,7 @@ import { URL } from '../../utility/api';
 
 
 
-function User() {
+function NewsletterAdmin() {
   const [data, setdata] = useState([])
   const [userData, setuserData] = useState({});
   const [share, setShare] = useState("share-btn");
@@ -62,10 +62,10 @@ function User() {
   return (
     <div className="d-flex" id="wrapper">
       <Sidebar />
-      <div id="page-content-wrapper"  class="bg-white" style={{background:"#fff"}}>
+      <div id="page-content-wrapper" class="bg-white" style={{background:"#fff"}}>
         <AdminNavBar />
         <div class="user">
-                    <h4>User</h4>
+                    <h4>Newsletter</h4>
             </div>
         <div className="container-fluid">
           <DataGrid
@@ -85,4 +85,4 @@ function User() {
   );
 }
 
-export default User;
+export default NewsletterAdmin;

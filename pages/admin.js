@@ -10,16 +10,16 @@ function AdminLogin() {
     const router = useRouter()
     const [loginForm, setloginForm] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({});
-    useEffect(()=>{onLogin()},[])
+    useEffect(()=>{},[])
     function onLogin() {
-        console.log("loginform");
+        console.log("loginform1234567890",loginForm);
         if (validateForm(loginForm)) {
             console.log("loginform12344556");
             axios.post(`${URL}login`, { email: loginForm.email, password: loginForm.password })
                 .then(response => {
                     console.log(response.data);
                     window.localStorage.setItem("adminData", JSON.stringify(response.data.data))
-                    router.push('/')
+                    router.push('/admin/dashboard')
                 })
                 .catch(error => {
                     console.log(error);
@@ -56,12 +56,12 @@ function AdminLogin() {
                                     <div class="login-from">
                                         <h3>Admin Login</h3>
                                             <div class="login-from-group">
-                                                <input type="text" name="username" placeholder="username" onClick={(e)=>setloginForm({email:e.target.value,password:loginForm.password})}/>
+                                                <input type="text" name="" placeholder="username" onChange={(e)=>setloginForm({email:e.target.value,password:loginForm.password})}/>
                                                 <p>{errors.email}</p>
                                             </div>
 
                                             <div class="login-from-group">
-                                                <input type="password" name="password" placeholder="password" onClick={(e)=>setloginForm({email:loginForm.email,password:e.target.value})}/>
+                                                <input type="password" name="" placeholder="password" onChange={(e)=>setloginForm({email:loginForm.email,password:e.target.value})}/>
                                                 <p>{errors.password}</p>
                                             </div>
                                             <div class="login-bottom text-center">  
