@@ -8,14 +8,22 @@ import axios from "axios";
 import { useRouter } from 'next/router'
 import { toast } from "react-toastify";
 import { URL } from '../../utility/api';
+import dynamic from "next/dynamic";
+import 'react-quill/dist/quill.snow.css'
 
 function SubmitTool() {
     const router = useRouter()
+    const [value, setValue] = useState('')
+    console.log("value",value)
     const [data, setData] = useState({ name: "", url: "", short_description: "", description: "", category: "", feature: "", pricing: "", price: "", association: true })
     const [image, setImage] = useState()
     const [categoryListing, setcategoryListing] = useState({})
     const [errors, setErrors] = useState({});
     var userId={}
+    const QuillNoSSRWrapper = dynamic(import('react-quill'), {	
+        ssr: false,
+        loading: () => <p>Loading ...</p>,
+        })
     console.log("data", data)
     useEffect(() => { categoryList() 
         
@@ -48,7 +56,7 @@ function SubmitTool() {
             data1.append('url', data.url);
             data1.append('category', data.category);
             data1.append('short_discription', data.short_description);
-            data1.append('discription', data.description);
+            data1.append('discription', value);
             data1.append('features', data.feature);
             data1.append('pricing_category', data.pricing);
             data1.append('price', data.price);
@@ -159,7 +167,8 @@ function SubmitTool() {
                                             editor={ClassicEditor}
                                             name="description"
                                         /> */}
-                                        <textarea onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: e.target.value, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}></textarea>
+                                        <QuillNoSSRWrapper  theme="snow" value={value} onChange={setValue}/>
+                                        {/* <textarea onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: e.target.value, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}></textarea> */}
                                     </div>
                                 </div>
                                 <div class="col-md-6">

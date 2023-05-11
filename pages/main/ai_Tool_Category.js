@@ -1,12 +1,13 @@
 import Header from "./header";
 import Footer from "./footer";
-import { useEffect ,useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { URL } from '../../utility/api';
+import Link from "next/link";
 function AiToolProject() {
-    const [data,setData]=useState([])
-    useEffect(()=>{homeApi()},[])
-    const homeApi = (e) => {  
+    const [data, setData] = useState([])
+    useEffect(() => { homeApi() }, [])
+    const homeApi = (e) => {
         axios.get(`${URL}categoryList`)
             .then((response) => {
                 console.log(response.data)
@@ -36,11 +37,12 @@ function AiToolProject() {
                         <div class="top-heading pb30">
                             <h3 class="font30 clr-white medium">Category Listing<span></span></h3>
                             <p>Browse all categories at one glance.</p>
-                           
 
-                           <ul className="cat-list-cls">
-                            {data?.map((item)=><li>{item.title}<span>1</span></li>)}
-                           </ul>
+
+                            <ul className="cat-list-cls">
+                                {data?.map((item) => <Link href={`/ai_tools/${(item.title).replace(/ /g, "_")}?id=${item.id}`} as={`/ai_tools/${(item.title).replace(/ /g, "_")}`}
+                                    passHref><li>{item.title}<span>1</span></li></Link>)}
+                            </ul>
                         </div>
                     </div>
                 </div>

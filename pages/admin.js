@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useState ,useEffect} from "react";
 import axios from "axios";
 
-import { URL } from '../../utility/api';
+import { URL } from '../utility/api';
 function AdminLogin() {
   
     const router = useRouter()
@@ -65,7 +65,7 @@ function AdminLogin() {
                                                 <p>{errors.password}</p>
                                             </div>
                                             <div class="login-bottom text-center">  
-                                                <button  class="login-btn theme-btn" onClick={()=>onLogin()}>Submit</button>
+                                                <button  class="login-btn-inner theme-btn" onClick={()=>onLogin()}>Submit</button>
                                            
                                                 </div>  
                                     </div>

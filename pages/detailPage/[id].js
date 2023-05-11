@@ -7,6 +7,7 @@ import axios from "axios";
 import moment from "moment/moment";
 import { toast } from 'react-toastify';
 import { URL } from '../../utility/api';
+import ReactHtmlParser from 'react-html-parser';
 function DetailPage() {
     const router = useRouter()
 	const id = router.query.id
@@ -160,21 +161,7 @@ function DetailPage() {
 				<div class="col-lg-8">
 					<div class="dets">
 						<div class="tool-name">
-							<h3 class="font20 clr-white">AI Studios Features</h3>
-							<p>AI Studios is a platform by Deepbrain AI that enables users to create realistic AI videos effortlessly. Key features and advantages include:</p>
-							<ul>
-								<li>Text-to-speech and AI avatar: Transform scripts into videos using advanced AI technology</li>
-								<li>Ease of use: Beginner-friendly with customizable AI avatars and language settings</li>
-								<li>One-click subtitle generation: Add subtitles to videos with ease</li>
-								<li>Starter templates: Simplify video creation with a variety of templates</li>
-							</ul>
-							<p>Use cases for AI Studios cater to various video creation needs:</p>
-							<ul>
-								<li>Businesses creating feature explanation videos, company introductions, and webinars</li>
-								<li>Advertisers crafting billboard advertisements and promotional content</li>
-								<li>Individuals looking for a quick and easy way to produce AI-generated videos</li>
-							</ul>
-							<p>Awarded the CES Innovation Awards and used by celebrities, AI Studios is an ideal tool for anyone seeking to create AI videos efficiently.</p>
+							{ReactHtmlParser(data?.data?.discription)}
 						</div>
 					</div>
 				</div>

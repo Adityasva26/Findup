@@ -1,9 +1,10 @@
-import Header from "./header";
-import Footer from "./footer";
+import Header from "../main/header";
+import Footer from "../main/footer";
 // import { Carousel } from '@trendyol-js/react-carousel';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
+import { useRouter } from 'next/router';
 import Modal from 'react-bootstrap/Modal';
 import Link from "next/link";
 import { toast } from 'react-toastify';
@@ -11,14 +12,17 @@ import Carousel from "react-elastic-carousel";
 import { URL } from '../../utility/api';
 const breakPoints = [
     { width: 1, itemsToShow: 2 },
-     { width: 550, itemsToShow: 3 },
+    { width: 550, itemsToShow: 3 },
     { width: 768, itemsToShow: 4 },
     { width: 991, itemsToShow: 6 },
     { width: 1200, itemsToShow: 6 },
 ];
 
 // test
-function HomePage() {
+function AiTool() {
+    const router = useRouter()
+   
+    const title = router.query
     const [data, setData] = useState({})
     const [show, setShow] = useState(false);
     const [regexList, setregexList] = useState([]);
@@ -41,16 +45,7 @@ function HomePage() {
     }, [])
 
     const homeApi = (e) => {
-        axios.post(`${URL}home`, { user_id: e })
-            .then((response) => {
-                setData(response.data)
-            })
-            .catch((error) => {
-                console.error(error);
-            })
-    }
-    const sorting = (e) => {
-        axios.post(`${URL}sorting`, { sort: e })
+        axios.post(`${URL}productByCategory`, { user_id: e ,id:title.id})
             .then((response) => {
                 setData(response.data)
             })
@@ -107,7 +102,6 @@ function HomePage() {
         })
             .then(response => {
                 setData(response.data)
-                handleClose()
                 toast.success(response.data.message)
             })
             .catch(error => {
@@ -146,7 +140,7 @@ function HomePage() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="details text-center">
+                        {/* <div class="details text-center">
                             <h3 class="font60 clr-white">FUTUREPEDIA</h3>
                             <p class="clr-white font20">THE LARGEST AI TOOLS DIRECTORY, UPDATED DAILY</p>
 
@@ -171,11 +165,11 @@ function HomePage() {
 
                                     </div>
                                     <div class="shot-by">
-                                        <select onChange={(e)=>sorting(e.target.value)}>
-                                            <option hidden>Sort By</option>
-                                            <option value="Verified">Verified</option>
-                                            <option value="New">New</option>
-                                            <option value="Popular">Popular</option>
+                                        <select>
+                                            <option>Sort By</option>
+                                            <option>Verified</option>
+                                            <option>New</option>
+                                            <option>Popular</option>
                                         </select>
                                     </div>
                                     <div class="fiter-box">
@@ -183,7 +177,15 @@ function HomePage() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
+                        <div class="details ">
+                        <h3 class="text-center">Browse 146+ Best AI {title.title} Tools</h3>
+                        <p>AI copywriting tools provide significant benefits such as time-saving, content optimization, and improved creativity. These tools can be applied in various use cases, including:</p>
+<ul>
+                           <li> Content generation: AI algorithms can generate high-quality content for blogs, social media, and websites, saving time and effort.</li>
+                          <li> SEO optimization: AI tools can analyze and suggest improvements for better search engine rankings.</li> 
+                           <li> Ad copy: AI-powered tools can create engaging and persuasive ad copy to improve marketing campaigns.</li></ul>
+                           </div>
                     </div>
                 </div>
             </div>
@@ -239,8 +241,8 @@ function HomePage() {
                                     <a href="#">#e-commerce</a>
                                 </div>
                                 <div class="save-btns">
-                                    <a href={item?.url} target="_blank"><img src="img/web.png" /></a>
-                                    {item?.HeartStatus == 0 ? <a onClick={() => favourite(item?.id, 1, userData?.id)}><img src="img/heart.png" /></a> : item?.heartStatus == 1 ? <a onClick={() => favourite(item?.id, 0, userData?.id)}><img src="img/heart-fill.png" /></a> : <a onClick={() => favourite(item?.id, 1, userData?.id)}><img src="img/heart.png" /></a>}
+                                    <a href={item?.url} target="_blank"><img src="../img/web.png" /></a>
+                                    {item?.HeartStatus == 0 ? <a onClick={() => favourite(item?.id, 1, userData?.id)}><img src="../img/heart.png" /></a> : item?.heartStatus == 1 ? <a onClick={() => favourite(item?.id, 0, userData?.id)}><img src="../img/heart-fill.png" /></a> : <a onClick={() => favourite(item?.id, 1, userData?.id)}><img src="../img/heart.png" /></a>}
                                 </div>
                             </div>
                         </div>
@@ -257,8 +259,8 @@ function HomePage() {
                     <h3>{item.Header}</h3>
                     <div class="price-box">
                         {item.data.map((value) => <div class="inner">
-                            <label for={value.id}>
-                                <input type="checkbox" name="free" id={value.id} onChange={(e) => handleChecked(e.target.checked, item.Header, value.id)} /><i class="far fa-check-circle"></i> {value.title}
+                            <label for="free">
+                                <input type="checkbox" name="free" id="free" onChange={(e) => handleChecked(e.target.checked, item.Header, value.id)} /><i class="far fa-check-circle"></i> {value.title}
                             </label>
                         </div>)}
                     </div>
@@ -274,4 +276,4 @@ function HomePage() {
     </>);
 }
 
-export default HomePage;
+export default AiTool;

@@ -13548,7 +13548,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   font-weight:600
 }
 
-.login-btn {
+.login-btn-inner {
   text-align: center;
   margin-top: 25px;
   margin-bottom: 15px;
