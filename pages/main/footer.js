@@ -33,13 +33,13 @@ function Footer() {
 							<h3>Quick Links</h3>
 							<ul>
 								<li>
-									<a href="/main/sponsor" target="_blank">Sponsor Us</a>
+									<a href="/main/sponsor" >Sponsor Us</a>
 								</li>
 								<li>
-									<a href="/main/privacyPolicy" target="_blank">Privacy Policy</a>
+									<a href="/main/privacyPolicy" >Privacy Policy</a>
 								</li>
 								<li>
-									<a href="/main/termandservice" target="_blank">Terms of Services</a>
+									<a href="/main/termandservice" >Terms of Services</a>
 								</li>
 							</ul>
 						</div>

@@ -14,7 +14,7 @@ function Dashboard() {
               
                 <AdminNavBar/>
               
-                <div class="container-fluid">
+                <div class="container-fluid cust-text-box-cls">
                     <h1 class="mt-4">Simple Sidebar</h1>
                     <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
                     <p>

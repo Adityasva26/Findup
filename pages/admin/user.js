@@ -49,17 +49,25 @@ function User() {
       renderCell: (rowData) => {
         return (
           <>
+          <div class="icon-boxes">
             <Link
-              href={"/admin/addUpdateUser"}
+              href={"/admin/addUser"}
             >
-            <i class="far fa-eye" ></i>
+         <i class="	fas fa-edit"></i>
+         </Link>
+         <Link
+              href={"#"}
+            >
+          <i class="fas fa-trash-alt" ></i>
             </Link>
+            </div>
           </>
         );
       },
     },
   ];
-  return (
+  return (<>
+  <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /></head>
     <div className="d-flex" id="wrapper">
       <Sidebar />
       <div id="page-content-wrapper"  class="bg-white" style={{background:"#fff"}}>
@@ -67,7 +75,7 @@ function User() {
         <div class="user">
                     <h4>User</h4>
             </div>
-        <div className="container-fluid">
+        <div className="container-fluid cust-table-box-cls">
           <DataGrid
             rows={data}
             columns={columns}
@@ -82,6 +90,7 @@ function User() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

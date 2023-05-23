@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Modal from 'react-bootstrap/Modal';
 import FacebookLogin from 'react-facebook-login';
 import axios from "axios";
-
+import $ from 'jquery'; 
 
 import Link from "next/link";
 import { ToastContainer } from 'react-toastify';
@@ -24,21 +24,43 @@ function Header() {
     const [userID, setUserID] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [picture, setPicture] = useState('');
+    const [picture, setPicture] = useState(''); 
+    const [password, setPassworderror] = useState(''); 
+    const [successMsg, setSuccmsg] = useState(''); 
 
-    const responseFacebook = (response) => {
-        console.log(response);
-        setIsLoggedIn(true);
-        setUserID(response.userID);
-        setName(response.name);
-        setEmail(response.email);
-        setPicture(response.picture.data.url);
-    };
+    // const responseFacebook = (response) => {
+    //     console.log(response);
+    //     setIsLoggedIn(true);
+    //     setUserID(response.userID);
+    //     setName(response.name);
+    //     setEmail(response.email);
+    //     setPicture(response.picture.data.url);
+    // };
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    
+    function colorChange() {
+       document.body.classList.toggle('themeChange'); 
+    }
+
+    function menuChange() {
+        //document.body.classList.toggle('menuopen'); 
+        
+				$("body").toggleClass("menuopen");
+		
+		$('.main-menu ul li.drop-down').before().on('click', function(e) {
+			$(this).children('ul').toggle();
+			$(this).siblings('li').find('ul').hide(); 
+		});
+     }
+
+
     useEffect(() => {
-        setuserData(JSON?.parse(window.localStorage.getItem("data")))
+       
+		
+	
+        setuserData(JSON?.parse(window?.localStorage?.getItem("data")))
 
 
 
@@ -57,8 +79,9 @@ function Header() {
 
     }, [scrollPosition])
 
-    const componentClicked = (response) => {
-        console.log(response);
+    const responseFacebook = (response) => {
+        if (response.status !== "unknown") {
+        console.log("socialregister",response.userID);
         axios.post(`${URL}socialregister`, { email: response.email, full_name: response.name, social_id: response.userID, social_name: response.graphDomain })
             .then(response => {
                 console.log(response.data);
@@ -70,6 +93,7 @@ function Header() {
             .catch(error => {
                 console.log(error);
             });
+        }
     }
     function logout() {
         localStorage.removeItem("data");
@@ -77,20 +101,39 @@ function Header() {
         // router.push('/')
         router.reload(window.location.pathname)
     }
-    function onRegister() {
-        if (validateForm(registerForm)) {
+    function onRegister() {  
+        if (validateForm(registerForm)) {  
+            axios.post(`${URL}register`, { email: registerForm.email,name: registerForm.name, password: registerForm.password })
+                .then(response => { 
+                    setregisterForm(response.data.data) 
+                    setSuccmsg('Registration Successfully');
+                    setTimeout(() => {
+                        handleClose()
+                        setSuccmsg('')
+                        router.push('/')
+                      }, 3000);
 
+                    
+                })
+                .catch(error => {
+                    console.log(error);
+                }); 
         }
     }
     function onLogin() {
         if (validateForm(loginForm)) {
+            let errors = {};
             axios.post(`${URL}login`, { email: loginForm.email, password: loginForm.password })
-                .then(response => {
-                    console.log(response.data);
-                    window.localStorage.setItem("data", JSON.stringify(response.data.data))
-                    setuserData(response.data.data)
-                    handleClose()
-                    router.push('/')
+                .then(response => { 
+                    if(response.data.status==='1'){
+                        window.localStorage.setItem("data", JSON.stringify(response.data.data))
+                        setuserData(response.data.data)
+                        handleClose()
+                        router.push('/')    
+                    }else{
+                        setPassworderror(response.data.message)
+                    }
+                    
                 })
                 .catch(error => {
                     console.log(error);
@@ -98,6 +141,7 @@ function Header() {
         }
     }
     function validateForm(fieldsValue) {
+        
         let fields = fieldsValue;
         let errors = {};
         let formIsValid = true;
@@ -111,16 +155,16 @@ function Header() {
             errors.name = "*Please enter your name.";
         }
         if (fields.email == "") {
-            console.log("email", fields)
             formIsValid = false;
-            errors["email"] = "*Please enter your name.";
+            errors.email = "*Please enter email.";
         }
         if (!fields.password.match(
             /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&!]).*$/)) {
             formIsValid = false;
             errors.password = "*Please enter atleast one letter Capital , One Digit , One Symbol and  8 Characters.";
         }
-        setErrors(errors);
+        
+        setErrors(errors); 
         return formIsValid;
     }
     const handleToggle = (e,g,h) => {
@@ -130,11 +174,11 @@ function Header() {
 
     return (
         <>
-            <head>
+            {/* <head> */}
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
                 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" />
-            </head>
+            {/* </head> */}
             <header class={header}>
                 <div class="top-header">
                     <div class="container">
@@ -172,7 +216,7 @@ function Header() {
                                         <li class="drop-down">
                                             <a href="#">Community</a>
                                             <ul class="sub-menu">
-                                                <li><Link href="/main/newsletter">Newlatter Issues</Link></li>
+                                                <li><Link href="/main/newsletter">Newslatter Issues</Link></li>
                                                 <li><Link href="/main/news">Latest AI News</Link></li>
                                                 <li><a href="https://discord.com/" target="_blank"><i class="fa-brands fa-discord"></i>Join Discord</a></li>
                                             </ul>
@@ -180,7 +224,7 @@ function Header() {
                                     </ul>
                                 </div>
 
-                                <div class="nav-btn d-lg-none d-block">
+                                <div class="nav-btn d-lg-none d-block" onClick={menuChange}>
                                     <span class="nav-icon">
                                         <span class="inner-icon top"></span>
                                         <span class="inner-icon middle"></span>
@@ -188,9 +232,10 @@ function Header() {
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-6 col-lg-3">
+                            <div class="col-6 col-lg-3"> 
+                            <a onClick={colorChange} className="theme-icon"><i class="fas fa-adjust"></i></a>
                                 {userData == null ? <div class="login-btn">
-                                    <a onClick={handleShow} class="theme-btn">Login / Register</a>
+                                    <a onClick={handleShow} class="theme-btn"><i class="fas fa-sign-in-alt"></i> Login / Register</a>
                                 </div> :
                                     <div class="aft-login">
                                         <div class="inner">
@@ -205,7 +250,7 @@ function Header() {
                     </div>
                 </div>
             </header>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} className="login_frm-cls">
                 <Modal.Header closeButton>
                     <Modal.Title>Select Filters to Apply</Modal.Title>
                 </Modal.Header>
@@ -233,6 +278,7 @@ function Header() {
                                         <label>Password</label>
                                         <input type="Password" name="" onChange={(e) => setloginForm({ email: loginForm.email, password: e.target.value })} />
                                         <p>{errors.password}</p>
+                                        <p>{password}</p>
                                     </div>
                                     <div class="form-group">
                                         <button onClick={() => onLogin()}>Login</button>
@@ -250,7 +296,7 @@ function Header() {
                                                 appId="614459823890550"
                                                 // autoLoad={true}
                                                 fields="name,email,picture"
-                                                onClick={componentClicked}
+                                                // onClick={componentClicked}
                                                 callback={responseFacebook}
                                                 icon={<i class="fab fa-facebook-f"></i>}
                                             />
@@ -261,6 +307,7 @@ function Header() {
                             </div> : toggle == "register" ?
                                 <div class="tab-pane fade show active" >
                                     <div class="login-form">
+                                        <h3 className="succe">{successMsg}</h3>
                                         <form>
                                             <div class="form-group">
                                                 <label>Name</label>
@@ -270,13 +317,15 @@ function Header() {
                                             <div class="form-group">
                                                 <label>Email</label>
                                                 <input type="email" name="" onChange={(e) => setregisterForm({ name: registerForm.name, email: e.target.value, password: registerForm.password })} />
+                                                <label>{errors.email}</label>
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="Password" name="" onChange={(e) => setregisterForm({ name: e.target.value, email: registerForm.email, password: registerForm.password })} />
+                                                <input type="Password" name="" onChange={(e) => setregisterForm({ name: registerForm.name, email: registerForm.email, password: e.target.value })} />
+                                                <label>{errors.password}</label>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" onClick={() => onRegister()}>Register</button>
+                                                <button type="button" onClick={() => onRegister()}>Register</button>
                                             </div>
                                         </form>
                                     </div>

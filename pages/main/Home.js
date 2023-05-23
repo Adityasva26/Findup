@@ -252,7 +252,7 @@ function HomePage() {
                 </div>
             </div>
         </div>
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} className="login_frm-cls">
             <Modal.Header closeButton>
                 <Modal.Title>Select Filters to Apply</Modal.Title>
             </Modal.Header>

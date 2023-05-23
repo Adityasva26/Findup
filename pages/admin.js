@@ -15,7 +15,7 @@ function AdminLogin() {
         console.log("loginform1234567890",loginForm);
         if (validateForm(loginForm)) {
             console.log("loginform12344556");
-            axios.post(`${URL}login`, { email: loginForm.email, password: loginForm.password })
+            axios.post(`${URL}login`, { email: loginForm.email.toLocaleLowerCase(), password: loginForm.password })
                 .then(response => {
                     console.log(response.data);
                     window.localStorage.setItem("adminData", JSON.stringify(response.data.data))

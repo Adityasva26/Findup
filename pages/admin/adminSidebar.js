@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 function Sidebar() {
-    return (  <div class="border-end bg-white" id="sidebar-wrapper">
+    return (  <div class="border-end bg-white admin-side-menu-cls" id="sidebar-wrapper">
     <div class="sidebar-heading border-bottom bg-light">FuturePedia Admin</div>
     <div class="list-group list-group-flush">
         <Link class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/dashboard">Dashboard</Link>
