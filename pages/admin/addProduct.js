@@ -46,7 +46,7 @@ function AddProduct() {
         }
         else{
             console.error("fdgdgsdfgsd")
-        if (validateForm(data)) {
+        // if (validateForm(data)) {
             
             const FormData = require('form-data');
             let data1 = new FormData();
@@ -80,7 +80,7 @@ function AddProduct() {
                     console.log(error);
                 });
         }}
-    }
+    // }
     function validateForm(fieldsValue) {
         let fields = fieldsValue;
         let errors = {};

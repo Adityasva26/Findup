@@ -1,19 +1,30 @@
-import Sidebar from "./adminSidebar";
-import AdminNavBar from "./adminnavbar";
+import Sidebar from "../adminSidebar";
+import AdminNavBar from "../adminnavbar";
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
-import { URL } from '../../utility/api';
+import { URL } from "@/utility/api";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-function AddUpdateUser() {
+function UpdateUser() {
     const router = useRouter()
-    const [registerForm, setregisterForm] = useState({ name: "", email: "", password: "" });
+    const id = router.query.id
+    const [registerForm, setregisterForm] = useState({ name: "", email: "", });
     const [errors, setErrors] = useState({});
+    useEffect(()=>{getByid()},[id])
+    async function getByid () {
+		axios.post(`${URL}userById`, { id: id })
+		.then(response => {
+            setregisterForm({name:response.data.data.full_name,email:response.data.data.email})
+		})
+		.catch(error => {
+			console.log(error);
+		});
+	 }
     function onRegister() {  
-        if (validateForm(registerForm)) {  
-            axios.post(`${URL}addUser`, { email: registerForm.email,full_name: registerForm.name, password: registerForm.password })
+        // if (validateForm(registerForm)) {  
+            axios.post(`${URL}userUpdate`, { email: registerForm.email,full_name: registerForm.name})
                 .then(response => { 
                     setregisterForm(response.data.data) 
                     toast(response.data.message)
@@ -23,7 +34,7 @@ function AddUpdateUser() {
                 .catch(error => {
                     console.log(error);
                 }); 
-        }
+        // }
     }
     function validateForm(fieldsValue) {
         
@@ -43,11 +54,7 @@ function AddUpdateUser() {
             formIsValid = false;
             errors.email = "*Please enter email.";
         }
-        if (!fields.password.match(
-            /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&!]).*$/)) {
-            formIsValid = false;
-            errors.password = "*Please enter atleast one letter Capital , One Digit , One Symbol and  8 Characters.";
-        }
+       
         
         setErrors(errors); 
         return formIsValid;
@@ -61,7 +68,7 @@ function AddUpdateUser() {
             <div id="page-content-wrapper" class="bg-white" style={{ background: "#fff" }}>
                 <AdminNavBar />
                 <div class="user">
-                    <h4> Add User</h4>
+                    <h4> Update User</h4>
                 </div>
                
                 <div className="container-fluid">
@@ -75,20 +82,20 @@ function AddUpdateUser() {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>User Name</label>
-                                                    <input type="text" name="" onChange={(e) => setregisterForm({ name: e.target.value, email: registerForm.email, password: registerForm.password })} />
+                                                    <input type="text" value={registerForm?.name} onChange={(e) => setregisterForm({ name: e.target.value, email: registerForm.email, password: registerForm.password })} />
                                                     <p>{errors.name}</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>email</label>
-                                                    <input type="email"
+                                                    <input type="email" value={registerForm?.email}
                                                     onChange={(e) => setregisterForm({ name: registerForm.name, email: e.target.value, password: registerForm.password })}
                                                      />
                                                     <p>{errors.url}</p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            {/* <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Password</label>
                                                     <input type="Password"
@@ -96,7 +103,7 @@ function AddUpdateUser() {
                                                      />
                                                     <p>{errors.url}</p>
                                                 </div>
-                                            </div>   
+                                            </div>    */}
                                          
                                             
                                             <div class="col-md-12">
@@ -119,4 +126,4 @@ function AddUpdateUser() {
     </>);
 }
 
-export default AddUpdateUser;
+export default UpdateUser;

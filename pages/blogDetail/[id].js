@@ -10,6 +10,7 @@ import ReactHtmlParser from 'react-html-parser';
 function BlogDetail() {   
 	console.log("url",process.env.URL)
 	const [share, setShare] = useState("share-btn");
+	
 	const router = useRouter()
 	const id = router.query.id
 	const [data,setdata]=useState({})

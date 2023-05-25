@@ -311,17 +311,17 @@ function Header() {
                                         <form>
                                             <div class="form-group">
                                                 <label>Name</label>
-                                                <input type="text" name="" onChange={(e) => setregisterForm({ name: e.target.value, email: registerForm.email, password: registerForm.password })} />
+                                                <input type="text"  onChange={(e) => setregisterForm({ name: e.target.value, email: registerForm?.email, password: registerForm?.password })} />
                                                 <label>{errors.name}</label>
                                             </div>
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="email" name="" onChange={(e) => setregisterForm({ name: registerForm.name, email: e.target.value, password: registerForm.password })} />
+                                                <input type="email"  onChange={(e) => setregisterForm({ name: registerForm?.name, email: e.target.value, password: registerForm?.password })} />
                                                 <label>{errors.email}</label>
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="Password" name="" onChange={(e) => setregisterForm({ name: registerForm.name, email: registerForm.email, password: e.target.value })} />
+                                                <input type="Password"  onChange={(e) => setregisterForm({ name: registerForm?.name, email: registerForm?.email, password: e.target.value })} />
                                                 <label>{errors.password}</label>
                                             </div>
                                             <div class="form-group">

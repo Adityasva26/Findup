@@ -7,11 +7,12 @@ import { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { URL } from '../../utility/api';
-
+import { useRouter } from 'next/router'
 
 
 
 function NewsletterAdmin() {
+  const router = useRouter()
   const [data, setdata] = useState([])
   const [userData, setuserData] = useState({});
   const [share, setShare] = useState("share-btn");
@@ -51,19 +52,36 @@ function NewsletterAdmin() {
           <>
           <div class="icon-boxes">
             <Link
-              href={"/admin/addnewsletter"}
+              href={`/admin/updateNewsLetter/${rowData.id}`}
             >
            <i class="	fas fa-edit"></i>
            </Link>
-           <Link href={"#"}>
+           <a
+             onClick={()=>handleDelete(rowData.id)}
+            >
            <i class="fas fa-trash-alt" ></i>
-            </Link>
+            </a>
             </div>
           </>
         );
       },
     },
   ];
+  const handleDelete = (e)=>{
+    axios.post(`${URL}BlogDelete`, {id:e})
+    .then(response => {
+      getByid()
+        toast.success(response.data.message)
+    
+        
+    })
+    .catch(error => {
+        console.log(error);
+    }); 
+  }
+  const handleNavigate=()=>{
+    router.push("/admin/addNewsletter")
+  }
   return (
     <>
   <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /></head>
@@ -71,9 +89,14 @@ function NewsletterAdmin() {
       <Sidebar />
       <div id="page-content-wrapper" class="bg-white" style={{background:"#fff"}}>
         <AdminNavBar />
+        <div class="tp-user-cls">
         <div class="user">
                     <h4>Newsletter</h4>
             </div>
+            <div class="user add-btn">
+                    <button onClick={()=>handleNavigate()}> Add Newsletter+</button>
+                </div>
+        </div>
         <div className="container-fluid cust-table-box-cls">
           <DataGrid
             rows={data}

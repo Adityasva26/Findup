@@ -1,5 +1,5 @@
-import Sidebar from "./adminSidebar";
-import AdminNavBar from "./adminnavbar";
+import Sidebar from "../adminSidebar";
+import AdminNavBar from "../adminnavbar";
 import 'react-quill/dist/quill.snow.css'
 import dynamic from "next/dynamic";
 import 'react-quill/dist/quill.snow.css'
@@ -10,17 +10,20 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from 'next/router'
 import { toast } from "react-toastify";
-import { URL } from '../../utility/api';
+import { URL } from '@/utility/api';
 
-function AddNewsletter() {
+function UpdateNewsletter() {
+    
     const QuillNoSSRWrapper = dynamic(import('react-quill'), {	
         ssr: false,
         loading: () => <p>Loading ...</p>,
         })
         const router = useRouter()
+        const id = router.query.id
         const [value, setValue] = useState('')
         const [data,setData]=useState({name:""})
         const [image, setImage] = useState()
+        const [dataid, setdataid] = useState()
         const [categoryListing, setcategoryListing] = useState({})
         const [errors, setErrors] = useState({});
         const [userId, setuserId] = useState({});
@@ -30,7 +33,21 @@ function AddNewsletter() {
        
         useEffect(()=>{ categoryList()
             setuserId( JSON.parse(window.localStorage.getItem("data")))
+            getByid()
         },[])
+
+        async function getByid () {
+            axios.post(`${URL}BlogById`, { id: id,user_id:"" })
+            .then(response => {
+                setdataid(response.data.data.id)
+                setData({name:response.data.data.title})
+                setValue(response.data.data.paragraph)
+                setImage(response.data.data.image)
+            })
+            .catch(error => {
+                console.log(error);
+            });
+         }
       
         const categoryList = () => {
             axios.post(`${URL}dropdown`,{type:"news"})
@@ -52,6 +69,7 @@ function AddNewsletter() {
                 console.log("wewwwwwwwwwwwww")
                 const FormData = require('form-data');
                 let data1 = new FormData();
+                data1.append('id', dataid);
                 data1.append('title', data.name);
                 data1.append('paragraph', value);
                 data1.append('image',image)
@@ -59,7 +77,7 @@ function AddNewsletter() {
                 let config = {
                     method: 'post',
                     maxBodyLength: Infinity,
-                    url: `${URL}addBlog`,
+                    url: `${URL}BlogUpdate`,
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
@@ -107,7 +125,7 @@ function AddNewsletter() {
             <div id="page-content-wrapper" class="bg-white" style={{ background: "#fff" }}>
                 <AdminNavBar />
                 <div class="user">
-                    <h4> Add Newsletter</h4>
+                    <h4> Update Newsletter</h4>
                 </div>
                 <div className="container-fluid">
                     <div class="submit-form admn-form-cls mt40 mb40">
@@ -120,7 +138,7 @@ function AddNewsletter() {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>News Title</label>
-                                                    <input type="text" placeholder="Copy AI"
+                                                    <input type="text" placeholder="Copy AI" value={data.name}
                                                     onChange={(e)=>setData({name:e.target.value,url:data.url,category:data.category})} 
                                                     />
                                                     <p>{errors.name}</p>
@@ -167,4 +185,4 @@ function AddNewsletter() {
     </>);
 }
 
-export default AddNewsletter;
+export default UpdateNewsletter;

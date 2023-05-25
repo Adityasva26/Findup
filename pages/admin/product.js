@@ -30,6 +30,7 @@ function AdminProduct() {
               id: item.id,
               title: item.title,
               description: item.description,
+              verified: item.verified,
               status: item.status,
 
             };
@@ -44,6 +45,7 @@ function AdminProduct() {
   const columns = [
     { field: 'title', headerName: 'Title', width: 300 },
     { field: 'description', headerName: 'Description', width: 300 },
+    { field: 'verified', headerName: 'Verified', width: 300 },
     { field: 'status', headerName: 'Status', width: 200 },
     {
       field: 'Action', headerName: 'Action', width: 200,
@@ -51,27 +53,49 @@ function AdminProduct() {
         return (
           <>
           <div class="icon-boxes">
-            <Link
-              href={"#"}
+            <a
+             onClick={()=>handleValidate(rowData.id)}
             >
-               <i class="fas fa-eye"></i>
-               </Link>
+               <i class="fa-solid fa-check"></i>
+               </a>
                <Link
-              href={"#"}
+              href={`/admin/updateProduct/${rowData.id}`}
             >
           <i class="	fas fa-edit"></i>
           </Link>
-               <Link
-              href={"#"}
+               <a
+             onClick={()=>handleDelete(rowData.id)}
             >
           <i class="fas fa-trash-alt" ></i>
-            </Link>
+            </a>
             </div>
           </>
         );
       },
     },
   ];
+  const handleDelete = (e)=>{
+    axios.post(`${URL}newsdelete`, {id:e})
+    .then(response => {
+      getByid()
+        toast.success(response.data.message)
+    
+        
+    })
+    .catch(error => {
+        console.log(error);
+    }); 
+  }
+  const handleValidate=(e)=>{
+    axios.post(`${URL}productStatusUpdate`, {id:e})
+    .then(response => {
+      getByid()
+        toast.success(response.data.message)
+    })
+    .catch(error => {
+        console.log(error);
+    }); 
+  }
   const handleNavigate=()=>{
     router.push("/admin/addProduct")
   }

@@ -1,24 +1,24 @@
-import Header from "./header";
-import Footer from "./footer";
-import { useEffect, useState } from "react";
-
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-// import { CKEditor } from "@ckeditor/ckeditor5-react";
+import Sidebar from "../adminSidebar";
+import AdminNavBar from "../adminnavbar";
 import axios from "axios";
 import { useRouter } from 'next/router'
 import { toast } from "react-toastify";
-import { URL } from '../../utility/api';
+import { URL } from '@/utility/api';
 import dynamic from "next/dynamic";
 import 'react-quill/dist/quill.snow.css'
+import { useEffect, useState } from "react";
 
-function SubmitTool() {
+
+function updateProduct() {
     const router = useRouter()
+    const id = router.query.id
     const [value, setValue] = useState('')
     console.log("value",value)
     const [data, setData] = useState({ name: "", url: "", short_description: "", description: "", category: "", feature: "", pricing: "", price: "", association: true })
     const [image, setImage] = useState()
     const [categoryListing, setcategoryListing] = useState({})
     const [errors, setErrors] = useState({});
+    const [oldprofilephoto, setoldprofilephoto] = useState({});
     var userId={}
     const QuillNoSSRWrapper = dynamic(import('react-quill'), {	
         ssr: false,
@@ -29,8 +29,21 @@ function SubmitTool() {
         
    userId = JSON.parse(window.localStorage.getItem("data"))
     }, [])
+    useEffect(()=>{getByid()},[id])
+    async function getByid () {
+		axios.post(`${URL}productById`, { id: id,user_id:"" })
+		.then(response => {
+            setData({name:response.data.data.title,url:response.data.data.url,short_description:response.data.data.short_discription,description:response.data.data.discription,category:response.data.data.category,pricing:response.data.data.pricing_category,price:response.data.data.price,feature:response.data.data.features})
+		    setValue(response.data.data.discription)
+            setoldprofilephoto(response.data.data.image)
+        })
+		.catch(error => {
+			console.log(error);
+		});
+	 }
     function handleChange(e, fieldsValue) {
         setImage(e.target.files[0]);
+        // setoldprofilephoto(URL.createObjectURL(e.target.files[0]));
     }
     const categoryList = () => {
         axios.post(`${URL}dropdown`,{type:"product"})
@@ -47,7 +60,8 @@ function SubmitTool() {
         toast.error("login before submiting form")
         }
         else{
-            console.error("fdgdgsdfgsd")
+            console.log("fdgdgsdfgsd")
+            console.log(categoryList.Category.filter(data.category))
         // if (validateForm(data)) {
             
             const FormData = require('form-data');
@@ -66,7 +80,7 @@ function SubmitTool() {
             let config = {
                 method: 'post',
                 maxBodyLength: Infinity,
-                url: `${URL}addproduct`,
+                url: `${URL}productUpdate`,
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
@@ -76,14 +90,13 @@ function SubmitTool() {
             axios.request(config)
                 .then((response) => {
                     toast.success(response.data.message)
-                    router.push('/')
+                    router.push('/admin/product')
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-        }
+        }}
     // }
-    }
     function validateForm(fieldsValue) {
         let fields = fieldsValue;
         let errors = {};
@@ -116,26 +129,22 @@ function SubmitTool() {
         return formIsValid;
 
     }
+    console.log("data",data)
     return (<>
-        <Header />
-        <div class="breadcums pt120 pb30">
-            <div class="container">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Submit Tool</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
 
-        <div class="submit-form mt40 mb40">
-            <div class="container">
-                <div class="top-heading pb30">
-                    <h3 class="font30 clr-white medium">Submit your tool. <span class="font16 clr-grey">It's free and takes less than a minute.</span></h3>
-                    <p>We try to review all tools within 7 days and add it to the directory.</p>
+
+        <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /></head>
+        <div className="d-flex" id="wrapper">
+            <Sidebar />
+            <div id="page-content-wrapper" class="bg-white" style={{ background: "#fff" }}>
+                <AdminNavBar />
+                <div class="user">
+                    <h4> Update Product</h4>
                 </div>
-                <div class="row">
+                <div className="container-fluid">
+                    <div class="submit-form admn-form-cls mt40 mb40">
+                        <div class="container">
+                        <div class="row">
                     <div class="col-md-12">
                         <div class="inner-form">
                             {/* <form> */}
@@ -143,21 +152,21 @@ function SubmitTool() {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Tool Name</label>
-                                        <input type="text" placeholder="Copy AI" onChange={(e) => setData({ name: e.target.value, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
+                                        <input type="text" placeholder="Copy AI" value={data.name} onChange={(e) => setData({ name: e.target.value, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
                                         <p>{errors.name}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Website URL</label>
-                                        <input type="text" placeholder="https://copy.ai" onChange={(e) => setData({ name: data.name, url: e.target.value, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
+                                        <input type="text" placeholder="https://copy.ai"  value={data.url} onChange={(e) => setData({ name: data.name, url: e.target.value, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
                                         <p>{errors.url}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Tool's short description (Optional)</label>
-                                        <input type="text" placeholder="Please provide a short description" onChange={(e) => setData({ name: data.name, url: data.url, short_description: e.target.value, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
+                                        <input type="text" placeholder="Please provide a short description" value={data.short_description} onChange={(e) => setData({ name: data.name, url: data.url, short_description: e.target.value, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
                                         <p>{errors.short_description}</p>
                                     </div>
                                 </div>
@@ -175,7 +184,7 @@ function SubmitTool() {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Select categories (max 3)</label>
-                                        <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: e.target.value, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}>
+                                        <select value={data.category} onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: e.target.value, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}>
                                             {categoryListing?.Category?.map((e) => <option value={e.id}>{e.title}</option>)}
                                         </select>
                                     </div>
@@ -183,7 +192,7 @@ function SubmitTool() {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Select features (optional)</label>
-                                        <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: e.target.value, pricing: data.pricing, price: data.price, association: data.association })}>
+                                        <select value={data.feature} onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: e.target.value, pricing: data.pricing, price: data.price, association: data.association })}>
                                             {categoryListing?.features?.map((e) => <option value={e.id}>{e.title}</option>)}
                                         </select>
                                     </div>
@@ -191,7 +200,7 @@ function SubmitTool() {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Pricing - Select freemium if your tool has both paid and free versions</label>
-                                        <select onChange={(e) => setData({ name: data.name, url: data.url, short_description:data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: e.target.value, price: data.price, association: data.association })}>
+                                        <select value={data.pricing} onChange={(e) => setData({ name: data.name, url: data.url, short_description:data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: e.target.value, price: data.price, association: data.association })}>
                                             {categoryListing?.pricings?.map((e) => <option value={e.id}>{e.title}</option>)}
                                         </select>
                                     </div>
@@ -199,15 +208,16 @@ function SubmitTool() {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Starting Price (Optional)</label>
-                                        <input type="text" name="" placeholder="$10/mo" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: e.target.value, association: data.association })} />
+                                        <input type="text" value={data.price} name="" placeholder="$10/mo" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: e.target.value, association: data.association })} />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>upload Image</label>
-                                        <input type="file" name="" onChange={(e, fields) => {
+                                        <input type="file"  onChange={(e, fields) => {
                                             handleChange(e, fields)
                                         }} />
+                                        {/* <img src={oldprofilephoto}/> */}
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -232,10 +242,12 @@ function SubmitTool() {
                         </div>
                     </div>
                 </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <Footer />
     </>);
 }
 
-export default SubmitTool;
+export default updateProduct;
