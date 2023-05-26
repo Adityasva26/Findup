@@ -9,6 +9,8 @@ function Sidebar() {
         <Link class="list-group-item list-group-item-action list-group-item-light p-3"href="/admin/product">Product</Link>
         <Link class="list-group-item list-group-item-action list-group-item-light p-3"href="/admin/news">News</Link>
         <Link class="list-group-item list-group-item-action list-group-item-light p-3"href="/admin/newsletter">NewsLetter</Link>
+        <Link class="list-group-item list-group-item-action list-group-item-light p-3"href="/admin/comment">comment</Link>
+        <Link class="list-group-item list-group-item-action list-group-item-light p-3"href="/admin/category">category</Link>
         {/* <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a> */}
     </div>
 </div>);

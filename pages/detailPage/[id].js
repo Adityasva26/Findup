@@ -93,19 +93,34 @@ function DetailPage() {
     }
   };
   const handleModle = (e) => {
+    if (userData == null) {
+      toast.error("Login before ratting product!");
+    } else {
     setModle(e);
     handleShow();
+    }
   };
-  const handleComment = ()=>{
-	axios.post(`${URL}addComment`,{ratting:modle,comment:value,userId:userData.id,productId:data?.data?.id})
-	.then((response) => {
-		toast.success(response.data.dat.message)
-		handleClose()
-	})
-	.catch((error) => {
-		console.error(error);
-	})
-  }
+  console.log("userData",userData)
+  const handleComment = () => {
+
+    axios
+      .post(`${URL}addComment`, {
+        ratting: modle,
+        comment: value,
+        userId: userData.id,
+        productId: data?.data?.id,
+      })
+      .then((response) => {
+        toast.success(response.data.message);
+        handleClose();
+		setModle(0)
+		getByid(userData.id)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    
+  };
   return (
     <>
       <Header />
@@ -261,9 +276,36 @@ function DetailPage() {
           </div>
         </div>
       </div>
-      <div class="review-text mb40">
+      <div class="review-text submit-form">
         <div class="container">
           <div class="row">
+            <div class="new-boxes">
+              <div class="inner-box rating">
+                <div class="content">
+                  <div class="left">
+                    <h3 class="font18 clr-white d-block" style={{width:"100%", marginBottom:"10px"}}>What do you think about AI Roguelite ?</h3>
+                    <p>Leave a review for the community</p>
+                  </div>
+                  <Stack spacing={1}>
+              <Rating
+                name="size-small"
+                defaultValue={modle}
+                size="small"
+                onChange={(e) => handleModle(e.target.value)}
+              />
+            </Stack>
+            
+                </div>
+           
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="review-text average-rating">
+        <div class="container">
+          <div class="row">
+            <h3 class="font18 clr-white mb20">Average Rating</h3>
             <Stack spacing={1}>
               <Rating
                 name="size-small"
@@ -272,10 +314,11 @@ function DetailPage() {
                 onChange={(e) => handleModle(e.target.value)}
               />
             </Stack>
+            <span class="nub">3 Star</span>
           </div>
         </div>
       </div>
-      <Modal show={show} onHide={handleClose} className="login_frm-cls">
+      <Modal show={show} onHide={handleClose} className="login_frm-cls rating">
         <Modal.Header closeButton>
           <Modal.Title>What do you think about {data?.data?.title}</Modal.Title>
         </Modal.Header>
@@ -334,10 +377,48 @@ function DetailPage() {
             class="theme-btn"
             onClick={() => handleComment()}
           >
-           Post Review {"->"}
+            Post Review {"->"}
           </button>
         </Modal.Footer>
       </Modal>
+      <div class="submit-form mt40 mb40">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              {data?.commentList?.map((item) => (
+                <div class="new-boxes">
+                  <div class="inner-box rating">
+                    <h3>
+                      <p target="_blank">{ReactHtmlParser(item.comment)}</p>
+                    </h3>
+                    <div class="content">
+                      <div class="left">
+                        <div class="name">
+                          <p>commented By -: {item.userName}</p>
+                          <p class="time">
+                            {moment(data?.created_at).fromNow()}
+                          </p>
+                        </div>
+                      </div>
+                      {/* <div class="right"> */}
+					  <Stack spacing={1}>
+                        <Rating
+                          name="size-large"
+                          defaultValue={Number(item.ratting)}
+                          size="large"
+						  readOnly 
+                        />
+                      </Stack>
+                      {/* </div> */}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="activity-sec related mt50">
         <div class="container">
           <h4 class="font30 medium clr-white mb20">

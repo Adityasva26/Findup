@@ -2942,6 +2942,150 @@ nav.navbar.cust-nav.navbar-light a.nav-link {
 .cust-table-box-cls .MuiTablePagination-toolbar .css-16c50h-MuiInputBase-root-MuiTablePagination-select {
   border: solid 1px #ccc;
 }
+.submit-form .new-boxes .inner-box.rating span {
+  display: inline;
+  text-align: right;
+  font-size: 15px;
+}
+
+.submit-form .new-boxes .inner-box.rating span.MuiRating-iconEmpty {
+  color: #fff;
+}
+
+
+.review-text span.MuiRating-root span.MuiRating-iconEmpty {
+  color: #fff;
+}
+
+.login_frm-cls.rating .inner-form .form-group {
+  margin-bottom: 10px;
+}
+
+.login_frm-cls.rating .inner-form .quill {
+  margin-bottom: 10px;
+}
+
+.login_frm-cls.rating .inner-form .form-group label {
+  margin-bottom: 6px;
+}
+
+.login_frm-cls.rating .inner-form .quill .ql-picker {
+  color: #fff;
+}
+
+.login_frm-cls.rating .inner-form .quill svg .ql-stroke {stroke: #fff;}
+
+.review-text.average-rating .MuiStack-root.css-1okj3ks-MuiStack-root {
+  width: max-content;
+  justify-content: center;
+}
+
+.review-text.average-rating span.nub {
+  display: inline-block;
+  width: max-content;
+}
+
+.login_frm-cls.cat-add-cls .form-group {
+  margin-bottom: 15px;
+}
+
+.login_frm-cls.cat-add-cls .form-group label {
+  display: block;
+  padding-bottom: 6px;
+}
+
+.login_frm-cls.cat-add-cls .form-group input, .login_frm-cls.cat-add-cls .form-group select {
+  width: 100%;
+  border: 1px solid #959595;
+  border-radius: 5px;
+  background: transparent;
+  color: #fff;
+  padding: 10px;
+}
+
+.login_frm-cls.cat-add-cls .form-group select option {
+  background: #000;
+}
+.cust-text-box-cls .inner-det {
+  text-align: center;
+  border: solid 1px #000;
+  margin: 10px auto;
+  max-width: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cust-text-box-cls .inner-det h3 {
+  background: black;
+  color: #fff;
+  font-size: 20px;
+  padding: 15px 10px;
+}
+
+.cust-text-box-cls .inner-det p {
+  margin-bottom: 0;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.cust-text-box-cls .inner-det.first {border-color: #17a2b8;}
+
+.cust-text-box-cls .inner-det.first h3 {
+    background: #17a2b8;
+}
+
+.cust-text-box-cls .inner-det.first p {
+    color: #17a2b8;
+}
+
+.cust-text-box-cls .inner-det.second {border-color: #28a745;}
+
+.cust-text-box-cls .inner-det.second h3 {
+    background: #28a745;
+}
+
+.cust-text-box-cls .inner-det.second p {
+    color: #28a745;
+}
+
+.cust-text-box-cls .inner-det.third {border-color: #ffc107;}
+
+.cust-text-box-cls .inner-det.third h3 {
+    background: #ffc107;
+}
+
+.cust-text-box-cls .inner-det.third p {
+    color: #ffc107;
+}
+.cust-text-box-cls .inner-det.four {border-color: #dc3545;}
+
+.cust-text-box-cls .inner-det.four h3 {
+    background: #dc3545;
+}
+
+.cust-text-box-cls .inner-det.four p {
+    color: #dc3545;
+}
+.cust-text-box-cls .inner-det.five {border-color: #9267ff;}
+
+.cust-text-box-cls .inner-det.five h3 {
+    background: #9267ff;
+}
+
+.cust-text-box-cls .inner-det.five p {
+    color: #9267ff;
+}
+
+.cust-text-box-cls .inner-det.six {border-color: #1e3d73;}
+
+.cust-text-box-cls .inner-det.six h3 {
+    background: #1e3d73;
+}
+
+.cust-text-box-cls .inner-det.six p {
+    color: #1e3d73;
+}
+
 @media (max-width: 1199px){
 .activity-sec .main-box .img {
   height: auto;
