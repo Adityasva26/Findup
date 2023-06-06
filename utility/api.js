@@ -1,1 +1,1 @@
-export const URL = 'http://192.168.1.64:4000/api/futurePedia/';
+export const URL = 'https://backendpedia.acgence.com/api/futurePedia/';
