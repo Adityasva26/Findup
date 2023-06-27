@@ -33,7 +33,7 @@ function HomePage() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
+sonsole.log("Aditya Testing")
     useEffect(() => {
         setuserData(JSON?.parse(window.localStorage.getItem('data')))
 
