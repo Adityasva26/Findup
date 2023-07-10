@@ -218,7 +218,7 @@ function Header() {
                                             <ul class="sub-menu">
                                                 <li><Link href="/main/newsletter">Newslatter Issues</Link></li>
                                                 <li><Link href="/main/news">Latest AI News</Link></li>
-                                                <li><a href="https://discord.com/" target="_blank"><i class="fa-brands fa-discord"></i>Join Discord</a></li>
+                                                <li><a href="https://discord.com/" target="_blank"><i class='fab fa-discord'></i>Join Discord</a></li>
                                             </ul>
                                         </li>
                                     </ul>
