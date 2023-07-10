@@ -33,7 +33,7 @@ function HomePage() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-sonsole.log("Aditya Testing")
+
     useEffect(() => {
         setuserData(JSON?.parse(window.localStorage.getItem('data')))
 
@@ -151,7 +151,10 @@ sonsole.log("Aditya Testing")
                 <div class="row">
                     <div class="col-md-12">
                         <div class="details text-center">
-                            <h3 class="font60 clr-white">FUTUREPEDIA</h3>
+                            {/* <h3 class="font60 clr-white">FINDUP.AI</h3> */}
+                            <div className="inner-img">
+                                <img src="../img/Logo-inner.png" />
+                            </div>
                             <p class="clr-white font20">THE LARGEST AI TOOLS DIRECTORY, UPDATED DAILY</p>
 
                             <div class="tools-btn">
