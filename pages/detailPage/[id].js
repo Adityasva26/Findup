@@ -216,11 +216,11 @@ function DetailPage() {
               <div class="detail-content">
                 <p>{data?.data?.short_discription}</p>
                 <ul>
-                  <li>
+                 {data?.verified=="verifieds"? <li>
                     <i class="fas fa-check-circle"></i> This tool is verified
                     because it is either an established company, has good social
                     media presence or a distinctive use case
-                  </li>
+                  </li>:""}
                   <li>
                     <i class="fas fa-calendar"></i> Added on{" "}
                     {moment(data?.data?.created_at).format("MMMM d, YYYY")}
@@ -438,9 +438,7 @@ function DetailPage() {
                       <h3>
                         <a href="#">
                           {item.title}{" "}
-                          <span>
-                            <i class="fas fa-check-circle"></i>
-                          </span>
+                          {item?.verified=="verifieds"?<span><i class="fas fa-check-circle"></i></span>:""}
                         </a>
                       </h3>
                       <div class="likes">

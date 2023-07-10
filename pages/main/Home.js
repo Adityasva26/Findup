@@ -230,7 +230,7 @@ function HomePage() {
                             </div>
                             <div class="content">
                                 <div class="top-text">
-                                    <h3><a href="#">{item?.title} <span><i class="fas fa-check-circle"></i></span></a></h3>
+                                    <h3><a href="#">{item?.title} {item?.verified=="verifieds"?<span><i class="fas fa-check-circle"></i></span>:""}</a></h3>
                                     <div class="likes">
                                         <i class="fas fa-thumbs-up"></i> {item?.Favourites_count}
                                     </div>
