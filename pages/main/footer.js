@@ -14,16 +14,16 @@ function Footer() {
 						</div>
 						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 						<div class="social-icon">
-							<a href="#">
+							<a href="https://www.facebook.com/findupai">
 								<i class="fab fa-facebook-f"></i>
 							</a>
-							<a href="#">
+							<a href="https://twitter.com/Findupai">
 								<i class="fab fa-twitter"></i>
 							</a>
-							<a href="#">
+							<a href="https://www.instagram.com/findupai/">
 								<i class="fab fa-instagram"></i>
 							</a>
-							<a href="#">
+							<a href="https://www.linkedin.com/company/findup-ai/">
 								<i class="fab fa-linkedin-in"></i>
 							</a>
 						</div>
