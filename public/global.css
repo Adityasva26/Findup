@@ -68,6 +68,9 @@
       color: orange;
 
     }
+    body.themeChange .top-section .inner-img img {
+      filter: brightness(0) invert(0);
+  }
 
 
     .hide-in-mob {
