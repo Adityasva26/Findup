@@ -64,7 +64,7 @@ function AiTool() {
     const regexAPi = (e) => {
         axios.post(`${URL}RegexApi`, { title: e })
             .then(response => {
-                console.log(response.data);
+              
                 setregexList(response.data.data)
             })
             .catch(error => {
@@ -72,8 +72,8 @@ function AiTool() {
             });
     }
     const favourite = (e, h, g) => {
-        console.log("userData", userData)
-        console.log("userId", g)
+       
+       
         if (g == undefined) {
             toast.error('Login before adding product to Favourite!');
         } else {
@@ -109,9 +109,7 @@ function AiTool() {
             });
     }
     const handleChecked = (e, g, h) => {
-        console.log("e", e)
-        console.log("g", g)
-        console.log("h", h)
+   
 
         if (g == "Pricing") {
             if (e == true) {
@@ -129,10 +127,9 @@ function AiTool() {
                 feature = feature.filter(item => item !== h);
             }
         }
-        console.log("pricing", pricing)
-        console.log("feature", feature)
+        
     }
-    console.log(pricing.length + feature.length)
+  
     return (<>
         <Header />
 

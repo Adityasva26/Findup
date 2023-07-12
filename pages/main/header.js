@@ -28,14 +28,7 @@ function Header() {
     const [password, setPassworderror] = useState(''); 
     const [successMsg, setSuccmsg] = useState(''); 
 
-    // const responseFacebook = (response) => {
-    //     console.log(response);
-    //     setIsLoggedIn(true);
-    //     setUserID(response.userID);
-    //     setName(response.name);
-    //     setEmail(response.email);
-    //     setPicture(response.picture.data.url);
-    // };
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -81,10 +74,10 @@ function Header() {
 
     const responseFacebook = (response) => {
         if (response.status !== "unknown") {
-        console.log("socialregister",response.userID);
+     
         axios.post(`${URL}socialregister`, { email: response.email, full_name: response.name, social_id: response.userID, social_name: response.graphDomain })
             .then(response => {
-                console.log(response.data);
+         
                 window.localStorage.setItem("data", JSON.stringify(response.data.data))
                 setuserData(response.data.data)
                 handleClose()

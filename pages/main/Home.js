@@ -69,7 +69,7 @@ function HomePage() {
     const regexAPi = (e) => {
         axios.post(`${URL}RegexApi`, { title: e })
             .then(response => {
-                console.log(response.data);
+             
                 setregexList(response.data.data)
             })
             .catch(error => {
@@ -77,8 +77,8 @@ function HomePage() {
             });
     }
     const favourite = (e, h, g) => {
-        console.log("userData", userData)
-        console.log("userId", g)
+     
+       
         if (g == undefined) {
             toast.error('Login before adding product to Favourite!');
         } else {
@@ -119,10 +119,7 @@ function HomePage() {
         setPricing([])
     }
     const handleChecked = (e, g, h) => {
-        console.log("e", e)
-        console.log("g", g)
-        console.log("h", h)
-
+    
         if (g == "Pricing") {
             if (e == true) {
                 pricing.push(h)
@@ -139,10 +136,9 @@ function HomePage() {
                 feature = feature.filter(item => item !== h);
             }
         }
-        console.log("pricing", pricing)
-        console.log("feature", feature)
+      
     }
-    console.log(pricing.length + feature.length)
+    
     return (<>
         <Header />
 

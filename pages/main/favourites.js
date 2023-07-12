@@ -44,7 +44,7 @@ function Favourites() {
         settoggle(e)
         setToggleclass({a:g,b:h})  
     }
-    console.log("userData",userData)
+
     return (<>
         <Header />
         <div class="breadcums pt120 pb30">

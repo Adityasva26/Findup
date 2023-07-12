@@ -108,7 +108,7 @@ function category() {
         addUpdateUrl="categoryUpdate"
     }
     if (validateForm(data)) {
-        console.log("wewwwwwwwwwwwww")
+        
         axios.post(`${URL}${addUpdateUrl}`, { title: form.title,type: form.type})
         .then(response => { 
             toast.success(response.data.message)
@@ -193,7 +193,7 @@ const handleADD = (e) => {
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label>What is your rating?</label>
+                      <label>Category Title</label>
                       <input value={form.title} onChange={(e)=>setForm({title:e.target.value,type:form.type})}/>
                       <p>{errors.title}</p>
                     </div>
@@ -228,7 +228,7 @@ const handleADD = (e) => {
             class="theme-btn"
             onClick={() => submitForm()}
           >
-            Post Review {"->"}
+           Add {"->"}
           </button>
         </Modal.Footer>
       </Modal>

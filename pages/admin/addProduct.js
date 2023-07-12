@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 function AddProduct() {
     const router = useRouter()
     const [value, setValue] = useState('')
-    console.log("value",value)
+
     const [data, setData] = useState({ name: "", url: "", short_description: "", description: "", category: "", feature: "", pricing: "", price: "", association: true })
     const [image, setImage] = useState()
     const [categoryListing, setcategoryListing] = useState({})
@@ -22,7 +22,7 @@ function AddProduct() {
         ssr: false,
         loading: () => <p>Loading ...</p>,
         })
-    console.log("data", data)
+  
     useEffect(() => { categoryList() 
         
    userId = JSON.parse(window.localStorage.getItem("data"))
@@ -39,7 +39,7 @@ function AddProduct() {
                 console.error(error);
             })
     }
-    console.log("image", image)
+   
     const submitForm = () => {
         if (!!userId==false){
         toast.error("login before submiting form")

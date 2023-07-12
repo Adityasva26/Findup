@@ -16,7 +16,7 @@ function News() {
         newsAPI(JSON.parse(window.localStorage.getItem('data'))?.id)
     },[])
     const newsAPI = (e) => {
-        console.log("e",e)
+      
         axios.post(`${URL}newssdata`, { user_id: e })
             .then((response) => {
                 setData(response.data.data)
@@ -27,7 +27,7 @@ function News() {
             })
     }
     const newsbytime = (e,g) => {
-        console.log("e",e)
+      
         axios.post(`${URL}byTime`, { user_id: e ,sort:g})
             .then((response) => {
                 setData(response.data.data)
@@ -38,7 +38,7 @@ function News() {
             })
     }
     const newsbyCategory = (e,g) => {
-        console.log("e",e)
+       
         axios.post(`${URL}byCategory`, { user_id: e ,category:g})
             .then((response) => {
                 setData(response.data.data)
@@ -58,14 +58,12 @@ function News() {
                 console.error(error);
             })
     }
-    console.log("date",moment().startOf('day').fromNow())
+  
     const favourite = (e,h,g) => {
         if (g == undefined) {
             toast.error('Login before adding product to Favourite!');
         }else{
-            console.log("product_id",e)
-            console.log("heart Status",h)
-            console.log("userId",g)
+      
             axios.post(`${URL}Favourites`, { user_id:g,
                 product_id:e,
                 heart_status:h,

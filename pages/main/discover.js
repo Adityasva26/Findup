@@ -30,14 +30,12 @@ function Discover() {
 	 }
 
 	 const favourite = (e,h,g) => {
-        console.log("userData",userData)
-        console.log("userId",g)
+     
+       
         if (g == undefined) {
             toast.error('Login before adding product to Favourite!');
         }else{
-            console.log("product_id",e)
-            console.log("heart Status",h)
-            console.log("userId",g)
+           
             axios.post(`${URL}Favourites`, { user_id:g,
                 product_id:e,
                 heart_status:h,

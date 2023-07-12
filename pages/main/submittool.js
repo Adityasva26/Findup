@@ -11,10 +11,11 @@ import { URL } from '../../utility/api';
 import dynamic from "next/dynamic";
 import 'react-quill/dist/quill.snow.css'
 
+
 function SubmitTool() {
     const router = useRouter()
     const [value, setValue] = useState('')
-    console.log("value",value)
+   
     const [data, setData] = useState({ name: "", url: "", short_description: "", description: "", category: "", feature: "", pricing: "", price: "", association: true })
     const [image, setImage] = useState()
     const [categoryListing, setcategoryListing] = useState({})
@@ -24,7 +25,7 @@ function SubmitTool() {
         ssr: false,
         loading: () => <p>Loading ...</p>,
         })
-    console.log("data", data)
+   
     useEffect(() => { categoryList() 
         
    userId = JSON.parse(window.localStorage.getItem("data"))
@@ -41,7 +42,7 @@ function SubmitTool() {
                 console.error(error);
             })
     }
-    console.log("image", image)
+    
     const submitForm = () => {
         if (!!userId==false){
         toast.error("login before submiting form")

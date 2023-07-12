@@ -133,7 +133,6 @@ input[type=number] {
 
 }
 
-
 select {
 
   -webkit-appearance: none;
@@ -3039,6 +3038,9 @@ nav.navbar.cust-nav.navbar-light a.nav-link {
   border-radius: 10px;
   overflow: hidden;
 }
+.cust-text-box-cls .inner-det a {
+  text-decoration: none;
+}
 
 .cust-text-box-cls .inner-det h3 {
   background: black;
@@ -3109,6 +3111,17 @@ nav.navbar.cust-nav.navbar-light a.nav-link {
 
 .cust-text-box-cls .inner-det.six p {
     color: #1e3d73;
+}
+
+#sidebar-wrapper .sidebar-heading .side-logo {
+  width: 120px;
+  height: 30px;
+}
+
+#sidebar-wrapper .sidebar-heading .side-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 @media (max-width: 1199px){

@@ -13,7 +13,7 @@ function updateProduct() {
     const router = useRouter()
     const id = router.query.id
     const [value, setValue] = useState('')
-    console.log("value",value)
+
     const [data, setData] = useState({ name: "", url: "", short_description: "", description: "", category: "", feature: "", pricing: "", price: "", association: true })
     const [image, setImage] = useState()
     const [categoryListing, setcategoryListing] = useState({})
@@ -24,7 +24,7 @@ function updateProduct() {
         ssr: false,
         loading: () => <p>Loading ...</p>,
         })
-    console.log("data", data)
+   
     useEffect(() => { categoryList() 
         
    userId = JSON.parse(window.localStorage.getItem("data"))
@@ -54,14 +54,14 @@ function updateProduct() {
                 console.error(error);
             })
     }
-    console.log("image", image)
+  
     const submitForm = () => {
         if (!!userId==false){
         toast.error("login before submiting form")
         }
         else{
-            console.log("fdgdgsdfgsd")
-            console.log(categoryList.Category.filter(data.category))
+          
+          
         // if (validateForm(data)) {
             
             const FormData = require('form-data');
@@ -129,7 +129,7 @@ function updateProduct() {
         return formIsValid;
 
     }
-    console.log("data",data)
+
     return (<>
 
 

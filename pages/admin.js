@@ -12,9 +12,9 @@ function AdminLogin() {
     const [errors, setErrors] = useState({});
     useEffect(()=>{},[])
     function onLogin() {
-        console.log("loginform1234567890",loginForm);
+
         if (validateForm(loginForm)) {
-            console.log("loginform12344556");
+         
             axios.post(`${URL}login`, { email: loginForm.email.toLocaleLowerCase(), password: loginForm.password })
                 .then(response => {
                     console.log(response.data);
@@ -31,7 +31,6 @@ function AdminLogin() {
         let errors = {};
         let formIsValid = true;
         if (fields.email == "") {
-            console.log("email", fields)
             formIsValid = false;
             errors["email"] = "*Please enter your name.";
         }
@@ -43,7 +42,7 @@ function AdminLogin() {
         setErrors(errors);
         return formIsValid;
     }
-    console.log("loginForm",loginForm)
+  
     return (<>
         <Header />
         <div class="details-informations  mb40">

@@ -49,7 +49,7 @@ function AddNewsletter() {
             }
             else{
             if (validateForm(data)) {
-                console.log("wewwwwwwwwwwwww")
+                
                 const FormData = require('form-data');
                 let data1 = new FormData();
                 data1.append('title', data.name);

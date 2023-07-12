@@ -43,8 +43,8 @@ function DetailPage() {
       });
   }
   const favourite = (e, h, g) => {
-    console.log("userData", userData);
-    console.log("userId", g);
+   
+   
     if (g == undefined) {
       toast.error("Login before adding product to Favourite!");
     } else {
@@ -100,7 +100,7 @@ function DetailPage() {
     handleShow();
     }
   };
-  console.log("userData",userData)
+ 
   const handleComment = () => {
 
     axios

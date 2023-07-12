@@ -8,7 +8,7 @@ import { URL } from '../../utility/api';
 import ReactHtmlParser from 'react-html-parser';
 
 function BlogDetail() {   
-	console.log("url",process.env.URL)
+	
 	const [share, setShare] = useState("share-btn");
 	
 	const router = useRouter()

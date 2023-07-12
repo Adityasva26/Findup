@@ -11,7 +11,7 @@ function NewsLetter() {
     const homeApi = (e) => {  
         axios.get(`${URL}BlogList`)
             .then((response) => {
-                console.log(response.data)
+              
                 setData(response.data.data)
             })
             .catch((error) => {
