@@ -45,55 +45,55 @@ function TodayNews() {
     }
     return ( <>
     <Header/>
-    <div class="breadcums pt120 pb30">
-            <div class="container">
+    <div className="breadcums pt120 pb30">
+            <div className="container">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Newsletter Issues</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="#">Home</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Newsletter Issues</li>
                     </ol>
                 </nav>
             </div>
         </div>
-        <div class="submit-form mt40 mb40">
-                <div class="container">
+        <div className="submit-form mt40 mb40">
+                <div className="container">
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="top-heading pb30">
-                                <h3 class="font30 clr-white medium"><span>{moment(new Date()).format('LL')}</span></h3>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="top-heading pb30">
+                                <h3 className="font30 clr-white medium"><span>{moment(new Date()).format('LL')}</span></h3>
                                 <p>{data?.length} AI news added today.</p>
-                                <div class="submit-btn">
-                                    <Link href="/main/submitnews" class="theme-btn">Submit <i class="fas fa-plus"></i></Link>
+                                <div className="submit-btn">
+                                    <Link href="/main/submitnews" className="theme-btn">Submit <i className="fas fa-plus"></i></Link>
                                 </div>
                             </div>
                            
-                           {data.map((item) =><div class="new-boxes">
-                                <div class="inner-box">
+                           {data.map((item) =><div className="new-boxes">
+                                <div className="inner-box">
                                     <h3>
                                         <a href={item.url} target="_blank">{item.title}<span>{item.url}</span></a>
                                     </h3>
-                                    <div class="content">
-                                        <div class="left">
-                                            <div class="name">
+                                    <div className="content">
+                                        <div className="left">
+                                            <div className="name">
                                                 <p>submitted by Community Member</p>
-                                                <p class="time">{moment(data?.created_at).fromNow()}</p>
+                                                <p className="time">{moment(data?.created_at).fromNow()}</p>
                                             </div>
-                                            <div class="upadate">
-                                                <span><i class="far fa-lightbulb"></i> Interesting</span>
+                                            <div className="upadate">
+                                                <span><i className="far fa-lightbulb"></i> Interesting</span>
                                             </div>
                                         </div>
-                                        <div class="right">
+                                        <div className="right">
                                         {item.HeartStatus==0?<button onClick={()=> favourite(item.id,1,userData?.id)}>
-                                              <i class="far fa-heart"></i> {item?.Favourites_count}
+                                              <i className="far fa-heart"></i> {item?.Favourites_count}
                                                 
                                             </button>:item.HeartStatus==1?
                                             <button onClick={()=> favourite(item.id,0,userData?.id)}>
-                                            <i class='fas fa-heart'></i> {item?.Favourites_count}
+                                            <i className='fas fa-heart'></i> {item?.Favourites_count}
                                               
                                           </button>:
                                           <button onClick={()=> favourite(item.id,1,userData?.id)}>
-                                          <i class="far fa-heart"></i> {item?.Favourites_count}
+                                          <i className="far fa-heart"></i> {item?.Favourites_count}
                                             
                                         </button>}
                                         </div>

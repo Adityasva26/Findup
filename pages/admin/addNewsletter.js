@@ -104,21 +104,21 @@ function AddNewsletter() {
         <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /></head>
         <div className="d-flex" id="wrapper">
             <Sidebar />
-            <div id="page-content-wrapper" class="bg-white" style={{ background: "#fff" }}>
+            <div id="page-content-wrapper" className="bg-white" style={{ background: "#fff" }}>
                 <AdminNavBar />
-                <div class="user">
+                <div className="user">
                     <h4> Add Newsletter</h4>
                 </div>
                 <div className="container-fluid">
-                    <div class="submit-form admn-form-cls mt40 mb40">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="inner-form">
+                    <div className="submit-form admn-form-cls mt40 mb40">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="inner-form">
 
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <div className="form-group">
                                                     <label>News Title</label>
                                                     <input type="text" placeholder="Copy AI"
                                                     onChange={(e)=>setData({name:e.target.value,url:data.url,category:data.category})} 
@@ -126,8 +126,8 @@ function AddNewsletter() {
                                                     <p>{errors.name}</p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
-                                    <div class="form-group">
+                                            <div className="col-md-12">
+                                    <div className="form-group">
                                         <label>Tool Description (Optional)</label>
                                         {/* <CKEditor
                                             editor={ClassicEditor}
@@ -137,8 +137,8 @@ function AddNewsletter() {
                                         {/* <textarea onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: e.target.value, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}></textarea> */}
                                     </div>
                                 </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
+                                            <div className="col-md-6">
+                                                <div className="form-group">
                                                     <label>upload Image</label>
                                                     <input type="file" name=""
                                                          onChange={(e, fields) => {
@@ -147,9 +147,9 @@ function AddNewsletter() {
                                                     />
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <button type="submit" class="theme-btn"
+                                            <div className="col-md-12">
+                                                <div className="form-group">
+                                                    <button type="submit" className="theme-btn"
                                                      onClick={(e) => submitForm()}
                                                     >Submit</button>
                                                 </div>

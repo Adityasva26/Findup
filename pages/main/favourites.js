@@ -47,66 +47,66 @@ function Favourites() {
 
     return (<>
         <Header />
-        <div class="breadcums pt120 pb30">
-            <div class="container">
+        <div className="breadcums pt120 pb30">
+            <div className="container">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Favourites</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="#">Home</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Favourites</li>
                     </ol>
                 </nav>
             </div>
         </div>
 
-        <div class="favourites mt40 mb40">
-            <div class="container">
-                <div class="top-heading pb30">
-                    <h3 class="font30 clr-white medium">Your Favorites.</h3>
+        <div className="favourites mt40 mb40">
+            <div className="container">
+                <div className="top-heading pb30">
+                    <h3 className="font30 clr-white medium">Your Favorites.</h3>
                     <p>These are the tools and posts you have favourited. You can remove them from your favourites by clicking the bookmark icon.</p>
                 </div>
 
-               { userData!=null?<div class="row">
-                    <div class="col-md-12">
-                        <div class="favourites-inner">
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class={`nav-link ${toggleclass?.a}`} id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"  onClick={() => handleToggle("product","active","")}>TOOLS</button>
+               { userData!=null?<div className="row">
+                    <div className="col-md-12">
+                        <div className="favourites-inner">
+                            <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li className="nav-item" role="presentation">
+                                    <button className={`nav-link ${toggleclass?.a}`} id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"  onClick={() => handleToggle("product","active","")}>TOOLS</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class={`nav-link ${toggleclass?.b}`} id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" onClick={() => handleToggle("news","","active")}>NEWS</button>
+                                <li className="nav-item" role="presentation">
+                                    <button className={`nav-link ${toggleclass?.b}`} id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" onClick={() => handleToggle("news","","active")}>NEWS</button>
                                 </li>
                             </ul>
-                            <div class="tab-content" id="pills-tabContent">
+                            <div className="tab-content" id="pills-tabContent">
                                { toggle=="product"?
-                               <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                    <div class="activity-sec related mt50">
+                               <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                    <div className="activity-sec related mt50">
                                         <p>8 tools favourited</p>
-                                        <div class="row">
-                                            {data?.map((item)=><>{item.type=="product"&&<div class="col-lg-4">
-                                                <div class="main-box">
-                                                    <div class="img">
+                                        <div className="row">
+                                            {data?.map((item)=><>{item.type=="product"&&<div className="col-lg-4">
+                                                <div className="main-box">
+                                                    <div className="img">
                                                         <a href="#">
                                                             <img src={item?.image} />
                                                         </a>
                                                     </div>
-                                                    <div class="content">
-                                                        <div class="top-text">
-                                                            <h3><a href="#">{item?.title} <span><i class="fas fa-check-circle"></i></span></a></h3>
-                                                            <div class="likes">
-                                                                <i class="fas fa-thumbs-up"></i> {item?.Favourites_count}
+                                                    <div className="content">
+                                                        <div className="top-text">
+                                                            <h3><a href="#">{item?.title} <span><i className="fas fa-check-circle"></i></span></a></h3>
+                                                            <div className="likes">
+                                                                <i className="fas fa-thumbs-up"></i> {item?.Favourites_count}
                                                             </div>
                                                         </div>
-                                                        <div class="detail">
+                                                        <div className="detail">
                                                             <p>{item?.short_discription}</p>
                                                         </div>
-                                                        <div class="trial-btn">
-                                                            <a href="#"><i class="fas fa-lock"></i> Free Trial</a>
+                                                        <div className="trial-btn">
+                                                            <a href="#"><i className="fas fa-lock"></i> Free Trial</a>
                                                         </div>
-                                                        <div class="tags">
+                                                        <div className="tags">
                                                             <a href="#">#Copywriting</a>
                                                             <a href="#">#e-commerce</a>
                                                         </div>
-                                                        <div class="save-btns">
+                                                        <div className="save-btns">
                                                             <a href={item?.url} target="_blank"><img src="../img/web.png" /></a>
                                                             <a onClick={() => favourite(item?.id,0,userData?.id,"product")}><img src="../img/heart-fill.png" /></a>
                                                         </div>
@@ -118,29 +118,29 @@ function Favourites() {
                                     </div>
 
                                 </div>:
-                                <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                    <div class="submit-form mt20 mb20">
+                                <div className="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                    <div className="submit-form mt20 mb20">
                                         <p>5 news favourited</p>
-                                        <div class="row">
-                                        {data?.map((item)=><>{item.type=="news"&&<div class="col-md-12">
-                                                <div class="new-boxes">
-                                                    <div class="inner-box">
+                                        <div className="row">
+                                        {data?.map((item)=><>{item.type=="news"&&<div className="col-md-12">
+                                                <div className="new-boxes">
+                                                    <div className="inner-box">
                                                         <h3>
-                                                            <a href="#">{item.title} <span>{item.url}</span><i class="fas fa-external-link-alt"></i></a>
+                                                            <a href="#">{item.title} <span>{item.url}</span><i className="fas fa-external-link-alt"></i></a>
                                                         </h3>
-                                                        <div class="content">
-                                                            <div class="left">
-                                                                <div class="name">
+                                                        <div className="content">
+                                                            <div className="left">
+                                                                <div className="name">
                                                                     <p>submitted by Community Member</p>
-                                                                    <p class="time">12 hours ago</p>
+                                                                    <p className="time">12 hours ago</p>
                                                                 </div>
-                                                                <div class="upadate">
-                                                                    <span><i class="far fa-lightbulb"></i> Interesting</span>
+                                                                <div className="upadate">
+                                                                    <span><i className="far fa-lightbulb"></i> Interesting</span>
                                                                 </div>
                                                             </div>
-                                                            <div class="right">
+                                                            <div className="right">
                                                                 <button>
-                                                                <a onClick={() => favourite(item?.id,0,userData?.id,"news")}><i class="fas fa-heart"></i></a> 0
+                                                                <a onClick={() => favourite(item?.id,0,userData?.id,"news")}><i className="fas fa-heart"></i></a> 0
                                                                 </button>
                                                             </div>
                                                         </div>

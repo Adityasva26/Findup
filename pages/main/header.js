@@ -172,19 +172,19 @@ function Header() {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
                 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" />
             {/* </head> */}
-            <header class={header}>
-                <div class="top-header">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-4 col-lg-2">
-                                <div class="logo">
+            <header className={header}>
+                <div className="top-header">
+                    <div className="container">
+                        <div className="row align-items-center">
+                            <div className="col-4 col-lg-2">
+                                <div className="logo">
                                     <Link href="/">
                                         <img src="../img/Logo.png" />
                                     </Link>
                                 </div>
                             </div>
-                            <div class="col-2 col-lg-7">
-                                <div class="main-menu">
+                            <div className="col-2 col-lg-7">
+                                <div className="main-menu">
                                     <ul>
                                         <li>
                                             <Link href="/">Home</Link>
@@ -195,9 +195,9 @@ function Header() {
                                         <li>
                                             <Link href="/main/discover">Discover</Link>
                                         </li>
-                                        <li class="drop-down">
+                                        <li className="drop-down">
                                             <a href="#">Submit</a>
-                                            <ul class="sub-menu">
+                                            <ul className="sub-menu">
                                                 <li>
                                                     <Link href="/main/submittool">Submit Tool</Link>
                                                 </li>
@@ -206,35 +206,35 @@ function Header() {
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="drop-down">
+                                        <li className="drop-down">
                                             <a href="#">Community</a>
-                                            <ul class="sub-menu">
+                                            <ul className="sub-menu">
                                                 <li><Link href="/main/newsletter">Newslatter Issues</Link></li>
                                                 <li><Link href="/main/news">Latest AI News</Link></li>
-                                                <li><a href="https://discord.com/" target="_blank"><i class='fab fa-discord'></i>Join Discord</a></li>
+                                                <li><a href="https://discord.com/" target="_blank"><i className='fab fa-discord'></i>Join Discord</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </div>
 
-                                <div class="nav-btn d-lg-none d-block" onClick={menuChange}>
-                                    <span class="nav-icon">
-                                        <span class="inner-icon top"></span>
-                                        <span class="inner-icon middle"></span>
-                                        <span class="inner-icon bottom"></span>
+                                <div className="nav-btn d-lg-none d-block" onClick={menuChange}>
+                                    <span className="nav-icon">
+                                        <span className="inner-icon top"></span>
+                                        <span className="inner-icon middle"></span>
+                                        <span className="inner-icon bottom"></span>
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-6 col-lg-3"> 
-                            <a onClick={colorChange} className="theme-icon"><i class="fas fa-adjust"></i></a>
-                                {userData == null ? <div class="login-btn">
-                                    <a onClick={handleShow} class="theme-btn"><i class="fas fa-sign-in-alt"></i> Login / Register</a>
+                            <div className="col-6 col-lg-3"> 
+                            <a onClick={colorChange} className="theme-icon"><i className="fas fa-adjust"></i></a>
+                                {userData == null ? <div className="login-btn">
+                                    <a onClick={handleShow} className="theme-btn"><i className="fas fa-sign-in-alt"></i> Login / Register</a>
                                 </div> :
-                                    <div class="aft-login">
-                                        <div class="inner">
-                                            <i class="far fa-user"></i> <span class="user-name">{userData.full_name}</span>
+                                    <div className="aft-login">
+                                        <div className="inner">
+                                            <i className="far fa-user"></i> <span className="user-name">{userData.full_name}</span>
                                         </div>
-                                        <div class="lgt-btn">
+                                        <div className="lgt-btn">
                                             <a onClick={() => logout()}>Logout</a>
                                         </div>
                                     </div>}
@@ -249,39 +249,39 @@ function Header() {
                 </Modal.Header>
                 <Modal.Body>
 
-                    <div class="login-form-cls">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class={`nav-link ${toggleclass?.a}`} id="login-tab" type="button" aria-controls="login" aria-selected="true" onClick={() => handleToggle("login","active","")}>login</button>
+                    <div className="login-form-cls">
+                        <ul className="nav nav-tabs" id="myTab" role="tablist">
+                            <li className="nav-item" role="presentation">
+                                <button className={`nav-link ${toggleclass?.a}`} id="login-tab" type="button" aria-controls="login" aria-selected="true" onClick={() => handleToggle("login","active","")}>login</button>
                             </li>
-                            <li class="nav-item" role="presentation">
-                                <button class={`nav-link ${toggleclass?.b}`} id="register-tab" type="button" aria-controls="register" aria-selected="false" onClick={() => handleToggle("register","","active")}>register</button>
+                            <li className="nav-item" role="presentation">
+                                <button className={`nav-link ${toggleclass?.b}`} id="register-tab" type="button" aria-controls="register" aria-selected="false" onClick={() => handleToggle("register","","active")}>register</button>
                             </li>
                         </ul>
-                        <div class="tab-content" id="myTabContent">
-                            {toggle == "login" ? <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                                <div class="login-form">
+                        <div className="tab-content" id="myTabContent">
+                            {toggle == "login" ? <div className="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                                <div className="login-form">
                                     {/* <form> */}
-                                    <div class="form-group">
+                                    <div className="form-group">
                                         <label>Email</label>
                                         <input type="email" name="" onChange={(e) => setloginForm({ email: e.target.value, password: loginForm.password })} />
                                         <p>{errors.email}</p>
                                     </div>
-                                    <div class="form-group">
+                                    <div className="form-group">
                                         <label>Password</label>
                                         <input type="Password" name="" onChange={(e) => setloginForm({ email: loginForm.email, password: e.target.value })} />
                                         <p>{errors.password}</p>
                                         <p>{password}</p>
                                     </div>
-                                    <div class="form-group">
+                                    <div className="form-group">
                                         <button onClick={() => onLogin()}>Login</button>
                                     </div>
                                     {/* </form> */}
-                                    <div class="other-login">
+                                    <div className="other-login">
                                         <h3>or login with</h3>
-                                        <div class="lg-icon">
+                                        <div className="lg-icon">
                                             <a href="#">
-                                                <i class="fab fa-apple"></i> Login with Apple
+                                                <i className="fab fa-apple"></i> Login with Apple
                                             </a>
 
 
@@ -291,33 +291,33 @@ function Header() {
                                                 fields="name,email,picture"
                                                 // onClick={componentClicked}
                                                 callback={responseFacebook}
-                                                icon={<i class="fab fa-facebook-f"></i>}
+                                                icon={<i className="fab fa-facebook-f"></i>}
                                             />
 
                                         </div>
                                     </div>
                                 </div>
                             </div> : toggle == "register" ?
-                                <div class="tab-pane fade show active" >
-                                    <div class="login-form">
+                                <div className="tab-pane fade show active" >
+                                    <div className="login-form">
                                         <h3 className="succe">{successMsg}</h3>
                                         <form>
-                                            <div class="form-group">
+                                            <div className="form-group">
                                                 <label>Name</label>
                                                 <input type="text"  onChange={(e) => setregisterForm({ name: e.target.value, email: registerForm?.email, password: registerForm?.password })} />
                                                 <label>{errors.name}</label>
                                             </div>
-                                            <div class="form-group">
+                                            <div className="form-group">
                                                 <label>Email</label>
                                                 <input type="email"  onChange={(e) => setregisterForm({ name: registerForm?.name, email: e.target.value, password: registerForm?.password })} />
                                                 <label>{errors.email}</label>
                                             </div>
-                                            <div class="form-group">
+                                            <div className="form-group">
                                                 <label>Password</label>
                                                 <input type="Password"  onChange={(e) => setregisterForm({ name: registerForm?.name, email: registerForm?.email, password: e.target.value })} />
                                                 <label>{errors.password}</label>
                                             </div>
-                                            <div class="form-group">
+                                            <div className="form-group">
                                                 <button type="button" onClick={() => onRegister()}>Register</button>
                                             </div>
                                         </form>

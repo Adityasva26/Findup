@@ -51,15 +51,15 @@ function NewsAdmin() {
       renderCell: (rowData) => {
         return (
           <>
-            <div class="icon-boxes">
+            <div className="icon-boxes">
               <a onClick={()=>handleValidate(rowData.id)}>
-                <i class="fas fa-eye"></i>
+                <i className="fas fa-eye"></i>
               </a>
               <Link href={`/admin/updateNews/${rowData.id}`}>
-                <i class="	fas fa-edit"></i>
+                <i className="	fas fa-edit"></i>
               </Link>
               <a onClick={()=>handleDelete(rowData.id)}>
-                <i class="fas fa-trash-alt"></i>
+                <i className="fas fa-trash-alt"></i>
               </a>
             </div>
           </>
@@ -104,15 +104,15 @@ function NewsAdmin() {
         <Sidebar />
         <div
           id="page-content-wrapper"
-          class="bg-white"
+          className="bg-white"
           style={{ background: "#fff" }}
         >
           <AdminNavBar />
-          <div class="tp-user-cls">
-            <div class="user">
+          <div className="tp-user-cls">
+            <div className="user">
               <h4>News</h4>
             </div>
-            <div class="user add-btn">
+            <div className="user add-btn">
               <button onClick={() => handleNavigate()}> Add Product+</button>
             </div>
           </div>

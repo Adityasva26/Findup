@@ -3,22 +3,22 @@ import Footer from "./footer";
 function Sponsor() {
     return (<>
         <Header />
-        <div class="breadcums pt120 pb30">
-            <div class="container">
+        <div className="breadcums pt120 pb30">
+            <div className="container">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Sponsor</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="/">Home</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Sponsor</li>
                     </ol>
                 </nav>
             </div>
         </div>
 
-        <div class="activity-sec related Blog-details">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="Blog-details-main">
+        <div className="activity-sec related Blog-details">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="Blog-details-main">
                             <h5>Welcome to our Sponsor Us page!</h5>
                             <p>Thank you for your interest in sponsoring the AI Tools Directory website. With our comprehensive artificial intelligence tools and technologies, we serve both individuals and businesses seeking cutting-edge AI tools and technologies. A sponsorship offers an excellent opportunity to showcase your brand and reach a highly targeted audience of AI enthusiasts, researchers, developers, and industry professionals.</p>
                             <h5> Why Sponsor Us?</h5>

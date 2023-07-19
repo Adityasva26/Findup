@@ -124,17 +124,17 @@ function DetailPage() {
   return (
     <>
       <Header />
-      <div class="breadcums pt120 pb30">
-        <div class="container">
+      <div className="breadcums pt120 pb30">
+        <div className="container">
           <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
                 <a href="#">Home</a>
               </li>
-              <li class="breadcrumb-item">
+              <li className="breadcrumb-item">
                 <a href="#">{data?.data?.category}</a>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">
+              <li className="breadcrumb-item active" aria-current="page">
                 {data?.data?.title}
               </li>
             </ol>
@@ -142,93 +142,93 @@ function DetailPage() {
         </div>
       </div>
 
-      <div class="details-informations  mb40">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6">
-              <div class="detail-img">
+      <div className="details-informations  mb40">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-6">
+              <div className="detail-img">
                 <a href="#">
                   <img src={data?.data?.image} />
-                  {/* <div class="visit-site">
+                  {/* <div className="visit-site">
 								<h5>Visit Website</h5>
 							</div> */}
                 </a>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="top-details">
-                <div class="left">
+            <div className="col-lg-6">
+              <div className="top-details">
+                <div className="left">
                   <h3>{data?.data?.title}</h3>
-                  <a href={data?.data?.url} class="theme-btn">
-                    Visit <i class="fas fa-link"></i>
+                  <a href={data?.data?.url} className="theme-btn">
+                    Visit <i className="fas fa-link"></i>
                   </a>
                 </div>
-                <div class="right">
+                <div className="right">
                   {data?.data?.heartStatus == 0 ? (
                     <a
                       href="#"
                       onClick={() => favourite(data?.data?.id, 1, userData?.id)}
-                      class="like-btn"
+                      className="like-btn"
                     >
-                      <i class="far fa-thumbs-up"></i> 37
+                      <i className="far fa-thumbs-up"></i> 37
                     </a>
                   ) : data?.data?.heartStatus == 1 ? (
                     <a
                       href="#"
                       onClick={() => favourite(data?.data?.id, 0, userData?.id)}
-                      class="like-btn"
+                      className="like-btn"
                     >
-                      <i class="fas fa-thumbs-up"></i> 37
+                      <i className="fas fa-thumbs-up"></i> 37
                     </a>
                   ) : (
                     <a
                       href="#"
                       onClick={() => favourite(data?.data?.id, 1, userData?.id)}
-                      class="like-btn"
+                      className="like-btn"
                     >
-                      <i class="far fa-thumbs-up"></i> 37
+                      <i className="far fa-thumbs-up"></i> 37
                     </a>
                   )}
-                  <div class={share}>
-                    <div class="shr-icon" onClick={() => ShareButton()}>
-                      <i class="fas fa-share-alt"></i>
+                  <div className={share}>
+                    <div className="shr-icon" onClick={() => ShareButton()}>
+                      <i className="fas fa-share-alt"></i>
                     </div>
-                    <div class="social">
+                    <div className="social">
                       <a
                         href={`https://www.facebook.com/sharer.php?u=${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`}
                         target="_blank"
                       >
-                        <i class="fab fa-facebook-f"></i>
+                        <i className="fab fa-facebook-f"></i>
                       </a>
                       <a href="#">
-                        <i class="fab fa-twitter"></i>
+                        <i className="fab fa-twitter"></i>
                       </a>
                       <a href="#">
-                        <i class="fab fa-instagram"></i>
+                        <i className="fab fa-instagram"></i>
                       </a>
                       <a href="#">
-                        <i class="fab fa-linkedin-in"></i>
+                        <i className="fab fa-linkedin-in"></i>
                       </a>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="detail-content">
+              <div className="detail-content">
                 <p>{data?.data?.short_discription}</p>
                 <ul>
                  {data?.verified=="verifieds"? <li>
-                    <i class="fas fa-check-circle"></i> This tool is verified
+                    <i className="fas fa-check-circle"></i> This tool is verified
                     because it is either an established company, has good social
                     media presence or a distinctive use case
                   </li>:""}
                   <li>
-                    <i class="fas fa-calendar"></i> Added on{" "}
+                    <i className="fas fa-calendar"></i> Added on{" "}
                     {moment(data?.data?.created_at).format("MMMM d, YYYY")}
                   </li>
                 </ul>
-                <div class="paid-text">
-                  <div class="txt">
-                    <i class="fas fa-dollar-sign"></i>{" "}
+                <div className="paid-text">
+                  <div className="txt">
+                    <i className="fas fa-dollar-sign"></i>{" "}
                     {data?.data?.pricing_category}
                   </div>
                   <p>starts from ${data?.data?.price}/mo</p>
@@ -239,19 +239,19 @@ function DetailPage() {
         </div>
       </div>
 
-      <div class="review-text mb40">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="dets">
-                <div class="tool-name">
+      <div className="review-text mb40">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8">
+              <div className="dets">
+                <div className="tool-name">
                   {ReactHtmlParser(data?.data?.discription)}
                 </div>
               </div>
             </div>
-            <div class="col-lg-4">
-              <div class="related-tages">
-                <h4 class="clr-white font20">
+            <div className="col-lg-4">
+              <div className="related-tages">
+                <h4 className="clr-white font20">
                   Browse AI Tools Similar to AI Studios
                 </h4>
                 <ul>
@@ -276,14 +276,14 @@ function DetailPage() {
           </div>
         </div>
       </div>
-      <div class="review-text submit-form">
-        <div class="container">
-          <div class="row">
-            <div class="new-boxes">
-              <div class="inner-box rating">
-                <div class="content">
-                  <div class="left">
-                    <h3 class="font18 clr-white d-block" style={{width:"100%", marginBottom:"10px"}}>What do you think about AI Roguelite ?</h3>
+      <div className="review-text submit-form">
+        <div className="container">
+          <div className="row">
+            <div className="new-boxes">
+              <div className="inner-box rating">
+                <div className="content">
+                  <div className="left">
+                    <h3 className="font18 clr-white d-block" style={{width:"100%", marginBottom:"10px"}}>What do you think about AI Roguelite ?</h3>
                     <p>Leave a review for the community</p>
                   </div>
                   <Stack spacing={1}>
@@ -302,10 +302,10 @@ function DetailPage() {
           </div>
         </div>
       </div>
-      <div class="review-text average-rating">
-        <div class="container">
-          <div class="row">
-            <h3 class="font18 clr-white mb20">Average Rating</h3>
+      <div className="review-text average-rating">
+        <div className="container">
+          <div className="row">
+            <h3 className="font18 clr-white mb20">Average Rating</h3>
             <Stack spacing={1}>
               <Rating
                 name="size-small"
@@ -314,7 +314,7 @@ function DetailPage() {
                 onChange={(e) => handleModle(e.target.value)}
               />
             </Stack>
-            <span class="nub">3 Star</span>
+            <span className="nub">3 Star</span>
           </div>
         </div>
       </div>
@@ -323,13 +323,13 @@ function DetailPage() {
           <Modal.Title>What do you think about {data?.data?.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="inner-form">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="inner-form">
                 {/* <form> */}
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
                       <label>What is your rating?</label>
                       <Stack spacing={1}>
                         <Rating
@@ -341,8 +341,8 @@ function DetailPage() {
                       </Stack>
                     </div>
                   </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
+                  <div className="col-md-12">
+                    <div className="form-group">
                       <label>What is your review of the tool?</label>
                       <QuillNoSSRWrapper
                         theme="snow"
@@ -366,7 +366,7 @@ function DetailPage() {
         <Modal.Footer>
           <button
             type="button"
-            class="theme-btn first"
+            className="theme-btn first"
             data-bs-dismiss="modal"
             onClick={() => handleClear()}
           >
@@ -374,33 +374,33 @@ function DetailPage() {
           </button>
           <button
             type="button"
-            class="theme-btn"
+            className="theme-btn"
             onClick={() => handleComment()}
           >
             Post Review {"->"}
           </button>
         </Modal.Footer>
       </Modal>
-      <div class="submit-form mt40 mb40">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
+      <div className="submit-form mt40 mb40">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
               {data?.commentList?.map((item) => (
-                <div class="new-boxes">
-                  <div class="inner-box rating">
+                <div className="new-boxes">
+                  <div className="inner-box rating">
                     <h3>
                       <p target="_blank">{ReactHtmlParser(item.comment)}</p>
                     </h3>
-                    <div class="content">
-                      <div class="left">
-                        <div class="name">
+                    <div className="content">
+                      <div className="left">
+                        <div className="name">
                           <p>commented By -: {item.userName}</p>
-                          <p class="time">
+                          <p className="time">
                             {moment(data?.created_at).fromNow()}
                           </p>
                         </div>
                       </div>
-                      {/* <div class="right"> */}
+                      {/* <div className="right"> */}
 					  <Stack spacing={1}>
                         <Rating
                           name="size-large"
@@ -419,45 +419,45 @@ function DetailPage() {
         </div>
       </div>
 
-      <div class="activity-sec related mt50">
-        <div class="container">
-          <h4 class="font30 medium clr-white mb20">
+      <div className="activity-sec related mt50">
+        <div className="container">
+          <h4 className="font30 medium clr-white mb20">
             Alternative AI Tools for AI Studios
           </h4>
-          <div class="row">
+          <div className="row">
             {data?.simmilarproduct?.map((item) => (
-              <div class="col-lg-4">
-                <div class="main-box">
-                  <div class="img">
+              <div className="col-lg-4">
+                <div className="main-box">
+                  <div className="img">
                     <a href="#">
                       <img src={item.image} />
                     </a>
                   </div>
-                  <div class="content">
-                    <div class="top-text">
+                  <div className="content">
+                    <div className="top-text">
                       <h3>
                         <a href="#">
                           {item.title}{" "}
-                          {item?.verified=="verifieds"?<span><i class="fas fa-check-circle"></i></span>:""}
+                          {item?.verified=="verifieds"?<span><i className="fas fa-check-circle"></i></span>:""}
                         </a>
                       </h3>
-                      <div class="likes">
-                        <i class="fas fa-thumbs-up"></i> 37
+                      <div className="likes">
+                        <i className="fas fa-thumbs-up"></i> 37
                       </div>
                     </div>
-                    <div class="detail">
+                    <div className="detail">
                       <p>{item.description}</p>
                     </div>
-                    <div class="trial-btn">
+                    <div className="trial-btn">
                       <a href="#">
-                        <i class="fas fa-lock"></i> Free Trial
+                        <i className="fas fa-lock"></i> Free Trial
                       </a>
                     </div>
-                    <div class="tags">
+                    <div className="tags">
                       <a href="#">#Copywriting</a>
                       <a href="#">#e-commerce</a>
                     </div>
-                    <div class="save-btns">
+                    <div className="save-btns">
                       <a href="#">
                         <img src="../img/web.png" />
                       </a>

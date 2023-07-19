@@ -5,22 +5,22 @@ import Footer from "./footer";
 function TearmandService() {
     return (<>
         <Header />
-        <div class="breadcums pt120 pb30">
-            <div class="container">
+        <div className="breadcums pt120 pb30">
+            <div className="container">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Term and Services</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="/">Home</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Term and Services</li>
                     </ol>
                 </nav>
             </div>
         </div>
 
-        <div class="activity-sec related Blog-details">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="Blog-details-main">
+        <div className="activity-sec related Blog-details">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="Blog-details-main">
                             <h5>Terms & Conditions</h5>
 
 
@@ -198,7 +198,7 @@ function TearmandService() {
 
 
                             Binding Arbitration
-                            If you and Findup don’t resolve any dispute by informal negotiation, any other effort to resolve the dispute will be conducted exclusively by binding arbitration as described in this section. You are giving up the right to litigate (or participate in as a party or class member) all disputes in court before a judge or jury. The dispute shall be settled by binding arbitration in accordance with the commercial arbitration rules of the American Arbitration Association. Either party may seek any interim or preliminary injunctive relief from any court of competent jurisdiction, as necessary to protect the party’s rights or property pending the completion of arbitration. Any and all legal, accounting, and other costs, fees, and expenses incurred by the prevailing party shall be borne by the non-prevailing party.
+                            If you and Findup don’t resolve any dispute by informal negotiation, any other effort to resolve the dispute will be conducted exclusively by binding arbitration as described in this section. You are giving up the right to litigate (or participate in as a party or className member) all disputes in court before a judge or jury. The dispute shall be settled by binding arbitration in accordance with the commercial arbitration rules of the American Arbitration Association. Either party may seek any interim or preliminary injunctive relief from any court of competent jurisdiction, as necessary to protect the party’s rights or property pending the completion of arbitration. Any and all legal, accounting, and other costs, fees, and expenses incurred by the prevailing party shall be borne by the non-prevailing party.
 
 
                             Submissions and Privacy

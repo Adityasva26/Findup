@@ -45,53 +45,53 @@ function TodayTool() {
     }
     return ( <>
     <Header/>
-    <div class="breadcums pt120 pb30">
-            <div class="container">
+    <div className="breadcums pt120 pb30">
+            <div className="container">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Todays Product</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="#">Home</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Todays Product</li>
                     </ol>
                 </nav>
             </div>
         </div>
 
-        <div class="activity-sec ">
-            <div class="container">
-            <div class="top-heading pb30">
-            <div class="submit-btn">
-                                    <Link href="/main/submitnews" class="theme-btn">Submit <i class="fas fa-plus"></i></Link>
+        <div className="activity-sec ">
+            <div className="container">
+            <div className="top-heading pb30">
+            <div className="submit-btn">
+                                    <Link href="/main/submitnews" className="theme-btn">Submit <i className="fas fa-plus"></i></Link>
                                 </div>
-                                <h3 class="font30 clr-white medium"> <span>{moment(new Date()).format('LL')}</span></h3>
+                                <h3 className="font30 clr-white medium"> <span>{moment(new Date()).format('LL')}</span></h3>
                                 <p>{data?.data?.length} AI tools added today.</p>
                                 
                             </div>
-            <div class="row pt30">
-                    {data?.data?.map((item) => <div class="col-lg-6">
-                        <div class="main-box">
-                            <div class="img">
+            <div className="row pt30">
+                    {data?.data?.map((item) => <div className="col-lg-6">
+                        <div className="main-box">
+                            <div className="img">
                                 <a href={`/detailPage/${item?.id}`} target="_blank" >
                                     <img src={item?.image} />
                                 </a>
                             </div>
-                            <div class="content">
-                                <div class="top-text">
-                                    <h3><a href="#">{item?.title} <span><i class="fas fa-check-circle"></i></span></a></h3>
-                                    <div class="likes">
-                                        <i class="fas fa-thumbs-up"></i> {item?.Favourites_count}
+                            <div className="content">
+                                <div className="top-text">
+                                    <h3><a href="#">{item?.title} <span><i className="fas fa-check-circle"></i></span></a></h3>
+                                    <div className="likes">
+                                        <i className="fas fa-thumbs-up"></i> {item?.Favourites_count}
                                     </div>
                                 </div>
-                                <div class="detail">
+                                <div className="detail">
                                     <p>{item?.short_discription}</p>
                                 </div>
-                                <div class="trial-btn">
-                                    <a href="#"><i class="fas fa-lock"></i> {item?.pricing_category}</a>
+                                <div className="trial-btn">
+                                    <a href="#"><i className="fas fa-lock"></i> {item?.pricing_category}</a>
                                 </div>
-                                <div class="tags">
+                                <div className="tags">
                                     <a href="#">#Copywriting</a>
                                     <a href="#">#e-commerce</a>
                                 </div>
-                                <div class="save-btns">
+                                <div className="save-btns">
                                     <a href={item?.url} target="_blank"><img src="../img/web.png" /></a>
                                     {item?.HeartStatus == 0 ? <a onClick={() => favourite(item?.id, 1, userData?.id)}><img src="../img/heart.png" /></a> : item?.heartStatus == 1 ? <a onClick={() => favourite(item?.id, 0, userData?.id)}><img src="../img/heart-fill.png" /></a> : <a onClick={() => favourite(item?.id, 1, userData?.id)}><img src="../img/heart.png" /></a>}
                                 </div>

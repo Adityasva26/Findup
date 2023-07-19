@@ -5,22 +5,22 @@ import Footer from "./footer";
 function PrivacyPolicy() {
     return (<>
         <Header />
-        <div class="breadcums pt120 pb30">
-            <div class="container">
+        <div className="breadcums pt120 pb30">
+            <div className="container">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Privacy Policy</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="/">Home</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Privacy Policy</li>
                     </ol>
                 </nav>
             </div>
         </div>
 
-        <div class="activity-sec related Blog-details">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="Blog-details-main">
+        <div className="activity-sec related Blog-details">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="Blog-details-main">
                             <h5> We take your privacy seriously</h5>
                             <p>Findup is committed to respecting your privacy regarding any information we may collect while operating our website. Findup.ai (hereinafter, "us", "we", or "findup.ai") is the subject of this Privacy Policy. Your privacy is important to us, and we are committed to protecting any personally identifiable information you provide to us via the Website. This privacy policy ("Privacy Policy") explains what information may be collected on our Website, how it is used, and under what circumstances it may be disclosed. In addition to information we collect through the Website, this Privacy Policy does not apply to information we collect from other sources.</p>
                             <p> We have posted this Privacy Policy, along with our Terms of Service, on our Website as general rules and policies that apply to your use of the Website. You may be required to agree to additional terms of service depending on your activities when visiting our Website.</p>

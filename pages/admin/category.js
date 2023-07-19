@@ -67,16 +67,16 @@ function category() {
       renderCell: (rowData) => {
         return (
           <>
-          <div class="icon-boxes">
+          <div className="icon-boxes">
             <a
              onClick={()=>handleEdit(rowData.id)}
             >
-           <i class="	fas fa-edit"></i>
+           <i className="	fas fa-edit"></i>
            </a>
            <a
              onClick={()=>handleDelete(rowData.id)}
             >
-           <i class="fas fa-trash-alt" ></i>
+           <i className="fas fa-trash-alt" ></i>
             </a>
             </div>
           </>
@@ -158,13 +158,13 @@ const handleADD = (e) => {
   <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /></head>
     <div className="d-flex" id="wrapper">
       <Sidebar />
-      <div id="page-content-wrapper" class="bg-white" style={{background:"#fff"}}>
+      <div id="page-content-wrapper" className="bg-white" style={{background:"#fff"}}>
         <AdminNavBar />
-        <div class="tp-user-cls">
-        <div class="user">
+        <div className="tp-user-cls">
+        <div className="user">
                     <h4>Category</h4>
             </div>
-            <div class="user add-btn">
+            <div className="user add-btn">
                     <button onClick={()=>handleADD("")}> Add Category+</button>
                 </div>
         </div>
@@ -186,20 +186,20 @@ const handleADD = (e) => {
           <Modal.Title>{id==""?"ADD+":"UPDATE"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="inner-form">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="inner-form">
                 {/* <form> */}
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
                       <label>Category Title</label>
                       <input value={form.title} onChange={(e)=>setForm({title:e.target.value,type:form.type})}/>
                       <p>{errors.title}</p>
                     </div>
                   </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
+                  <div className="col-md-12">
+                    <div className="form-group">
                       <label>What is your review of the tool?</label>
                      <select value={form.type} onChange={(e)=>setForm({title:form.title,type:e.target.value})}>
                         <option hidden>choose Type</option>
@@ -217,7 +217,7 @@ const handleADD = (e) => {
         <Modal.Footer>
           <button
             type="button"
-            class="theme-btn first"
+            className="theme-btn first"
             data-bs-dismiss="modal"
             onClick={() => handleClear()}
           >
@@ -225,7 +225,7 @@ const handleADD = (e) => {
           </button>
           <button
             type="button"
-            class="theme-btn"
+            className="theme-btn"
             onClick={() => submitForm()}
           >
            Add {"->"}

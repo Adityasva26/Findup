@@ -119,51 +119,51 @@ function SubmitTool() {
     }
     return (<>
         <Header />
-        <div class="breadcums pt120 pb30">
-            <div class="container">
+        <div className="breadcums pt120 pb30">
+            <div className="container">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Submit Tool</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="#">Home</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Submit Tool</li>
                     </ol>
                 </nav>
             </div>
         </div>
 
-        <div class="submit-form mt40 mb40">
-            <div class="container">
-                <div class="top-heading pb30">
-                    <h3 class="font30 clr-white medium">Submit your tool. <span class="font16 clr-grey">It's free and takes less than a minute.</span></h3>
+        <div className="submit-form mt40 mb40">
+            <div className="container">
+                <div className="top-heading pb30">
+                    <h3 className="font30 clr-white medium">Submit your tool. <span className="font16 clr-grey">It's free and takes less than a minute.</span></h3>
                     <p>We try to review all tools within 7 days and add it to the directory.</p>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="inner-form">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="inner-form">
                             {/* <form> */}
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="form-group">
                                         <label>Tool Name</label>
                                         <input type="text" placeholder="Copy AI" onChange={(e) => setData({ name: e.target.value, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
                                         <p>{errors.name}</p>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
+                                <div className="col-md-6">
+                                    <div className="form-group">
                                         <label>Website URL</label>
                                         <input type="text" placeholder="https://copy.ai" onChange={(e) => setData({ name: data.name, url: e.target.value, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
                                         <p>{errors.url}</p>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
+                                <div className="col-md-12">
+                                    <div className="form-group">
                                         <label>Tool's short description (Optional)</label>
                                         <input type="text" placeholder="Please provide a short description" onChange={(e) => setData({ name: data.name, url: data.url, short_description: e.target.value, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
                                         <p>{errors.short_description}</p>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
+                                <div className="col-md-12">
+                                    <div className="form-group">
                                         <label>Tool Description (Optional)</label>
                                         {/* <CKEditor
                                             editor={ClassicEditor}
@@ -173,46 +173,46 @@ function SubmitTool() {
                                         {/* <textarea onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: e.target.value, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}></textarea> */}
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
+                                <div className="col-md-6">
+                                    <div className="form-group">
                                         <label>Select categories (max 3)</label>
                                         <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: e.target.value, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}>
                                             {categoryListing?.Category?.map((e) => <option value={e.id}>{e.title}</option>)}
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
+                                <div className="col-md-6">
+                                    <div className="form-group">
                                         <label>Select features (optional)</label>
                                         <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: e.target.value, pricing: data.pricing, price: data.price, association: data.association })}>
                                             {categoryListing?.features?.map((e) => <option value={e.id}>{e.title}</option>)}
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
+                                <div className="col-md-6">
+                                    <div className="form-group">
                                         <label>Pricing - Select freemium if your tool has both paid and free versions</label>
                                         <select onChange={(e) => setData({ name: data.name, url: data.url, short_description:data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: e.target.value, price: data.price, association: data.association })}>
                                             {categoryListing?.pricings?.map((e) => <option value={e.id}>{e.title}</option>)}
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
+                                <div className="col-md-6">
+                                    <div className="form-group">
                                         <label>Starting Price (Optional)</label>
                                         <input type="text" name="" placeholder="$10/mo" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: e.target.value, association: data.association })} />
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
+                                <div className="col-md-6">
+                                    <div className="form-group">
                                         <label>upload Image</label>
                                         <input type="file" name="" onChange={(e, fields) => {
                                             handleChange(e, fields)
                                         }} />
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group radio-cls">
+                                <div className="col-md-12">
+                                    <div className="form-group radio-cls">
                                         <h3>Are you associated with the product or company?</h3>
                                         <label htmlFor="first">
                                             <input type="radio" name="product_name" id="first" checked onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: true })} /> Yes
@@ -223,9 +223,9 @@ function SubmitTool() {
                                     </div>
                                 </div>
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <button type="submit" class="theme-btn" onClick={(e) => submitForm()}>Submit</button>
+                                <div className="col-md-12">
+                                    <div className="form-group">
+                                        <button type="submit" className="theme-btn" onClick={(e) => submitForm()}>Submit</button>
                                     </div>
                                 </div>
                             </div>

@@ -19,23 +19,23 @@ function AiToolProject() {
     }
     return (<>
         <Header />
-        <div class="breadcums pt120 pb30">
-            <div class="container">
+        <div className="breadcums pt120 pb30">
+            <div className="container">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="#">Home</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Categories</li>
                     </ol>
                 </nav>
             </div>
         </div>
-        <div class="submit-form category-page mt40 mb40">
-            <div class="container">
+        <div className="submit-form category-page mt40 mb40">
+            <div className="container">
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="top-heading pb30">
-                            <h3 class="font30 clr-white medium">Category Listing<span></span></h3>
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="top-heading pb30">
+                            <h3 className="font30 clr-white medium">Category Listing<span></span></h3>
                             <p>Browse all categories at one glance.</p>
 
 

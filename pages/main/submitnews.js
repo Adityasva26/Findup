@@ -93,44 +93,44 @@ function SubmitNews() {
     }
     return (<>
         <Header />
-        <div class="breadcums pt120 pb30">
-            <div class="container">
+        <div className="breadcums pt120 pb30">
+            <div className="container">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><Link href="/">Home</Link></li>
-                        <li class="breadcrumb-item active" aria-current="page">Submit News</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><Link href="/">Home</Link></li>
+                        <li className="breadcrumb-item active" aria-current="page">Submit News</li>
                     </ol>
                 </nav>
             </div>
         </div>
 
-        <div class="submit-form mt40 mb40">
-            <div class="container">
-                <div class="top-heading pb30">
-                    <h3 class="font30 clr-white medium">Submit News. </h3>
+        <div className="submit-form mt40 mb40">
+            <div className="container">
+                <div className="top-heading pb30">
+                    <h3 className="font30 clr-white medium">Submit News. </h3>
                     <p>Once approved, your submission will be added to the feed.</p>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="inner-form">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="inner-form">
                           
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="form-group">
                                             <label>News Title</label>
                                             <input type="text" placeholder="Copy AI" onChange={(e)=>setData({name:e.target.value,url:data.url,category:data.category})} />
                                             <p>{errors.name}</p>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
+                                    <div className="col-md-6">
+                                        <div className="form-group">
                                             <label>News URL</label>
                                             <input type="text" placeholder="https://copy.ai" onChange={(e)=>setData({name:data.name,url:e.target.value,category:data.category})} />
                                             <p>{errors.url}</p>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
+                                    <div className="col-md-6">
+                                        <div className="form-group">
                                             <label>Select categories (max 3)</label>
                                             <select onChange={(e)=>setData({name:data.name,url:data.url,category:e.target.value})}>
                                                 {categoryListing?.Category?.map((item)=><option value={item.id}>{item.title}</option>)}
@@ -138,17 +138,17 @@ function SubmitNews() {
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
+                                    <div className="col-md-6">
+                                        <div className="form-group">
                                             <label>upload Image</label>
                                             <input type="file" name="" onChange={(e, fields) => {
                                             handleChange(e, fields)
                                         }}/>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <button type="submit" class="theme-btn" onClick={(e) => submitForm()}>Submit</button>
+                                    <div className="col-md-12">
+                                        <div className="form-group">
+                                            <button type="submit" className="theme-btn" onClick={(e) => submitForm()}>Submit</button>
                                         </div>
                                     </div>
                                 </div>

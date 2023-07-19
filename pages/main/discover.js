@@ -59,73 +59,73 @@ function Discover() {
 	 }
     return ( <>
     <Header/>
-    <div class="breadcums pt120 pb30">
-		<div class="container">
+    <div className="breadcums pt120 pb30">
+		<div className="container">
 			<nav aria-label="breadcrumb">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><Link href="/">Home</Link></li>
-					<li class="breadcrumb-item"><a href="#">Discover</a></li>
-					<li class="breadcrumb-item active" aria-current="page">{data.title}</li>
+				<ol className="breadcrumb">
+					<li className="breadcrumb-item"><Link href="/">Home</Link></li>
+					<li className="breadcrumb-item"><a href="#">Discover</a></li>
+					<li className="breadcrumb-item active" aria-current="page">{data.title}</li>
 				</ol>
 			</nav>
 		</div>
 	</div>
 
-	<div class="details-informations  mb40">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-6">
-					<div class="detail-img">
+	<div className="details-informations  mb40">
+		<div className="container">
+			<div className="row align-items-center">
+				<div className="col-lg-6">
+					<div className="detail-img">
 						<a href="#">
 							<img src={data.image} />
-							{/* <div class="visit-site">
+							{/* <div className="visit-site">
 								<h5>Visit Website</h5>
 							</div> */}
 						</a>
 					</div>
 				</div>
-				<div class="col-lg-6">
-					<div class="top-details">
-						<div class="left">
+				<div className="col-lg-6">
+					<div className="top-details">
+						<div className="left">
 							<h3>{data.title}</h3>
-							<a href={data.url} class="theme-btn">Visit <i class="fas fa-link"></i></a>
+							<a href={data.url} className="theme-btn">Visit <i className="fas fa-link"></i></a>
 						</div>
-						<div class="right">
-							{data.heart_status==1?<a href="#" onClick={() => favourite(data?.id,0,userData?.id,"product")} class="like-btn"><i class="fas fa-thumbs-up"></i>37</a>:<a href="#" onClick={() => favourite(data?.id,1,userData?.id,"product")} class="like-btn"><i class="far fa-thumbs-up"></i> 37</a>}
-							<div class={share}>
-								<div class="shr-icon" onClick={()=>ShareButton()}>
-									<i class="fas fa-share-alt"></i>
+						<div className="right">
+							{data.heart_status==1?<a href="#" onClick={() => favourite(data?.id,0,userData?.id,"product")} className="like-btn"><i className="fas fa-thumbs-up"></i>37</a>:<a href="#" onClick={() => favourite(data?.id,1,userData?.id,"product")} className="like-btn"><i className="far fa-thumbs-up"></i> 37</a>}
+							<div className={share}>
+								<div className="shr-icon" onClick={()=>ShareButton()}>
+									<i className="fas fa-share-alt"></i>
 								</div>
-								<div class="social">
+								<div className="social">
 									<a href="#">
-										<i class="fab fa-facebook-f"></i>
+										<i className="fab fa-facebook-f"></i>
 									</a>
 									<a href="#">
-										<i class="fab fa-twitter"></i>
+										<i className="fab fa-twitter"></i>
 									</a>
 									<a href="#">
-										<i class="fab fa-instagram"></i>
+										<i className="fab fa-instagram"></i>
 									</a>
 									<a href="#">
-										<i class="fab fa-linkedin-in"></i>
+										<i className="fab fa-linkedin-in"></i>
 									</a>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="detail-content">
+					<div className="detail-content">
 						<p>{data.short_discription}</p>
 						<ul>
 							<li>
-								<i class="fas fa-check-circle"></i> This tool is verified because it is either an established company, has good social media presence or a distinctive use case
+								<i className="fas fa-check-circle"></i> This tool is verified because it is either an established company, has good social media presence or a distinctive use case
 							</li>
 							<li>
-								<i class="fas fa-calendar"></i> Added on {moment(data.created_at).format('MMMM d, YYYY')}
+								<i className="fas fa-calendar"></i> Added on {moment(data.created_at).format('MMMM d, YYYY')}
 							</li>
 						</ul>
-						<div class="paid-text">
-							<div class="txt">
-								<i class="fas fa-dollar-sign"></i> {data.pricing_category}
+						<div className="paid-text">
+							<div className="txt">
+								<i className="fas fa-dollar-sign"></i> {data.pricing_category}
 							</div>
 							<p>starts from ${data.price}/mo</p>
 						</div>
@@ -135,19 +135,19 @@ function Discover() {
 		</div>
 	</div>
 
-	<div class="review-text mb40">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8">
-					<div class="dets">
-						<div class="tool-name">
+	<div className="review-text mb40">
+		<div className="container">
+			<div className="row">
+				<div className="col-lg-8">
+					<div className="dets">
+						<div className="tool-name">
 						{ReactHtmlParser(data?.data?.discription)}
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4">
-					<div class="related-tages">
-						<h4 class="clr-white font20">Browse AI Tools Similar to AI Studios</h4>
+				<div className="col-lg-4">
+					<div className="related-tages">
+						<h4 className="clr-white font20">Browse AI Tools Similar to AI Studios</h4>
 						<ul>
 							<li>
 								<a href="#">Browse 47 AI video generator tools.</a>
@@ -165,97 +165,97 @@ function Discover() {
 		</div>
 	</div>
 
-	<div class="activity-sec related mt50">
-		<div class="container">
-			<h4 class="font30 medium clr-white mb20">Alternative AI Tools for AI Studios</h4>
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="main-box">
-						<div class="img">
+	<div className="activity-sec related mt50">
+		<div className="container">
+			<h4 className="font30 medium clr-white mb20">Alternative AI Tools for AI Studios</h4>
+			<div className="row">
+				<div className="col-lg-4">
+					<div className="main-box">
+						<div className="img">
 							<a href="#">
 								<img src="../img/img-1.jpg" />
 							</a>
 						</div>
-						<div class="content">
-							<div class="top-text">
-								<h3><a href="#">Aidaptive <span><i class="fas fa-check-circle"></i></span></a></h3>
-								<div class="likes">
-									<i class="fas fa-thumbs-up"></i> 37
+						<div className="content">
+							<div className="top-text">
+								<h3><a href="#">Aidaptive <span><i className="fas fa-check-circle"></i></span></a></h3>
+								<div className="likes">
+									<i className="fas fa-thumbs-up"></i> 37
 								</div>
 							</div>
-							<div class="detail">
+							<div className="detail">
 								<p>Predictive personalization engines fore Commerce and Hospitality</p>
 							</div>
-							<div class="trial-btn">
-								<a href="#"><i class="fas fa-lock"></i> Free Trial</a>
+							<div className="trial-btn">
+								<a href="#"><i className="fas fa-lock"></i> Free Trial</a>
 							</div>
-							<div class="tags">
+							<div className="tags">
 								<a href="#">#Copywriting</a>
 								<a href="#">#e-commerce</a>
 							</div>
-							<div class="save-btns">
+							<div className="save-btns">
 								<a href="#"><img src="../img/web.png" /></a>
 								<a href="#"><img src="../img/heart.png" /></a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4">
-					<div class="main-box">
-						<div class="img">
+				<div className="col-lg-4">
+					<div className="main-box">
+						<div className="img">
 							<a href="#">
 								<img src="../img/img-2.jpg" />
 							</a>
 						</div>
-						<div class="content">
-							<div class="top-text">
-								<h3><a href="#">Cohesive <span><i class="fas fa-check-circle"></i></span></a></h3>
-								<div class="likes">
-									<i class="fas fa-thumbs-up"></i> 37
+						<div className="content">
+							<div className="top-text">
+								<h3><a href="#">Cohesive <span><i className="fas fa-check-circle"></i></span></a></h3>
+								<div className="likes">
+									<i className="fas fa-thumbs-up"></i> 37
 								</div>
 							</div>
-							<div class="detail">
+							<div className="detail">
 								<p>Predictive personalization engines fore Commerce and Hospitality</p>
 							</div>
-							<div class="trial-btn">
-								<a href="#"><i class="fas fa-lock"></i> Free Trial</a>
+							<div className="trial-btn">
+								<a href="#"><i className="fas fa-lock"></i> Free Trial</a>
 							</div>
-							<div class="tags">
+							<div className="tags">
 								<a href="#">#Copywriting</a>
 								<a href="#">#e-commerce</a>
 							</div>
-							<div class="save-btns">
+							<div className="save-btns">
 								<a href="#"><img src="../img/web.png" /></a>
 								<a href="#"><img src="../img/heart.png" /></a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4">
-					<div class="main-box">
-						<div class="img">
+				<div className="col-lg-4">
+					<div className="main-box">
+						<div className="img">
 							<a href="#">
 								<img src="../img/img-3.jpg" />
 							</a>
 						</div>
-						<div class="content">
-							<div class="top-text">
-								<h3><a href="#">IngestAI <span><i class="fas fa-check-circle"></i></span></a></h3>
-								<div class="likes">
-									<i class="fas fa-thumbs-up"></i> 37
+						<div className="content">
+							<div className="top-text">
+								<h3><a href="#">IngestAI <span><i className="fas fa-check-circle"></i></span></a></h3>
+								<div className="likes">
+									<i className="fas fa-thumbs-up"></i> 37
 								</div>
 							</div>
-							<div class="detail">
+							<div className="detail">
 								<p>Predictive personalization engines fore Commerce and Hospitality</p>
 							</div>
-							<div class="trial-btn">
-								<a href="#"><i class="fas fa-lock"></i> Free Trial</a>
+							<div className="trial-btn">
+								<a href="#"><i className="fas fa-lock"></i> Free Trial</a>
 							</div>
-							<div class="tags">
+							<div className="tags">
 								<a href="#">#Copywriting</a>
 								<a href="#">#e-commerce</a>
 							</div>
-							<div class="save-btns">
+							<div className="save-btns">
 								<a href="#"><img src="../img/web.png" /></a>
 								<a href="#"><img src="../img/heart.png" /></a>
 							</div>

@@ -54,16 +54,16 @@ function comment() {
       renderCell: (rowData) => {
         return (
           <>
-          <div class="icon-boxes">
+          <div className="icon-boxes">
             {/* <Link
               href={`/admin/updateNewsLetter/${rowData.id}`}
             >
-           <i class="	fas fa-edit"></i>
+           <i className="	fas fa-edit"></i>
            </Link> */}
            <a
              onClick={()=>handleDelete(rowData.id)}
             >
-           <i class="fas fa-trash-alt" ></i>
+           <i className="fas fa-trash-alt" ></i>
             </a>
             </div>
           </>
@@ -91,13 +91,13 @@ function comment() {
   <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /></head>
     <div className="d-flex" id="wrapper">
       <Sidebar />
-      <div id="page-content-wrapper" class="bg-white" style={{background:"#fff"}}>
+      <div id="page-content-wrapper" className="bg-white" style={{background:"#fff"}}>
         <AdminNavBar />
-        <div class="tp-user-cls">
-        <div class="user">
+        <div className="tp-user-cls">
+        <div className="user">
                     <h4>comment</h4>
             </div>
-            {/* <div class="user add-btn">
+            {/* <div className="user add-btn">
                     <button onClick={()=>handleNavigate()}> Add comment+</button>
                 </div> */}
         </div>

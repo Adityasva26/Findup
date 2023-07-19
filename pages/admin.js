@@ -45,26 +45,26 @@ function AdminLogin() {
   
     return (<>
         <Header />
-        <div class="details-informations  mb40">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="login-main">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-md-4">
-                                    <div class="login-from">
+        <div className="details-informations  mb40">
+            <div className="container">
+                <div className="row align-items-center">
+                    <div className="login-main">
+                        <div className="container">
+                            <div className="row justify-content-center">
+                                <div className="col-md-4">
+                                    <div className="login-from">
                                         <h3>Admin Login</h3>
-                                            <div class="login-from-group">
+                                            <div className="login-from-group">
                                                 <input type="text" name="" placeholder="username" onChange={(e)=>setloginForm({email:e.target.value,password:loginForm.password})}/>
                                                 <p>{errors.email}</p>
                                             </div>
 
-                                            <div class="login-from-group">
+                                            <div className="login-from-group">
                                                 <input type="password" name="" placeholder="password" onChange={(e)=>setloginForm({email:loginForm.email,password:e.target.value})}/>
                                                 <p>{errors.password}</p>
                                             </div>
-                                            <div class="login-bottom text-center">  
-                                                <button  class="login-btn-inner theme-btn" onClick={()=>onLogin()}>Submit</button>
+                                            <div className="login-bottom text-center">  
+                                                <button  className="login-btn-inner theme-btn" onClick={()=>onLogin()}>Submit</button>
                                            
                                                 </div>  
                                     </div>

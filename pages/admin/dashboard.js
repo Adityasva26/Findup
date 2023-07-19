@@ -25,18 +25,18 @@ function Dashboard() {
             });
     }
     return (
-        <div class="d-flex" id="wrapper">
+        <div className="d-flex" id="wrapper">
 
             <Sidebar />
 
-            <div id="page-content-wrapper" class="bg-white">
+            <div id="page-content-wrapper" className="bg-white">
 
                 <AdminNavBar />
 
-                <div class="container-fluid cust-text-box-cls">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="inner-det first">
+                <div className="container-fluid cust-text-box-cls">
+                    <div className="row">
+                        <div className="col-md-4">
+                            <div className="inner-det first">
                                 <Link href="/admin/user">
                                     <h3>User</h3>
                                     <p>{data?.users}</p>
@@ -44,8 +44,8 @@ function Dashboard() {
                             </div>
 
                         </div>
-                        <div class="col-md-4">
-                            <div class="inner-det second">
+                        <div className="col-md-4">
+                            <div className="inner-det second">
                                 <Link href="/admin/product">
                                     <h3>Product</h3>
                                     <p>{data?.products}</p>
@@ -53,8 +53,8 @@ function Dashboard() {
                             </div>
 
                         </div>
-                        <div class="col-md-4">
-                            <div class="inner-det third">
+                        <div className="col-md-4">
+                            <div className="inner-det third">
                                 <Link href="/admin/news">
                                     <h3>News</h3>
                                     <p>{data?.newss}</p>
@@ -62,8 +62,8 @@ function Dashboard() {
                             </div>
 
                         </div>
-                        <div class="col-md-4">
-                            <div class="inner-det four">
+                        <div className="col-md-4">
+                            <div className="inner-det four">
                                 <Link href="/admin/newsletter">
                                     <h3>Newsletter</h3>
                                     <p>{data?.newsletters}</p>
@@ -71,8 +71,8 @@ function Dashboard() {
                             </div>
 
                         </div>
-                        <div class="col-md-4">
-                            <div class="inner-det five">
+                        <div className="col-md-4">
+                            <div className="inner-det five">
                                 <Link href="/admin/category">
                                     <h3>Category</h3>
                                     <p>{data?.categories}</p>
@@ -80,8 +80,8 @@ function Dashboard() {
                             </div>
 
                         </div>
-                        <div class="col-md-4">
-                            <div class="inner-det six">
+                        <div className="col-md-4">
+                            <div className="inner-det six">
                                 <Link href="/admin/comment">
                                     <h3>Comment</h3>
                                     <p>{data?.comments}</p>

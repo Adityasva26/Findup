@@ -20,36 +20,36 @@ function NewsLetter() {
     }
     return (<>
         <Header />
-        <div class="breadcums pt120 pb30">
-            <div class="container">
+        <div className="breadcums pt120 pb30">
+            <div className="container">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Newsletter Issues</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="#">Home</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Newsletter Issues</li>
                     </ol>
                 </nav>
             </div>
         </div>
 
-        <div class="activity-sec related Community">
-            <div class="container">
-                <div class="top-heading pb30">
-                    <h3 class="font30 clr-white medium">Newsletter Archive.</h3>
+        <div className="activity-sec related Community">
+            <div className="container">
+                <div className="top-heading pb30">
+                    <h3 className="font30 clr-white medium">Newsletter Archive.</h3>
                     <p>Read all the past newsletters I have sent here.</p>
                 </div>
-                <div class="row">
-                    {data?.map((item)=><div class="col-lg-4">
-                        <div class="main-box">
-                            <div class="img">
+                <div className="row">
+                    {data?.map((item)=><div className="col-lg-4">
+                        <div className="main-box">
+                            <div className="img">
                                 <a href={`/blogDetail/${item?.id}`} target="_blank">
                                     <img src={item?.image} />
                                 </a>
                             </div>
-                            <div class="content">
-                                <div class="top-text">
+                            <div className="content">
+                                <div className="top-text">
                                     <h3><a href="#">{item?.title}</a></h3>
                                 </div>
-                                <div class="save-btns">
+                                <div className="save-btns">
                                     <a href="#"><img src="../img/web.png" /></a>
                                     <a href="#"><p>{moment(item?.created_at).format('LL')}</p></a>
                                 </div>

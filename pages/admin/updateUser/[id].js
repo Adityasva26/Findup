@@ -65,29 +65,29 @@ function UpdateUser() {
         <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /></head>
         <div className="d-flex" id="wrapper">
             <Sidebar />
-            <div id="page-content-wrapper" class="bg-white" style={{ background: "#fff" }}>
+            <div id="page-content-wrapper" className="bg-white" style={{ background: "#fff" }}>
                 <AdminNavBar />
-                <div class="user">
+                <div className="user">
                     <h4> Update User</h4>
                 </div>
                
                 <div className="container-fluid">
-                    <div class="submit-form admn-form-cls mt40 mb40">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="inner-form">
+                    <div className="submit-form admn-form-cls mt40 mb40">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="inner-form">
 
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <div className="form-group">
                                                     <label>User Name</label>
                                                     <input type="text" value={registerForm?.name} onChange={(e) => setregisterForm({ name: e.target.value, email: registerForm.email, password: registerForm.password })} />
                                                     <p>{errors.name}</p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
+                                            <div className="col-md-6">
+                                                <div className="form-group">
                                                     <label>email</label>
                                                     <input type="email" value={registerForm?.email}
                                                     onChange={(e) => setregisterForm({ name: registerForm.name, email: e.target.value, password: registerForm.password })}
@@ -95,8 +95,8 @@ function UpdateUser() {
                                                     <p>{errors.url}</p>
                                                 </div>
                                             </div>
-                                            {/* <div class="col-md-6">
-                                                <div class="form-group">
+                                            {/* <div className="col-md-6">
+                                                <div className="form-group">
                                                     <label>Password</label>
                                                     <input type="Password"
                                                     onChange={(e) => setregisterForm({ name: registerForm.name, email: registerForm.email, password: e.target.value })}
@@ -106,9 +106,9 @@ function UpdateUser() {
                                             </div>    */}
                                          
                                             
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <button type="submit" class="theme-btn"
+                                            <div className="col-md-12">
+                                                <div className="form-group">
+                                                    <button type="submit" className="theme-btn"
                                                      onClick={(e) => onRegister()}
                                                     >Submit</button>
                                                 </div>
