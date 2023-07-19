@@ -256,7 +256,7 @@ function AiTool() {
                     <h3>{item.Header}</h3>
                     <div class="price-box">
                         {item.data.map((value) => <div class="inner">
-                            <label for="free">
+                            <label htmlFor="free">
                                 <input type="checkbox" name="free" id="free" onChange={(e) => handleChecked(e.target.checked, item.Header, value.id)} /><i class="far fa-check-circle"></i> {value.title}
                             </label>
                         </div>)}

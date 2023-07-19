@@ -260,7 +260,7 @@ function HomePage() {
                     <h3>{item.Header}</h3>
                     <div class="price-box">
                         {item.data.map((value) => <div class="inner">
-                            <label for={value.id}>
+                            <label htmlFor={value.id}>
                                 <input type="checkbox" name="free" id={value.id} onChange={(e) => handleChecked(e.target.checked, item.Header, value.id)} /><i class="far fa-check-circle"></i> {value.title}
                             </label>
                         </div>)}

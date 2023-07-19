@@ -214,10 +214,10 @@ function SubmitTool() {
                                 <div class="col-md-12">
                                     <div class="form-group radio-cls">
                                         <h3>Are you associated with the product or company?</h3>
-                                        <label for="first">
+                                        <label htmlFor="first">
                                             <input type="radio" name="product_name" id="first" checked onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: true })} /> Yes
                                         </label>
-                                        <label for="second">
+                                        <label htmlFor="second">
                                             <input type="radio" name="product_name" id="second" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: false })} /> No
                                         </label>
                                     </div>
