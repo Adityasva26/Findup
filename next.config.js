@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpackDevMiddleware: (config) => {
-    config.hotReload = false;
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+        module: false,
+      };
+    }
     return config;
   },
   reactStrictMode: true,
