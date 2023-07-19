@@ -119,7 +119,7 @@ function News() {
                                         <label>Filter By Category</label>
                                         <select onChange={(e)=>newsbyCategory(userData.id,e.target.value)}>
                                         <option hidden>Category</option>
-                                            {category.map((value)=><option value={value.id}>{value.title}</option>)}
+                                            {category.map((value,index)=><option key={index} value={value.id}>{value.title}</option>)}
                                         </select>
                                     </div>
                                 </div>
