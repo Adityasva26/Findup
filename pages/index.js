@@ -8,7 +8,11 @@ import Link from 'next/link'
 import HomePage from './main/Home'
 
 export default function Home() {
-
+  if (module.hot) {
+    module.hot.accept(function (err) {
+      console.log('An error occurred while accepting new version');
+    });
+  }
   return (
     <>
       <Head>
