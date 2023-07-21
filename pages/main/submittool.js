@@ -21,7 +21,7 @@ function SubmitTool() {
     const [categoryListing, setcategoryListing] = useState({})
     const [errors, setErrors] = useState({});
     var userId={}
-    const QuillNoSSRWrapper = dynamic(import('react-quill'), {	
+    const QuillNoSSRWrapper = dynamic(async () => await import('react-quill'), {	
         ssr: false,
         loading: () => <p>Loading ...</p>,
         })
