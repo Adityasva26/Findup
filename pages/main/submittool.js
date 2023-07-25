@@ -177,7 +177,7 @@ function SubmitTool() {
                                     <div className="form-group">
                                         <label>Select categories (max 3)</label>
                                         <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: e.target.value, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}>
-                                            {categoryListing?.Category?.map((e) => <option value={e.id}>{e.title}</option>)}
+                                            {categoryListing?.Category?.map((e,index) => <option key={index} value={e.id}>{e.title}</option>)}
                                         </select>
                                     </div>
                                 </div>
@@ -185,7 +185,7 @@ function SubmitTool() {
                                     <div className="form-group">
                                         <label>Select features (optional)</label>
                                         <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: e.target.value, pricing: data.pricing, price: data.price, association: data.association })}>
-                                            {categoryListing?.features?.map((e) => <option value={e.id}>{e.title}</option>)}
+                                            {categoryListing?.features?.map((e,index) => <option key={index} value={e.id}>{e.title}</option>)}
                                         </select>
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@ function SubmitTool() {
                                     <div className="form-group">
                                         <label>Pricing - Select freemium if your tool has both paid and free versions</label>
                                         <select onChange={(e) => setData({ name: data.name, url: data.url, short_description:data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: e.target.value, price: data.price, association: data.association })}>
-                                            {categoryListing?.pricings?.map((e) => <option value={e.id}>{e.title}</option>)}
+                                            {categoryListing?.pricings?.map((e,index) => <option key={index} value={e.id}>{e.title}</option>)}
                                         </select>
                                     </div>
                                 </div>

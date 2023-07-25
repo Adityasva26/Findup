@@ -68,7 +68,7 @@ function TodayNews() {
                                 </div>
                             </div>
                            
-                           {data.map((item) =><div className="new-boxes">
+                           {data.map((item,index) =><div key={index} className="new-boxes">
                                 <div className="inner-box">
                                     <h3>
                                         <a href={item.url} target="_blank">{item.title}<span>{item.url}</span></a>

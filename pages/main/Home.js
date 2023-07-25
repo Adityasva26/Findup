@@ -11,7 +11,7 @@ import Carousel from "react-elastic-carousel";
 import { URL } from '../../utility/api';
 const breakPoints = [
     { width: 1, itemsToShow: 2 },
-     { width: 550, itemsToShow: 3 },
+    { width: 550, itemsToShow: 3 },
     { width: 768, itemsToShow: 4 },
     { width: 991, itemsToShow: 6 },
     { width: 1200, itemsToShow: 6 },
@@ -69,7 +69,7 @@ function HomePage() {
     const regexAPi = (e) => {
         axios.post(`${URL}RegexApi`, { title: e })
             .then(response => {
-             
+
                 setregexList(response.data.data)
             })
             .catch(error => {
@@ -77,8 +77,8 @@ function HomePage() {
             });
     }
     const favourite = (e, h, g) => {
-     
-       
+
+
         if (g == undefined) {
             toast.error('Login before adding product to Favourite!');
         } else {
@@ -119,7 +119,7 @@ function HomePage() {
         setPricing([])
     }
     const handleChecked = (e, g, h) => {
-    
+
         if (g == "Pricing") {
             if (e == true) {
                 pricing.push(h)
@@ -136,9 +136,9 @@ function HomePage() {
                 feature = feature.filter(item => item !== h);
             }
         }
-      
+
     }
-    
+
     return (<>
         <Header />
 
@@ -166,15 +166,15 @@ function HomePage() {
                                     <div className="search-box">
                                         <input type="text" id="search" placeholder="Search..." onChange={(e) => handleChange(e.target.value)} />
                                         <button type="submit"><i className="fas fa-search"></i></button>
-                                        <div className="list-items">{regexList?.map((item) => <ul>
+                                        <div className="list-items">{regexList?.map((item, index) => <ul kry={index}>
                                             <h6>{item?.heading}</h6>
-                                            {item?.data?.map((value) =>
-                                                <>{item.heading == "Tools" ? <li><a href={`/detailPage/${value?.id}`} target="_blank">{value?.title}</a></li> : <li><a onClick={(e) => filter(value.id)}>{value?.title}</a></li>}</>)}
+                                            {item?.data?.map((value, ineerindex) =>
+                                                < >{item.heading == "Tools" ? <li key={ineerindex}><a href={`/detailPage/${value?.id}`} target="_blank">{value?.title}</a></li> : <li><a onClick={(e) => filter(value.id)}>{value?.title}</a></li>}</>)}
                                         </ul>)}</div>
 
                                     </div>
                                     <div className="shot-by">
-                                        <select onChange={(e)=>sorting(e.target.value)}>
+                                        <select onChange={(e) => sorting(e.target.value)}>
                                             <option hidden>Sort By</option>
                                             <option value="Verified">Verified</option>
                                             <option value="New">New</option>
@@ -202,13 +202,19 @@ function HomePage() {
                         </div>
                         <div className="categories-box">
                             <div className="owl-carousel owl-theme">
-                                <Carousel breakPoints={breakPoints}>
-                                    {data?.category?.map((item) => <div className="item">
-                                        <div className="cat-name">
-                                            <a href="#" onClick={(e) => filter(item.id)}>{item.title}</a>
-                                        </div>
-                                    </div>)}
-                                </Carousel>
+                                {data?.category && data.category.length > 0 && (
+                                    <Carousel breakPoints={breakPoints}>
+                                        {data.category.map((item, index) => (
+                                            <div className="item" key={index}>
+                                                <div className="cat-name">
+                                                    <a href="#" onClick={(e) => filter(item.id)}>
+                                                        {item.title}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </Carousel>
+                                )}
                             </div>
                         </div>
                         <div className="heading2 text-center">
@@ -217,7 +223,7 @@ function HomePage() {
                     </div>
                 </div>
                 <div className="row pt30">
-                    {data?.data?.map((item) => <div className="col-lg-6">
+                    {data?.data?.map((item, index) => <div className="col-lg-6" key={index}>
                         <div className="main-box">
                             <div className="img">
                                 <a href={`/detailPage/${item?.id}`} target="_blank" >
@@ -226,7 +232,7 @@ function HomePage() {
                             </div>
                             <div className="content">
                                 <div className="top-text">
-                                    <h3><a href="#">{item?.title} {item?.verified=="verifieds"?<span><i className="fas fa-check-circle"></i></span>:""}</a></h3>
+                                    <h3><a href="#">{item?.title} {item?.verified == "verifieds" ? <span><i className="fas fa-check-circle"></i></span> : ""}</a></h3>
                                     <div className="likes">
                                         <i className="fas fa-thumbs-up"></i> {item?.Favourites_count}
                                     </div>
@@ -256,10 +262,10 @@ function HomePage() {
                 <Modal.Title>Select Filters to Apply</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {data?.Filter?.map((item) => <div className="popup-filter">
+                {data?.Filter?.map((item, index) => <div className="popup-filter" key={index}>
                     <h3>{item.Header}</h3>
                     <div className="price-box">
-                        {item.data.map((value) => <div className="inner">
+                        {item.data.map((value, index) => <div className="inner" key={index}>
                             <label htmlFor={value.id}>
                                 <input type="checkbox" name="free" id={value.id} onChange={(e) => handleChecked(e.target.checked, item.Header, value.id)} /><i className="far fa-check-circle"></i> {value.title}
                             </label>
@@ -268,7 +274,7 @@ function HomePage() {
                 </div>)}
             </Modal.Body>
             <Modal.Footer>
-                <button type="button" className="theme-btn first" data-bs-dismiss="modal" onClick={()=>handleClear()}>clear</button>
+                <button type="button" className="theme-btn first" data-bs-dismiss="modal" onClick={() => handleClear()}>clear</button>
                 <button type="button" className="theme-btn" onClick={() => filter(categoryId)}>Apply Filters</button>
 
             </Modal.Footer>

@@ -38,7 +38,7 @@ function NewsLetter() {
                     <p>Read all the past newsletters I have sent here.</p>
                 </div>
                 <div className="row">
-                    {data?.map((item)=><div className="col-lg-4">
+                    {data?.map((item,index)=><div key={index} className="col-lg-4">
                         <div className="main-box">
                             <div className="img">
                                 <a href={`/blogDetail/${item?.id}`} target="_blank">

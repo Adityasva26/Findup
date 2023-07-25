@@ -134,8 +134,8 @@ function SubmitNews() {
                                             <label>Select categories (max 3)</label>
                                             <select onChange={(e)=>setData({name:data.name,url:data.url,category:e.target.value})}>
                                                 {categoryListing?.Category?.map((item,index)=><option key={index} value={item.id}>{item.title}</option>)}
-                                                <p>{errors.category}</p>
                                             </select>
+                                                <p>{errors.category}</p>
                                         </div>
                                     </div>
                                     <div className="col-md-6">

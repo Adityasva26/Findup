@@ -58,7 +58,7 @@ function BlogDetail() {
 
 						<div className="ai-tools">
 							<h3>AI Tools of the Week</h3>
-							{data?.Products?.map((item)=><p><a href={`/detailPage/${item?._id}`}>{item.title} </a>- {item.short_discription}</p>)}
+							{data?.Products?.map((item,index)=><p><a key={index} href={`/detailPage/${item?._id}`}>{item.title} </a>- {item.short_discription}</p>)}
 						</div>
 
 						<div className="ai-tools">
