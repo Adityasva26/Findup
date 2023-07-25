@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import Modal from 'react-bootstrap/Modal';
 import FacebookLogin from 'react-facebook-login';
 import axios from "axios";
-import $ from 'jquery'; 
+import $ from 'jquery';
 
 import Link from "next/link";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
 import { URL } from '../../utility/api';
+import GoogleLogin from 'react-google-login';
 function Header() {
     const router = useRouter()
     const [show, setShow] = useState(false);
@@ -17,42 +18,42 @@ function Header() {
     const [loginForm, setloginForm] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({});
     const [toggle, setToggle] = useState("login");
-    const [toggleclass, setToggleclass] = useState({a:"active",b:""});
+    const [toggleclass, setToggleclass] = useState({ a: "active", b: "" });
     const [header, setheader] = useState("clearHeader");
     const [scrollPosition, setScrollPosition] = useState(0);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userID, setUserID] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [picture, setPicture] = useState(''); 
-    const [password, setPassworderror] = useState(''); 
-    const [successMsg, setSuccmsg] = useState(''); 
+    const [picture, setPicture] = useState('');
+    const [password, setPassworderror] = useState('');
+    const [successMsg, setSuccmsg] = useState('');
 
 
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    
+
     function colorChange() {
-       document.body.classList.toggle('themeChange'); 
+        document.body.classList.toggle('themeChange');
     }
 
     function menuChange() {
         //document.body.classList.toggle('menuopen'); 
-        
-				$("body").toggleClass("menuopen");
-		
-		$('.main-menu ul li.drop-down').before().on('click', function(e) {
-			$(this).children('ul').toggle();
-			$(this).siblings('li').find('ul').hide(); 
-		});
-     }
+
+        $("body").toggleClass("menuopen");
+
+        $('.main-menu ul li.drop-down').before().on('click', function (e) {
+            $(this).children('ul').toggle();
+            $(this).siblings('li').find('ul').hide();
+        });
+    }
 
 
     useEffect(() => {
-       
-		
-	
+
+
+
         setuserData(JSON?.parse(window?.localStorage?.getItem("data")))
 
 
@@ -73,20 +74,21 @@ function Header() {
     }, [scrollPosition])
 
     const responseFacebook = (response) => {
-        if (response.status !== "unknown") {
-     
-        axios.post(`${URL}socialregister`, { email: response.email, full_name: response.name, social_id: response.userID, social_name: response.graphDomain })
-            .then(response => {
-         
-                window.localStorage.setItem("data", JSON.stringify(response.data.data))
-                setuserData(response.data.data)
-                handleClose()
-                router.reload(window.location.pathname)
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        }
+        console.log( "data", response)
+        // if (response.status !== "unknown") {
+
+        //     axios.post(`${URL}socialregister`, { email: response.email, full_name: response.name, social_id: response.userID, social_name: response.graphDomain })
+        //         .then(response => {
+
+        //             window.localStorage.setItem("data", JSON.stringify(response.data.data))
+        //             setuserData(response.data.data)
+        //             handleClose()
+        //             router.reload(window.location.pathname)
+        //         })
+        //         .catch(error => {
+        //             console.log(error);
+        //         });
+        // }
     }
     function logout() {
         localStorage.removeItem("data");
@@ -94,39 +96,39 @@ function Header() {
         // router.push('/')
         router.reload(window.location.pathname)
     }
-    function onRegister() {  
-        if (validateForm(registerForm)) {  
-            axios.post(`${URL}register`, { email: registerForm.email,name: registerForm.name, password: registerForm.password })
-                .then(response => { 
-                    setregisterForm(response.data.data) 
+    function onRegister() {
+        if (validateForm(registerForm)) {
+            axios.post(`${URL}register`, { email: registerForm.email, name: registerForm.name, password: registerForm.password })
+                .then(response => {
+                    setregisterForm(response.data.data)
                     setSuccmsg('Registration Successfully');
                     setTimeout(() => {
                         handleClose()
                         setSuccmsg('')
                         router.push('/')
-                      }, 3000);
+                    }, 3000);
 
-                    
+
                 })
                 .catch(error => {
                     console.log(error);
-                }); 
+                });
         }
     }
     function onLogin() {
         if (validateForm(loginForm)) {
             let errors = {};
             axios.post(`${URL}login`, { email: loginForm.email, password: loginForm.password })
-                .then(response => { 
-                    if(response.data.status==='1'){
+                .then(response => {
+                    if (response.data.status === '1') {
                         window.localStorage.setItem("data", JSON.stringify(response.data.data))
                         setuserData(response.data.data)
                         handleClose()
-                        router.push('/')    
-                    }else{
+                        router.push('/')
+                    } else {
                         setPassworderror(response.data.message)
                     }
-                    
+
                 })
                 .catch(error => {
                     console.log(error);
@@ -134,7 +136,7 @@ function Header() {
         }
     }
     function validateForm(fieldsValue) {
-        
+
         let fields = fieldsValue;
         let errors = {};
         let formIsValid = true;
@@ -156,21 +158,21 @@ function Header() {
             formIsValid = false;
             errors.password = "*Please enter atleast one letter Capital , One Digit , One Symbol and  8 Characters.";
         }
-        
-        setErrors(errors); 
+
+        setErrors(errors);
         return formIsValid;
     }
-    const handleToggle = (e,g,h) => {
+    const handleToggle = (e, g, h) => {
         setToggle(e)
-        setToggleclass({a:g,b:h})  
+        setToggleclass({ a: g, b: h })
     }
 
     return (
         <>
             {/* <head> */}
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" />
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" />
             {/* </head> */}
             <header className={header}>
                 <div className="top-header">
@@ -225,8 +227,8 @@ function Header() {
                                     </span>
                                 </div>
                             </div>
-                            <div className="col-6 col-lg-3"> 
-                            <a onClick={colorChange} className="theme-icon"><i className="fas fa-adjust"></i></a>
+                            <div className="col-6 col-lg-3">
+                                <a onClick={colorChange} className="theme-icon"><i className="fas fa-adjust"></i></a>
                                 {userData == null ? <div className="login-btn">
                                     <a onClick={handleShow} className="theme-btn"><i className="fas fa-sign-in-alt"></i> Login / Register</a>
                                 </div> :
@@ -252,10 +254,10 @@ function Header() {
                     <div className="login-form-cls">
                         <ul className="nav nav-tabs" id="myTab" role="tablist">
                             <li className="nav-item" role="presentation">
-                                <button className={`nav-link ${toggleclass?.a}`} id="login-tab" type="button" aria-controls="login" aria-selected="true" onClick={() => handleToggle("login","active","")}>login</button>
+                                <button className={`nav-link ${toggleclass?.a}`} id="login-tab" type="button" aria-controls="login" aria-selected="true" onClick={() => handleToggle("login", "active", "")}>login</button>
                             </li>
                             <li className="nav-item" role="presentation">
-                                <button className={`nav-link ${toggleclass?.b}`} id="register-tab" type="button" aria-controls="register" aria-selected="false" onClick={() => handleToggle("register","","active")}>register</button>
+                                <button className={`nav-link ${toggleclass?.b}`} id="register-tab" type="button" aria-controls="register" aria-selected="false" onClick={() => handleToggle("register", "", "active")}>register</button>
                             </li>
                         </ul>
                         <div className="tab-content" id="myTabContent">
@@ -280,8 +282,14 @@ function Header() {
                                     <div className="other-login">
                                         <h3>or login with</h3>
                                         <div className="lg-icon">
-                                            <a href="#">
-                                                <i className="fab fa-apple"></i> Login with Apple
+                                            <a>
+                                            <GoogleLogin
+                                                clientId="955888838803-4ecdcai17mrv6sklsrvv3lhufmic6kd1.apps.googleusercontent.com"
+                                              
+                                                onSuccess={responseFacebook}
+                                                onFailure={(err) => console.log("login failed", err)}
+                                                cookiePolicy={'single_host_origin'}
+                                            />
                                             </a>
 
 
@@ -304,17 +312,17 @@ function Header() {
                                         <form>
                                             <div className="form-group">
                                                 <label>Name</label>
-                                                <input type="text"  onChange={(e) => setregisterForm({ name: e.target.value, email: registerForm?.email, password: registerForm?.password })} />
+                                                <input type="text" onChange={(e) => setregisterForm({ name: e.target.value, email: registerForm?.email, password: registerForm?.password })} />
                                                 <label>{errors.name}</label>
                                             </div>
                                             <div className="form-group">
                                                 <label>Email</label>
-                                                <input type="email"  onChange={(e) => setregisterForm({ name: registerForm?.name, email: e.target.value, password: registerForm?.password })} />
+                                                <input type="email" onChange={(e) => setregisterForm({ name: registerForm?.name, email: e.target.value, password: registerForm?.password })} />
                                                 <label>{errors.email}</label>
                                             </div>
                                             <div className="form-group">
                                                 <label>Password</label>
-                                                <input type="Password"  onChange={(e) => setregisterForm({ name: registerForm?.name, email: registerForm?.email, password: e.target.value })} />
+                                                <input type="Password" onChange={(e) => setregisterForm({ name: registerForm?.name, email: registerForm?.email, password: e.target.value })} />
                                                 <label>{errors.password}</label>
                                             </div>
                                             <div className="form-group">
