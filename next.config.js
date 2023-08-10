@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  target: 'server', 
   reactStrictMode: true,
   env: {
      URL: 'https://api.findup.ai/api/futurePedia/',
