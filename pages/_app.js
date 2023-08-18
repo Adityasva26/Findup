@@ -1,7 +1,7 @@
 // import '@/styles/globals.css'
 import '../public/global.css'
 import dynamic from "next/dynamic";
-import { initGA, logPageView } from './analitycs';
+import { initGA, logPageView } from '../analitycs';
 import { useEffect } from 'react';
 
 
