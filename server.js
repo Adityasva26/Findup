@@ -4,7 +4,7 @@ const next = require('next')
 
 const dev = process.env.NODE_ENV !== 'production'
 const hostname = 'localhost'
-const port =  process.env.PORT || 3000
+const port = process.env.PORT || 3000
 // when using middleware `hostname` and `port` must be provided below
 const app = next({ dev, hostname, port })
 const handle = app.getRequestHandler()
@@ -37,4 +37,16 @@ app.prepare().then(() => {
     .listen(port, () => {
       console.log(`> Ready on http://${hostname}:${port}`)
     })
+
+
 })
+
+var socket = io('ws://localhost:3000', {transports: ['websocket']});
+socket.on('connect', function () {
+  console.log('connected!');
+  socket.emit('greet', { message: 'Hello Mr.Server!' });
+});
+
+socket.on('respond', function (data) {
+  console.log(data);
+});
