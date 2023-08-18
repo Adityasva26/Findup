@@ -41,7 +41,7 @@ app.prepare().then(() => {
 
 })
 
-var socket = io('ws://localhost:3000', {transports: ['websocket']});
+var socket = io(`ws://${hostname}:${port}`, {transports: ['websocket']});
 socket.on('connect', function () {
   console.log('connected!');
   socket.emit('greet', { message: 'Hello Mr.Server!' });
