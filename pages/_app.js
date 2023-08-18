@@ -1,8 +1,15 @@
 // import '@/styles/globals.css'
 import '../public/global.css'
 import dynamic from "next/dynamic";
+import { initGA, logPageView } from './analytics';
+import { useEffect } from 'react';
+
 
  function App({ Component, pageProps }) {
+  useEffect(() => {
+    initGA();
+    logPageView();
+  }, [])
   return <Component {...pageProps} />
 }
 
