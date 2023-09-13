@@ -285,7 +285,6 @@ function Header() {
                                             <a>
                                             <GoogleLogin
                                                 clientId="955888838803-4ecdcai17mrv6sklsrvv3lhufmic6kd1.apps.googleusercontent.com"
-                                              
                                                 onSuccess={responseFacebook}
                                                 onFailure={(err) => console.log("login failed", err)}
                                                 cookiePolicy={'single_host_origin'}
