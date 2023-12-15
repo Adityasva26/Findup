@@ -1,3 +1,4 @@
+import Link from "next/link";
 function AdminNavBar() {
     return ( <>
     <nav className="navbar cust-nav navbar-expand-lg navbar-light bg-light border-bottom">
@@ -7,7 +8,7 @@ function AdminNavBar() {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
                                 <li className="nav-item ">
-                                    <a className="nav-link " href="#" role="button">Logout</a>
+                                    <Link className="nav-link " href="/admin" role="button">Logout</Link>
                                     
                                 </li>
                             </ul>

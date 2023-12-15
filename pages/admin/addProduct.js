@@ -9,6 +9,37 @@ import 'react-quill/dist/quill.snow.css'
 import { useEffect, useState } from "react";
 
 
+// Import Quill dynamically to avoid SSR
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+
+function TextEditor({ value, onChange }) {
+    const modules = {
+        toolbar: [
+            [{ header: '1' }, { header: '2' }, { font: [] }],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            ['bold', 'italic', 'underline'],
+            ['link'],
+            [{ image: 'system' }],
+        ],
+    };
+
+    const formats = [
+        'header',
+        'font',
+        'list',
+        'bold',
+        'italic',
+        'underline',
+        'link',
+        'image',
+    ];
+
+    return (
+        <ReactQuill value={value} modules={modules} formats={formats} onChange={onChange} />
+    );
+}
+
+
 function AddProduct() {
     const router = useRouter()
     const [value, setValue] = useState('')
@@ -17,21 +48,22 @@ function AddProduct() {
     const [image, setImage] = useState()
     const [categoryListing, setcategoryListing] = useState({})
     const [errors, setErrors] = useState({});
-    var userId={}
-    const QuillNoSSRWrapper = dynamic(import('react-quill'), {	
+    var userId = {}
+    const QuillNoSSRWrapper = dynamic(import('react-quill'), {
         ssr: false,
         loading: () => <p>Loading ...</p>,
-        })
-  
-    useEffect(() => { categoryList() 
-        
-   userId = JSON.parse(window.localStorage.getItem("data"))
+    })
+
+    useEffect(() => {
+        categoryList()
+
+        userId = JSON.parse(window.localStorage.getItem("data"))
     }, [])
     function handleChange(e, fieldsValue) {
         setImage(e.target.files[0]);
     }
     const categoryList = () => {
-        axios.post(`${URL}dropdown`,{type:"product"})
+        axios.post(`${URL}dropdown`, { type: "product" })
             .then((response) => {
                 setcategoryListing(response.data.data)
             })
@@ -39,15 +71,15 @@ function AddProduct() {
                 console.error(error);
             })
     }
-   
+
     const submitForm = () => {
-        if (!!userId==false){
-        toast.error("login before submiting form")
+        if (!!userId == false) {
+            toast.error("login before submiting form")
         }
-        else{
+        else {
             console.error("fdgdgsdfgsd")
-        // if (validateForm(data)) {
-            
+            // if (validateForm(data)) {
+
             const FormData = require('form-data');
             let data1 = new FormData();
             data1.append('title', data.name);
@@ -59,7 +91,7 @@ function AddProduct() {
             data1.append('pricing_category', data.pricing);
             data1.append('price', data.price);
             data1.append('association', data.association);
-            data1.append('image',image)
+            data1.append('image', image)
 
             let config = {
                 method: 'post',
@@ -79,7 +111,8 @@ function AddProduct() {
                 .catch((error) => {
                     console.log(error);
                 });
-        }}
+        }
+    }
     // }
     function validateForm(fieldsValue) {
         let fields = fieldsValue;
@@ -127,103 +160,106 @@ function AddProduct() {
                 <div className="container-fluid">
                     <div className="submit-form admn-form-cls mt40 mb40">
                         <div className="container">
-                        <div className="row">
-                    <div className="col-md-12">
-                        <div className="inner-form">
-                            {/* <form> */}
                             <div className="row">
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>Tool Name</label>
-                                        <input type="text" placeholder="Copy AI" onChange={(e) => setData({ name: e.target.value, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
-                                        <p>{errors.name}</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>Website URL</label>
-                                        <input type="text" placeholder="https://copy.ai" onChange={(e) => setData({ name: data.name, url: e.target.value, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
-                                        <p>{errors.url}</p>
-                                    </div>
-                                </div>
                                 <div className="col-md-12">
-                                    <div className="form-group">
-                                        <label>Tool's short description (Optional)</label>
-                                        <input type="text" placeholder="Please provide a short description" onChange={(e) => setData({ name: data.name, url: data.url, short_description: e.target.value, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
-                                        <p>{errors.short_description}</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-12">
-                                    <div className="form-group">
-                                        <label>Tool Description (Optional)</label>
-                                        {/* <CKEditor
+                                    <div className="inner-form">
+                                        {/* <form> */}
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label>Tool Name</label>
+                                                    <input type="text" placeholder="Copy AI" onChange={(e) => setData({ name: e.target.value, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
+                                                    <p>{errors.name}</p>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label>Website URL</label>
+                                                    <input type="text" placeholder="https://copy.ai" onChange={(e) => setData({ name: data.name, url: e.target.value, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
+                                                    <p>{errors.url}</p>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-12">
+                                                <div className="form-group">
+                                                    <label>Tool's short description (Optional)</label>
+                                                    <input type="text" placeholder="Please provide a short description" onChange={(e) => setData({ name: data.name, url: data.url, short_description: e.target.value, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
+                                                    <p>{errors.short_description}</p>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-12">
+                                                <div className="form-group">
+                                                    <label>Tool Description (Optional)</label>
+                                                    {/* <CKEditor
                                             editor={ClassicEditor}
                                             name="description"
                                         /> */}
-                                        <QuillNoSSRWrapper  theme="snow" value={value} onChange={setValue}/>
-                                        {/* <textarea onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: e.target.value, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}></textarea> */}
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>Select categories (max 3)</label>
-                                        <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: e.target.value, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}>
-                                            {categoryListing?.Category?.map((e,index) => <option key={index} value={e.id}>{e.title}</option>)}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>Select features (optional)</label>
-                                        <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: e.target.value, pricing: data.pricing, price: data.price, association: data.association })}>
-                                            {categoryListing?.features?.map((e,index) => <option key={index} value={e.id}>{e.title}</option>)}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>Pricing - Select freemium if your tool has both paid and free versions</label>
-                                        <select onChange={(e) => setData({ name: data.name, url: data.url, short_description:data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: e.target.value, price: data.price, association: data.association })}>
-                                            {categoryListing?.pricings?.map((e,index) => <option key={index} value={e.id}>{e.title}</option>)}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>Starting Price (Optional)</label>
-                                        <input type="text" name="" placeholder="$10/mo" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: e.target.value, association: data.association })} />
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>upload Image</label>
-                                        <input type="file" name="" onChange={(e, fields) => {
-                                            handleChange(e, fields)
-                                        }} />
-                                    </div>
-                                </div>
-                                <div className="col-md-12">
-                                    <div className="form-group radio-cls">
-                                        <h3>Are you associated with the product or company?</h3>
-                                        <label htmlFor="first">
-                                            <input type="radio" name="product_name" id="first" checked onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: true })} /> Yes
-                                        </label>
-                                        <label htmlFor="second">
-                                            <input type="radio" name="product_name" id="second" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: false })} /> No
-                                        </label>
-                                    </div>
-                                </div>
+                                                    <TextEditor
+                                                        value={value}
+                                                        onChange={setValue}
+                                                    />
+                                                    {/* <textarea onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: e.target.value, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}></textarea> */}
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label>Select categories (max 3)</label>
+                                                    <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: e.target.value, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}>
+                                                        {categoryListing?.Category?.map((e, index) => <option key={index} value={e.id}>{e.title}</option>)}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label>Select features (optional)</label>
+                                                    <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: e.target.value, pricing: data.pricing, price: data.price, association: data.association })}>
+                                                        {categoryListing?.features?.map((e, index) => <option key={index} value={e.id}>{e.title}</option>)}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label>Pricing - Select freemium if your tool has both paid and free versions</label>
+                                                    <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: e.target.value, price: data.price, association: data.association })}>
+                                                        {categoryListing?.pricings?.map((e, index) => <option key={index} value={e.id}>{e.title}</option>)}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label>Starting Price (Optional)</label>
+                                                    <input type="text" name="" placeholder="$10/mo" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: e.target.value, association: data.association })} />
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label>upload Image</label>
+                                                    <input type="file" name="" onChange={(e, fields) => {
+                                                        handleChange(e, fields)
+                                                    }} />
+                                                </div>
+                                            </div>
+                                            <div className="col-md-12">
+                                                <div className="form-group radio-cls">
+                                                    <h3>Are you associated with the product or company?</h3>
+                                                    <label htmlFor="first">
+                                                        <input type="radio" name="product_name" id="first" checked onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: true })} /> Yes
+                                                    </label>
+                                                    <label htmlFor="second">
+                                                        <input type="radio" name="product_name" id="second" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: false })} /> No
+                                                    </label>
+                                                </div>
+                                            </div>
 
-                                <div className="col-md-12">
-                                    <div className="form-group">
-                                        <button type="submit" className="theme-btn" onClick={(e) => submitForm()}>Submit</button>
+                                            <div className="col-md-12">
+                                                <div className="form-group">
+                                                    <button type="submit" className="theme-btn" onClick={(e) => submitForm()}>Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/* </form> */}
                                     </div>
                                 </div>
                             </div>
-                            {/* </form> */}
-                        </div>
-                    </div>
-                </div>
                         </div>
                     </div>
                 </div>

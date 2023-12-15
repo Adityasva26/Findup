@@ -17,9 +17,10 @@ function AdminLogin() {
          
             axios.post(`${URL}login`, { email: loginForm.email.toLocaleLowerCase(), password: loginForm.password })
                 .then(response => {
+                    if(response.data.status==1){
                     console.log(response.data);
                     window.localStorage.setItem("adminData", JSON.stringify(response.data.data))
-                    router.push('/admin/dashboard')
+                    router.push('/admin/dashboard')}
                 })
                 .catch(error => {
                     console.log(error);
