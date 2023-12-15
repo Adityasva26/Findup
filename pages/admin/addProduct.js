@@ -57,7 +57,7 @@ function AddProduct() {
     useEffect(() => {
         categoryList()
 
-        userId = JSON.parse(window.localStorage.getItem("data"))
+        userId = JSON.parse(window.localStorage.getItem("adminData"))
     }, [])
     function handleChange(e, fieldsValue) {
         setImage(e.target.files[0]);

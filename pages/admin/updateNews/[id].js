@@ -21,7 +21,7 @@ function UpdateNews() {
     }
    
     useEffect(()=>{ categoryList()
-        setuserId( JSON.parse(window.localStorage.getItem("data")))
+        setuserId( JSON.parse(window.localStorage.getItem("adminData")))
     },[])
   
     const categoryList = () => {

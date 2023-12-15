@@ -12,7 +12,7 @@ function Dashboard() {
     const [userData, setuserData] = useState({});
     const [data, setdata] = useState({})
     useEffect(() => {
-        setuserData(JSON?.parse(window.localStorage.getItem('data')))
+        setuserData(JSON?.parse(window.localStorage.getItem('adminData')))
         loadDashboard()
     }, [])
     const loadDashboard = (e) => {

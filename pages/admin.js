@@ -3,6 +3,7 @@ import Footer from "./main/footer";
 import { useRouter } from "next/router";
 import { useState ,useEffect} from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import { URL } from '../utility/api';
 function AdminLogin() {
@@ -17,7 +18,9 @@ function AdminLogin() {
          
             axios.post(`${URL}login`, { email: loginForm.email.toLocaleLowerCase(), password: loginForm.password })
                 .then(response => {
-                    if(response.data.status==1){
+                    console.log(response)
+                    toast(response.data.message)
+                    if(response.data.status=="1"){
                     console.log(response.data);
                     window.localStorage.setItem("adminData", JSON.stringify(response.data.data))
                     router.push('/admin/dashboard')}
