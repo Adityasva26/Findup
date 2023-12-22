@@ -3222,6 +3222,8 @@ body.menuopen .top-header .main-menu {
 }
 .top-header .aft-login {
   text-align: right;
+  width: 50px;
+    margin-left: auto;
 }
 
 .top-header .aft-login .inner {
