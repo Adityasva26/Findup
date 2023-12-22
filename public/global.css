@@ -3250,6 +3250,7 @@ body.menuopen .top-header .main-menu {
   right: 79px;
   top: 9px;
   transform: none;
+  z-index: 99;
 }
 .top-header .login-btn {
   padding-top: 7px;

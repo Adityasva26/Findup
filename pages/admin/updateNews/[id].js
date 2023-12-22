@@ -11,6 +11,7 @@ import { URL } from '@/utility/api';
 
 function UpdateNews() {
     const router = useRouter()
+    const id = router.query.id
     const [data,setData]=useState({name:"",url:"",category:""})
     const [image, setImage] = useState()
     const [categoryListing, setcategoryListing] = useState({})
@@ -18,6 +19,18 @@ function UpdateNews() {
     const [userId, setuserId] = useState({});
     function handleChange(e, fieldsValue) {
         setImage(e.target.files[0]);
+    }
+    useEffect(() => { getByid() }, [id])
+    async function getByid() {
+        axios.post(`${URL}newsById`, { id: id, user_id: "" })
+            .then(response => {
+                setData({name:response.data.data.title,url:response.data.data.url,category:response.data.data.category  })
+                
+                setImage(response.data.data.image)
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
    
     useEffect(()=>{ categoryList()
@@ -48,11 +61,12 @@ function UpdateNews() {
             data1.append('url', data.url);
             data1.append('category', data.category);
             data1.append('image',image)
+            data1.append('id',id)
 
             let config = {
                 method: 'post',
                 maxBodyLength: Infinity,
-                url: `${URL}addnews`,
+                url: `${URL}newsUpdate`,
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
@@ -113,21 +127,21 @@ function UpdateNews() {
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label>News Title</label>
-                                                    <input type="text" placeholder="Copy AI" onChange={(e) => setData({ name: e.target.value, url: data.url, category: data.category })} />
+                                                    <input type="text" placeholder="Copy AI"value={data?.name} onChange={(e) => setData({ name: e.target.value, url: data.url, category: data.category })} />
                                                     <p>{errors.name}</p>
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label>News URL</label>
-                                                    <input type="text" placeholder="https://copy.ai" onChange={(e) => setData({ name: data.name, url: e.target.value, category: data.category })} />
+                                                    <input type="text" placeholder="https://copy.ai"value={data?.url} onChange={(e) => setData({ name: data.name, url: e.target.value, category: data.category })} />
                                                     <p>{errors.url}</p>
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label>Select categories (max 3)</label>
-                                                    <select onChange={(e) => setData({ name: data.name, url: data.url, category: e.target.value })}>
+                                                    <select value={data?.category} onChange={(e) => setData({ name: data.name, url: data.url, category: e.target.value })}>
                                                         {categoryListing?.Category?.map((item) => <option value={item.id}>{item.title}</option>)}
                                                         <p>{errors.category}</p>
                                                     </select>
@@ -136,7 +150,7 @@ function UpdateNews() {
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label>upload Image</label>
-                                                    <input type="file" name="" onChange={(e, fields) => {
+                                                    <input type="file"  name="" onChange={(e, fields) => {
                                                         handleChange(e, fields)
                                                     }} />
                                                 </div>

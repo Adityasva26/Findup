@@ -43,7 +43,7 @@ function TextEditor({ value, onChange }) {
 function AddProduct() {
     const router = useRouter()
     const [value, setValue] = useState('')
-
+  console.log("value",value)
     const [data, setData] = useState({ name: "", url: "", short_description: "", description: "", category: "", feature: "", pricing: "", price: "", association: true })
     const [image, setImage] = useState()
     const [categoryListing, setcategoryListing] = useState({})

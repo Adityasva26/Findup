@@ -7,7 +7,7 @@ function Sidebar() {
     return (  <div className="border-end bg-white admin-side-menu-cls" id="sidebar-wrapper">
     <div className="sidebar-heading border-bottom bg-light">
         <div className="side-logo">
-            <img src="../img/logo-inner.png" />
+            <img src="../img/Logo-inner.png" />
         </div>
     </div>
     <div className="list-group list-group-flush">

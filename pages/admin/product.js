@@ -29,7 +29,7 @@ function AdminProduct() {
             return {
               id: item.id,
               title: item.title,
-              description: item.description,
+              discription: item.discription,
               verified: item.verified,
               status: item.status,
 
@@ -44,7 +44,7 @@ function AdminProduct() {
   }
   const columns = [
     { field: 'title', headerName: 'Title', width: 300 },
-    { field: 'description', headerName: 'Description', width: 300 },
+    { field: 'discription', headerName: 'Description', width: 300 },
     { field: 'verified', headerName: 'Verified', width: 300 },
     { field: 'status', headerName: 'Status', width: 200 },
     {
@@ -56,7 +56,7 @@ function AdminProduct() {
             <a
              onClick={()=>handleValidate(rowData.id)}
             >
-               <i className="fa-solid fa-check"></i>
+               <i class="fa fa-check" aria-hidden="true"></i>
                </a>
                <Link
               href={`/admin/updateProduct/${rowData.id}`}
@@ -75,7 +75,7 @@ function AdminProduct() {
     },
   ];
   const handleDelete = (e)=>{
-    axios.post(`${URL}newsdelete`, {id:e})
+    axios.post(`${URL}productDelete`, {id:e})
     .then(response => {
       getByid()
         toast.success(response.data.message)

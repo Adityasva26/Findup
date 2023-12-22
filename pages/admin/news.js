@@ -41,7 +41,6 @@ function NewsAdmin() {
   }
   const columns = [
     { field: "title", headerName: "Title", width: 300 },
-    { field: "discription", headerName: "Description", width: 300 },
     { field: "verified", headerName: "Verified", width: 200 },
     { field: "status", headerName: "Status", width: 200 },
     {
@@ -53,13 +52,13 @@ function NewsAdmin() {
           <>
             <div className="icon-boxes">
               <a onClick={()=>handleValidate(rowData.id)}>
-                <i className="fas fa-eye"></i>
+              <i class="fa fa-check" aria-hidden="true" name="Validate"></i>
               </a>
               <Link href={`/admin/updateNews/${rowData.id}`}>
-                <i className="	fas fa-edit"></i>
+                <i className="	fas fa-edit" name="Edit"></i>
               </Link>
               <a onClick={()=>handleDelete(rowData.id)}>
-                <i className="fas fa-trash-alt"></i>
+                <i className="fas fa-trash-alt" name="Delete"></i>
               </a>
             </div>
           </>

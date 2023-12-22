@@ -39,10 +39,17 @@ function AddUpdateUser() {
             formIsValid = false;
             errors.name = "*Please enter your name.";
         }
-        if (fields.email == "") {
+        if (fields.email === "") {
             formIsValid = false;
-            errors.email = "*Please enter email.";
-        }
+            errors.email = "*Please enter your email.";
+          } else {
+            // Email format validation using a regular expression
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(fields.email)) {
+              formIsValid = false;
+              errors.email = "*Please enter a valid email address.";
+            }
+          }
         if (!fields.password.match(
             /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&!]).*$/)) {
             formIsValid = false;
@@ -85,7 +92,7 @@ function AddUpdateUser() {
                                                     <input type="email"
                                                     onChange={(e) => setregisterForm({ name: registerForm.name, email: e.target.value, password: registerForm.password })}
                                                      />
-                                                    <p>{errors.url}</p>
+                                                    <p>{errors.email}</p>
                                                 </div>
                                             </div>
                                             <div className="col-md-6">

@@ -24,7 +24,7 @@ function UpdateUser() {
 	 }
     function onRegister() {  
         // if (validateForm(registerForm)) {  
-            axios.post(`${URL}userUpdate`, { email: registerForm.email,full_name: registerForm.name})
+            axios.post(`${URL}userUpdate`, { email: registerForm.email,full_name: registerForm.name,id:id})
                 .then(response => { 
                     setregisterForm(response.data.data) 
                     toast(response.data.message)
