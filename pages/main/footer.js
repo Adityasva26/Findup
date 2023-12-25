@@ -52,10 +52,10 @@ function Footer() {
 							</div>
 							<ul>
 								<li>
-									<a href="#"><i className="far fa-envelope"></i> info@demo.com</a>
+									<a href="mailto:info@findup.ai?subject=Query&body=Body%20of%20the%20Email"><i className="far fa-envelope"></i> info@findup.ai</a>
 								</li>
 								<li>
-									<a href="#"><i className="fas fa-phone-alt"></i> +91 92129 92129</a>
+									<a href="tel:+91 92129 92129"><i className="fas fa-phone-alt"></i> +91 92129 92129</a>
 								</li>
 							</ul>
 						</div>

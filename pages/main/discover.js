@@ -93,24 +93,27 @@ function Discover() {
 						<div className="right">
 							{data.heart_status==1?<a href="#" onClick={() => favourite(data?.id,0,userData?.id,"product")} className="like-btn"><i className="fas fa-thumbs-up"></i>37</a>:<a href="#" onClick={() => favourite(data?.id,1,userData?.id,"product")} className="like-btn"><i className="far fa-thumbs-up"></i> 37</a>}
 							<div className={share}>
-								<div className="shr-icon" onClick={()=>ShareButton()}>
-									<i className="fas fa-share-alt"></i>
-								</div>
-								<div className="social">
-									<a href="#">
-										<i className="fab fa-facebook-f"></i>
-									</a>
-									<a href="#">
-										<i className="fab fa-twitter"></i>
-									</a>
-									<a href="#">
-										<i className="fab fa-instagram"></i>
-									</a>
-									<a href="#">
-										<i className="fab fa-linkedin-in"></i>
-									</a>
-								</div>
-							</div>
+                    <div className="shr-icon" onClick={() => ShareButton()}>
+                      <i className="fas fa-share-alt"></i>
+                    </div>
+                    <div className="social">
+                      <a
+                        href={`https://www.facebook.com/sharer.php?u=${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`}
+                        target="_blank"
+                      >
+                        <i className="fab fa-facebook-f"></i>
+                      </a>
+                      <a href={`https://twitter.com/intent/tweet?url=${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`} target="_blank" >
+                        <i className="fab fa-twitter"></i>
+                      </a>
+                      <a href={`https://www.instagram.com/share?url=${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`} target="_blank" >
+                        <i className="fab fa-instagram"></i>
+                      </a>
+                      <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`} target="_blank" >
+                        <i className="fab fa-linkedin-in"></i>
+                      </a>
+                    </div>
+                  </div>
 						</div>
 					</div>
 					<div className="detail-content">

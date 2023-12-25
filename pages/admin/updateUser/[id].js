@@ -6,6 +6,7 @@ import { URL } from "@/utility/api";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function UpdateUser() {
     const router = useRouter()
@@ -27,11 +28,12 @@ function UpdateUser() {
             axios.post(`${URL}userUpdate`, { email: registerForm.email,full_name: registerForm.name,id:id})
                 .then(response => { 
                     setregisterForm(response.data.data) 
-                    toast(response.data.message)
+                    toast.success(response.data.message)
                     router.push('/admin/user')
                     
                 })
                 .catch(error => {
+                    toast.error(error)
                     console.log(error);
                 }); 
         // }

@@ -16,32 +16,7 @@ import 'react-quill/dist/quill.snow.css';
 // Import Quill dynamically to avoid SSR
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
-function TextEditor({ value, onChange }) {
-  const modules = {
-    toolbar: [
-      [{ header: '1' }, { header: '2' }, { font: [] }],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      ['bold', 'italic', 'underline'],
-      ['link'],
-      [{ image: 'system' }],
-    ],
-  };
 
-  const formats = [
-    'header',
-    'font',
-    'list',
-    'bold',
-    'italic',
-    'underline',
-    'link',
-    'image',
-  ];
-
-  return (
-    <ReactQuill value={value} modules={modules} formats={formats} onChange={onChange} />
-  );
-}
 function UpdateNewsletter() {
 
     function TextEditor({ value, onChange }) {
@@ -112,7 +87,7 @@ function UpdateNewsletter() {
             })
     }
     const submitForm = () => {
-  
+
         if (!!userId == false) {
 
             toast.error("login before submiting form")
@@ -205,10 +180,10 @@ function UpdateNewsletter() {
                                             editor={ClassicEditor}
                                             name="description"
                                         /> */}
-                                                     <TextEditor
-                          value={value}
-                          onChange={setValue}
-                        />
+                                                    <TextEditor
+                                                        value={value}
+                                                        onChange={setValue}
+                                                    />
                                                     {/* <textarea onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: e.target.value, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}></textarea> */}
                                                 </div>
                                             </div>

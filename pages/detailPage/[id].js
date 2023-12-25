@@ -34,7 +34,7 @@ function DetailPage() {
   }, [id]);
   async function getByid(e, g) {
     axios
-      .post(`${URL}productById`, { id: id, user_id: e })
+      .post(`${URL}detailPage`, { id: id, user_id: e })
       .then((response) => {
         setdata(response.data);
       })
@@ -200,13 +200,13 @@ function DetailPage() {
                       >
                         <i className="fab fa-facebook-f"></i>
                       </a>
-                      <a href="#">
+                      <a href={`https://twitter.com/intent/tweet?url=${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`} target="_blank" >
                         <i className="fab fa-twitter"></i>
                       </a>
-                      <a href="#">
+                      <a href={`https://www.instagram.com/share?url=${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`} target="_blank" >
                         <i className="fab fa-instagram"></i>
                       </a>
-                      <a href="#">
+                      <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`} target="_blank" >
                         <i className="fab fa-linkedin-in"></i>
                       </a>
                     </div>
@@ -425,18 +425,18 @@ function DetailPage() {
             Alternative AI Tools for AI Studios
           </h4>
           <div className="row">
-            {data?.simmilarproduct?.map((item) => (
+            {data?.simmilarProduct?.map((item) => (
               <div className="col-lg-4">
                 <div className="main-box">
                   <div className="img">
-                    <a href="#">
+                  <a href={`/detailPage/${item?.id}`} target="_blank" >
                       <img src={item.image} />
                     </a>
                   </div>
                   <div className="content">
                     <div className="top-text">
                       <h3>
-                        <a href="#">
+                      <a href={`/detailPage/${item?.id}`} target="_blank" >
                           {item.title}{" "}
                           {item?.verified=="verifieds"?<span><i className="fas fa-check-circle"></i></span>:""}
                         </a>

@@ -1156,7 +1156,7 @@ input[type=text] {
  padding: 10px 0px;
  position: fixed;
  width: 100%;
- z-index: 99;
+ z-index: 999;
  background: #2c2c2c57;
 }
 
@@ -3123,6 +3123,36 @@ nav.navbar.cust-nav.navbar-light a.nav-link {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.details-informations .top-details .right .share-btn .social a  i.fa-twitter:before, footer .social-icon a i.fa-twitter:before {
+  content: '';
+  background: url(./img/twi-1.png) no-repeat;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  display: block;
+  top: 6px;
+  left: 5px;
+  filter: brightness(0) invert(1);
+  transition: 0.3s all linear;
+}
+
+footer .social-icon a i.fa-twitter:before{
+  filter: brightness(0) invert(0);
+}
+
+
+.details-informations .top-details .right .share-btn .social a  i.fa-twitter, footer .social-icon a i.fa-twitter{
+  position: relative;
+  top: 0px;
+}
+footer .social-icon a i.fa-twitter{
+  top: 4px;
+}
+
+body.themeChange footer .social-icon a i.fa-twitter:before {
+  filter: brightness(0) invert(1);
 }
 
 @media (max-width: 1199px){

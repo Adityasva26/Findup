@@ -88,6 +88,10 @@ function SubmitNews() {
             formIsValid = false;
             errors.category = "*Please enter your category.";
         }
+        if (image == undefined) {
+            formIsValid = false;
+            errors.image = "*Please sellect your Image.";
+        }
         setErrors(errors);
         return formIsValid;
     }
@@ -119,14 +123,14 @@ function SubmitNews() {
                                         <div className="form-group">
                                             <label>News Title</label>
                                             <input type="text" placeholder="Copy AI" onChange={(e)=>setData({name:e.target.value,url:data.url,category:data.category})} />
-                                            <p>{errors.name}</p>
+                                            <span style={{color:"red"}}>{errors.name}</span>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label>News URL</label>
                                             <input type="text" placeholder="https://copy.ai" onChange={(e)=>setData({name:data.name,url:e.target.value,category:data.category})} />
-                                            <p>{errors.url}</p>
+                                            <span style={{color:"red"}}>{errors.url}</span>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
@@ -135,7 +139,7 @@ function SubmitNews() {
                                             <select onChange={(e)=>setData({name:data.name,url:data.url,category:e.target.value})}>
                                                 {categoryListing?.Category?.map((item,index)=><option key={index} value={item.id}>{item.title}</option>)}
                                             </select>
-                                                <p>{errors.category}</p>
+                                                <span style={{color:"red"}}>{errors.category}</span>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
@@ -144,6 +148,7 @@ function SubmitNews() {
                                             <input type="file" name="" onChange={(e, fields) => {
                                             handleChange(e, fields)
                                         }}/>
+                                                   <span style={{color:"red"}}>{errors.image}</span>
                                         </div>
                                     </div>
                                     <div className="col-md-12">

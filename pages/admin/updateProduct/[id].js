@@ -2,11 +2,12 @@ import Sidebar from "../adminSidebar";
 import AdminNavBar from "../adminnavbar";
 import axios from "axios";
 import { useRouter } from 'next/router'
-import { toast } from "react-toastify";
+
 import { URL } from '@/utility/api';
 import dynamic from "next/dynamic";
-
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
 
 import 'react-quill/dist/quill.snow.css';
 
@@ -128,6 +129,7 @@ function updateProduct() {
                     router.push('/admin/product')
                 })
                 .catch((error) => {
+                    toast.error(error)
                     console.log(error);
                 });
         }
