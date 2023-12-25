@@ -84,6 +84,7 @@ function category() {
       },
     },
   ];
+  console.log(form)
   const handleDelete = (e)=>{
     axios.post(`${URL}categoryDelete`, {id:e})
     .then(response => {
@@ -107,9 +108,9 @@ function category() {
     else{
         addUpdateUrl="categoryUpdate"
     }
-    if (validateForm(data)) {
+    if (validateForm(form)) {
         
-        axios.post(`${URL}${addUpdateUrl}`, { title: form.title,type: form.type})
+        axios.post(`${URL}${addUpdateUrl}`, { title: form.title,type: form.type , id:id})
         .then(response => { 
             toast.success(response.data.message)
             handleClose()
@@ -126,14 +127,14 @@ function validateForm(fieldsValue) {
     let errors = {};
     let formIsValid = true;
     if (fields.title == "") {
-        console.error("fields.name")
+      
         formIsValid = false;
         errors.name = "*Please enter your name.";
     }
     if (fields.type == "") {
-        console.error("url")
+       
         formIsValid = false;
-        errors.url = "*Please enter your url.";
+        errors.url = "*Please sellect your type.";
     }
     // if (fields.category == "") {
     //     console.error("category")
@@ -143,6 +144,7 @@ function validateForm(fieldsValue) {
     setErrors(errors);
     return formIsValid;
 }
+console.log(errors)
 const handleEdit = (e) => {
     getByCategory(e)
     handleShow()
@@ -195,7 +197,7 @@ const handleADD = (e) => {
                     <div className="form-group">
                       <label>Category Title</label>
                       <input value={form.title} onChange={(e)=>setForm({title:e.target.value,type:form.type})}/>
-                      <p>{errors.title}</p>
+                       <span style={{color:"red"}}>{errors.name} </span>
                     </div>
                   </div>
                   <div className="col-md-12">
@@ -206,7 +208,7 @@ const handleADD = (e) => {
                         <option value="product">product</option>
                         <option value="news">news</option>
                      </select>
-                     <p>{errors.type}</p>
+                      <span style={{color:"red"}}>{errors.url} </span>
                     </div>
                   </div>
                 </div>
@@ -219,7 +221,7 @@ const handleADD = (e) => {
             type="button"
             className="theme-btn first"
             data-bs-dismiss="modal"
-            onClick={() => handleClear()}
+            onClick={handleClose}
           >
             Cancle
           </button>
