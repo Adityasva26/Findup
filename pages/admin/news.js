@@ -112,7 +112,7 @@ function NewsAdmin() {
               <h4>News</h4>
             </div>
             <div className="user add-btn">
-              <button onClick={() => handleNavigate()}> Add Product+</button>
+              <button onClick={() => handleNavigate()}> Add News+</button>
             </div>
           </div>
           <div className="container-fluid cust-table-box-cls">
