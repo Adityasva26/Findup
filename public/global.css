@@ -2213,6 +2213,7 @@ footer ul li a:hover {
 
 .submit-form .inner-form select option {
   background: #000;
+  color: #fff;
 }
 
 .submit-form .inner-form .radio-cls h3 {

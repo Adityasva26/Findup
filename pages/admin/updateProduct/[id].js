@@ -49,6 +49,7 @@ function updateProduct() {
     const [image, setImage] = useState()
     const [categoryListing, setcategoryListing] = useState({})
     const [errors, setErrors] = useState({});
+    const [productid, setproductId] = useState();
     const [oldprofilephoto, setoldprofilephoto] = useState({});
     var userId = {}
     const QuillNoSSRWrapper = dynamic(import('react-quill'), {
@@ -63,11 +64,12 @@ function updateProduct() {
     }, [])
     useEffect(() => { getByid() }, [id])
     async function getByid() {
-        axios.post(`${URL}productById`, { id: id, user_id: "" })
+        axios.post(`${URL}productforid`, { id: id, user_id: "" })
             .then(response => {
-                setData({ name: response.data.data.title, url: response.data.data.url, short_description: response.data.data.short_discription, description: response.data.data.discription, category: response.data.data.category, pricing: response.data.data.pricing_category, price: response.data.data.price, feature: response.data.data.features })
+                setData({ name: response.data.data.title, url: response.data.data.url, short_description: response.data.data.short_discription, description: response.data.data.discription, category: response.data.data.category, pricing: response.data.data.pricing_category, price: response.data.data.price, feature: response.data.data.features , association:response.data.data.association})
+                setproductId(response.data.data.id)
                 setValue(response.data.data.discription)
-                setoldprofilephoto(response.data.data.image)
+                setImage(response.data.data.images)
             })
             .catch(error => {
                 console.log(error);
@@ -99,6 +101,7 @@ function updateProduct() {
             const FormData = require('form-data');
             let data1 = new FormData();
             data1.append('title', data.name);
+            data1.append('id', productid);
             data1.append('url', data.url);
             data1.append('category', data.category);
             data1.append('short_discription', data.short_description);
@@ -260,10 +263,10 @@ function updateProduct() {
                                                 <div className="form-group radio-cls">
                                                     <h3>Are you associated with the product or company?</h3>
                                                     <label htmlFor="first">
-                                                        <input type="radio" name="product_name" id="first" checked onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: true })} /> Yes
+                                                        <input type="radio" name="product_name" value={data.association} id="first" checked onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: true })} /> Yes
                                                     </label>
                                                     <label htmlFor="second">
-                                                        <input type="radio" name="product_name" id="second" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: false })} /> No
+                                                        <input type="radio" name="product_name" value={data.association} id="second" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: false })} /> No
                                                     </label>
                                                 </div>
                                             </div>

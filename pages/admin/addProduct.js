@@ -46,13 +46,11 @@ function AddProduct() {
   console.log("value",value)
     const [data, setData] = useState({ name: "", url: "", short_description: "", description: "", category: "", feature: "", pricing: "", price: "", association: true })
     const [image, setImage] = useState()
+    const [loading, setLoading] = useState()
     const [categoryListing, setcategoryListing] = useState({})
     const [errors, setErrors] = useState({});
     var userId = {}
-    const QuillNoSSRWrapper = dynamic(import('react-quill'), {
-        ssr: false,
-        loading: () => <p>Loading ...</p>,
-    })
+    
 
     useEffect(() => {
         categoryList()
