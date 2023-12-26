@@ -26,6 +26,7 @@ function HomePage() {
     const [categoryId, setcategoryId] = useState(null);
     var [pricing, setPricing] = useState([]);
     var [feature, setFeatutre] = useState([]);
+    const [loading, setLoading] = useState(false);
     // if (typeof window !== 'undefined') {
     //     var userdata = 
     // }
@@ -41,20 +42,26 @@ function HomePage() {
     }, [])
 
     const homeApi = (e) => {
+        setLoading(true)
         axios.post(`${URL}home`, { user_id: e })
             .then((response) => {
+                setLoading(false)
                 setData(response.data)
             })
             .catch((error) => {
+                setLoading(false)
                 console.error(error);
             })
     }
     const sorting = (e) => {
+        setLoading(true)
         axios.post(`${URL}sorting`, { sort: e })
             .then((response) => {
+                setLoading(false)
                 setData(response.data)
             })
             .catch((error) => {
+                setLoading(false)
                 console.error(error);
             })
     }
@@ -67,19 +74,22 @@ function HomePage() {
         }
     }
     const regexAPi = (e) => {
+        setLoading(true)
         axios.post(`${URL}RegexApi`, { title: e })
             .then(response => {
-
+                setLoading(false)
                 setregexList(response.data.data)
             })
             .catch(error => {
+                setLoading(false)
                 console.log(error);
             });
     }
     const favourite = (e, h, g) => {
-
+        setLoading(true)
 
         if (g == undefined) {
+            setLoading(false)
             toast.error('Login before adding product to Favourite!');
         } else {
             axios.post(`${URL}Favourites`, {
@@ -89,16 +99,19 @@ function HomePage() {
                 type: "product"
             })
                 .then(response => {
+                    setLoading(false)
                     homeApi(g)
                     toast.success(response.data.message)
                 })
                 .catch(error => {
+                    setLoading(false)
                     console.log(error);
                 });
         }
     }
 
     const filter = (e, g, h) => {
+        setLoading(true)
         setcategoryId(e)
         axios.post(`${URL}filter`, {
             category: e,
@@ -106,11 +119,13 @@ function HomePage() {
             feature: feature.length == 0 ? null : feature,
         })
             .then(response => {
+                setLoading(false)
                 setData(response.data)
                 handleClose()
                 toast.success(response.data.message)
             })
             .catch(error => {
+                setLoading(false)
                 console.log(error);
             });
     }
@@ -140,8 +155,11 @@ function HomePage() {
     }
 
     return (<>
+   { loading?<div className="loader">
+            <div className="inner"></div>
+        </div>: <>
         <Header />
-
+        
         <div className="top-section pt120 pb80">
             <div className="container">
                 <div className="row">
@@ -280,7 +298,9 @@ function HomePage() {
             </Modal.Footer>
         </Modal>
         <Footer />
-    </>);
+    </>}
+    </>
+    );
 }
 
 export default HomePage;

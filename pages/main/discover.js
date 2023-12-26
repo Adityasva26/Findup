@@ -16,15 +16,19 @@ function Discover() {
 	const [data,setdata]=useState({})
 	const [userData, setuserData] = useState({});
 	const [share, setShare] = useState("share-btn");
+	const [loading, setLoading] = useState(false);
      useEffect(()=>{getByid(JSON.parse(window.localStorage.getItem('data'))?.id)
 	 setuserData(JSON.parse(window.localStorage.getItem('data')))
 	},[])
 	 async function getByid (e) {
+		setLoading(true)
 		axios.post(`${URL}discover`,{user_id:e})
 		.then(response => {
+			setLoading(false)
 			setdata(response.data.data)
 		})
 		.catch(error => {
+			setLoading(false)
 			console.log(error);
 		});
 	 }
@@ -58,7 +62,9 @@ function Discover() {
 		}
 	 }
     return ( <>
-    <Header/>
+   { loading?<div className="loader">
+            <div className="inner"></div>
+        </div>: <> <Header/>
     <div className="breadcums pt120 pb30">
 		<div className="container">
 			<nav aria-label="breadcrumb">
@@ -268,7 +274,7 @@ function Discover() {
 			</div>
 		</div>
 	</div>
-    <Footer/>
+    <Footer/></>}
     </> );
 }
 

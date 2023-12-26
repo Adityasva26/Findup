@@ -16,6 +16,7 @@ function SubmitNews() {
     const [categoryListing, setcategoryListing] = useState({})
     const [errors, setErrors] = useState({});
     const [userId, setuserId] = useState({});
+    const [loading, setLoading] = useState(false);
     function handleChange(e, fieldsValue) {
         setImage(e.target.files[0]);
     }
@@ -34,13 +35,14 @@ function SubmitNews() {
             })
     }
     const submitForm = () => {
-     
+        setLoading(true)
         if (!!userId==false){
-           
+            setLoading(false)
         toast.error("login before submiting form")
         }
         else{
         if (validateForm(data)) {
+            
             console.error("wewwwwwwwwwwwww")
             const FormData = require('form-data');
             let data1 = new FormData();
@@ -61,10 +63,12 @@ function SubmitNews() {
             console.error("data",data)
             axios.request(config)
                 .then((response) => {
+                    setLoading(false)
                     toast.success(response.data.message)
                     router.push('/main/news')
                 })
                 .catch((error) => {
+                    setLoading(false)
                     console.log(error);
                 });
         }}
@@ -96,6 +100,9 @@ function SubmitNews() {
         return formIsValid;
     }
     return (<>
+   { loading?<div className="loader">
+            <div className="inner"></div>
+        </div>:<>
         <Header />
         <div className="breadcums pt120 pb30">
             <div className="container">
@@ -164,6 +171,7 @@ function SubmitNews() {
             </div>
         </div>
         <Footer />
+        </>}
     </>);
 }
 

@@ -48,6 +48,7 @@ function SubmitTool() {
     const [image, setImage] = useState()
     const [categoryListing, setcategoryListing] = useState({})
     const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(false);
     var userId={}
    
    
@@ -69,6 +70,7 @@ function SubmitTool() {
     }
     
     const submitForm = () => {
+        setLoading(true)
         if (!!userId==false){
         toast.error("login before submiting form")
         }
@@ -101,10 +103,12 @@ function SubmitTool() {
 
             axios.request(config)
                 .then((response) => {
+                    setLoading(true)
                     toast.success(response.data.message)
                     router.push('/')
                 })
                 .catch((error) => {
+                    setLoading(true)
                     console.log(error);
                 });
         }
@@ -156,7 +160,12 @@ function SubmitTool() {
 
     }
     return (<>
+    { loading?<div className="loader">
+            <div className="inner"></div>
+        </div>:
+        <>
         <Header />
+       
         <div className="breadcums pt120 pb30">
             <div className="container">
                 <nav aria-label="breadcrumb">
@@ -283,6 +292,7 @@ function SubmitTool() {
             </div>
         </div>
         <Footer />
+        </>}
     </>);
 }
 
