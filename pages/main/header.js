@@ -45,7 +45,7 @@ function Header() {
 
         $('.main-menu ul li.drop-down').before().on('click', function (e) {
             $(this).children('ul').toggle();
-            $(this).siblings('li').find('ul').hide();
+            $(this).closest('.main-menu').find('li').not(this).find('ul').hide();
         });
     }
 
@@ -170,7 +170,9 @@ function Header() {
         setToggle(e)
         setToggleclass({ a: g, b: h })
     }
-
+    function handleMenuItemClick() {
+        $("body").removeClass("menuopen");
+    }
     return (
         <>
             {/* <head> */}
@@ -193,22 +195,22 @@ function Header() {
                                 <div className="main-menu">
                                     <ul>
                                         <li>
-                                            <Link href="/">Home</Link>
+                                            <Link href="/" onClick={handleMenuItemClick}>Home</Link>
                                         </li>
                                         <li>
-                                            <Link href="/main/favourites">Favourites</Link>
+                                            <Link href="/main/favourites" onClick={handleMenuItemClick}>Favourites</Link>
                                         </li>
                                         <li>
-                                            <Link href="/main/discover">Discover</Link>
+                                            <Link href="/main/discover" onClick={handleMenuItemClick}>Discover</Link>
                                         </li>
                                         <li className="drop-down">
                                             <a href="#">Submit</a>
                                             <ul className="sub-menu">
                                                 <li>
-                                                    <Link href="/main/submittool">Submit Tool</Link>
+                                                    <Link href="/main/submittool" onClick={handleMenuItemClick}>Submit Tool</Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="/main/submitnews">Submit News</Link>
+                                                    <Link href="/main/submitnews" onClick={handleMenuItemClick}>Submit News</Link>
                                                 </li>
                                             </ul>
                                         </li>

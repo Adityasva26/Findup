@@ -135,26 +135,19 @@ function HomePage() {
         handleClose()
         setPricing([])
     }
-    const handleChecked = (e, g, h) => {
-        checkbox.push(h)
-        if (g == "Pricing") {
-            if (e == true) {
-                pricing.push(h)
-            }
-            else {
-                pricing = pricing.filter(item => item !== h);
-            }
+    const handleChecked = (isChecked, category, id) => {
+        console.log('Checkbox clicked:', isChecked, category, id);
+    
+        if (category === 'Pricing') {
+          setPricing((prevPricing) =>
+            isChecked ? [...prevPricing, id] : prevPricing.filter((item) => item !== id)
+          );
+        } else if (category === 'Features') {
+            setFeatutre((prevFeature) =>
+            isChecked ? [...prevFeature, id] : prevFeature.filter((item) => item !== id)
+          );
         }
-        else if (g == "Features") {
-            if (e == true) {
-                feature.push(h)
-            }
-            else {
-                feature = feature.filter(item => item !== h);
-            }
-        }
-
-    }
+      };
   console.log(checkbox)
     return (<>
    { loading?<div className="loader">
@@ -287,7 +280,13 @@ function HomePage() {
                     <div className="price-box">
                         {item.data.map((value, index) => <div className="inner" key={index}>
                             <label htmlFor={value.id}>
-                                <input type="checkbox" name="free" id={value.id} value={checkbox} onChange={(e) => handleChecked(e.target.checked, item.Header, value.id)} /><i className="far fa-check-circle"></i> {value.title}
+                                <input type="checkbox" name="free" id={value.id} checked={
+                      item.Header === 'Pricing'
+                        ? pricing.includes(value.id)
+                        : item.Header === 'Features'
+                        ? feature.includes(value.id)
+                        : false
+                    } onChange={(e) => handleChecked(e.target.checked, item.Header, value.id)} /><i className="far fa-check-circle"></i> {value.title}
                             </label>
                         </div>)}
                     </div>

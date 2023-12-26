@@ -22,7 +22,8 @@ function DetailPage() {
   const [share, setShare] = useState("share-btn");
   const [show, setShow] = useState(false);
   const [value, setValue] = useState("");
-  const handleClose = () => {setShow(false); setModle(0);}
+  const handleClose = () => {setShow(false); setModle(0); setuserData(JSON.parse(window.localStorage.getItem("data")));
+  getByid(id, JSON.parse(window.localStorage.getItem("data"))?.id);}
   const handleShow = () => setShow(true);
   const QuillNoSSRWrapper = dynamic(import("react-quill"), {
     ssr: false,
@@ -121,6 +122,7 @@ function DetailPage() {
       });
     
   };
+  console.log(modle)
   return (
     <>
       <Header />
@@ -425,7 +427,7 @@ function DetailPage() {
             Alternative AI Tools for AI Studios
           </h4>
           <div className="row">
-            {data?.simmilarProduct?.map((item) => (
+            {data?.simmilarproduct?.map((item) => (
               <div className="col-lg-4">
                 <div className="main-box">
                   <div className="img">
