@@ -70,14 +70,14 @@ function SubmitTool() {
     }
     
     const submitForm = () => {
-        setLoading(true)
+       
         if (!!userId==false){
         toast.error("login before submiting form")
         }
         else{
             console.error("fdgdgsdfgsd")
         if (validateForm(data)) {
-            
+            setLoading(true)
             const FormData = require('form-data');
             let data1 = new FormData();
             data1.append('title', data.name);
@@ -228,6 +228,7 @@ function SubmitTool() {
                                     <div className="form-group">
                                         <label>Select categories (max 3)</label>
                                         <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: e.target.value, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}>
+                                        <option key="" value="" disabled>sellect</option>
                                             {categoryListing?.Category?.map((e,index) => <option key={index} value={e.id}>{e.title}</option>)}
                                             <span style={{color:"red"}}>{errors.category}</span>
                                         </select>
@@ -237,6 +238,7 @@ function SubmitTool() {
                                     <div className="form-group">
                                         <label>Select features (optional)</label>
                                         <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: e.target.value, pricing: data.pricing, price: data.price, association: data.association })}>
+                                        <option key="" value="" disabled>sellect</option>
                                             {categoryListing?.features?.map((e,index) => <option key={index} value={e.id}>{e.title}</option>)}
                                             {/* <span style={{color:"red"}}>{errors.feature}</span> */}
                                         </select>
@@ -246,6 +248,7 @@ function SubmitTool() {
                                     <div className="form-group">
                                         <label>Pricing - Select freemium if your tool has both paid and free versions</label>
                                         <select onChange={(e) => setData({ name: data.name, url: data.url, short_description:data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: e.target.value, price: data.price, association: data.association })}>
+                                        <option key="" value="" disabled>sellect</option>
                                             {categoryListing?.pricings?.map((e,index) => <option key={index} value={e.id}>{e.title}</option>)}
                                             <span style={{color:"red"}}>{errors.pricing}</span>
                                         </select>

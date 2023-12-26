@@ -22,7 +22,7 @@ function DetailPage() {
   const [share, setShare] = useState("share-btn");
   const [show, setShow] = useState(false);
   const [value, setValue] = useState("");
-  const handleClose = () => setShow(false);
+  const handleClose = () => {setShow(false); setModle(0);}
   const handleShow = () => setShow(true);
   const QuillNoSSRWrapper = dynamic(import("react-quill"), {
     ssr: false,
@@ -289,7 +289,7 @@ function DetailPage() {
                   <Stack spacing={1}>
               <Rating
                 name="size-small"
-                defaultValue={modle}
+                value={modle}
                 size="small"
                 onChange={(e) => handleModle(e.target.value)}
               />
@@ -368,7 +368,7 @@ function DetailPage() {
             type="button"
             className="theme-btn first"
             data-bs-dismiss="modal"
-            onClick={() => handleClear()}
+            onClick={handleClose}
           >
             Cancle
           </button>

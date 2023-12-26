@@ -35,14 +35,14 @@ function SubmitNews() {
             })
     }
     const submitForm = () => {
-        setLoading(true)
+       
         if (!!userId==false){
             setLoading(false)
         toast.error("login before submiting form")
         }
         else{
         if (validateForm(data)) {
-            
+            setLoading(true)
             console.error("wewwwwwwwwwwwww")
             const FormData = require('form-data');
             let data1 = new FormData();
@@ -82,10 +82,19 @@ function SubmitNews() {
             formIsValid = false;
             errors.name = "*Please enter your name.";
         }
-        if (fields.url == "") {
-            console.error("url")
+        if (fields.url === "") {
+            console.error("url");
             formIsValid = false;
-            errors.url = "*Please enter your url.";
+            errors.url = "*Please enter your URL.";
+        } else {
+            // Regular expression for a simple URL validation
+            const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+            
+            if (!urlPattern.test(fields.url)) {
+                console.error("url");
+                formIsValid = false;
+                errors.url = "*Please enter a valid URL.";
+            }
         }
         if (fields.category == "") {
             console.error("category")
@@ -144,6 +153,7 @@ function SubmitNews() {
                                         <div className="form-group">
                                             <label>Select categories (max 3)</label>
                                             <select onChange={(e)=>setData({name:data.name,url:data.url,category:e.target.value})}>
+                                            <option key="" value="" disabled>sellect</option>
                                                 {categoryListing?.Category?.map((item,index)=><option key={index} value={item.id}>{item.title}</option>)}
                                             </select>
                                                 <span style={{color:"red"}}>{errors.category}</span>

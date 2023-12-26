@@ -25,6 +25,7 @@ function HomePage() {
     const [userData, setuserData] = useState({});
     const [categoryId, setcategoryId] = useState(null);
     var [pricing, setPricing] = useState([]);
+    var checkbox = []
     var [feature, setFeatutre] = useState([]);
     const [loading, setLoading] = useState(false);
     // if (typeof window !== 'undefined') {
@@ -74,14 +75,14 @@ function HomePage() {
         }
     }
     const regexAPi = (e) => {
-        setLoading(true)
+ 
         axios.post(`${URL}RegexApi`, { title: e })
             .then(response => {
-                setLoading(false)
+
                 setregexList(response.data.data)
             })
             .catch(error => {
-                setLoading(false)
+
                 console.log(error);
             });
     }
@@ -119,6 +120,7 @@ function HomePage() {
             feature: feature.length == 0 ? null : feature,
         })
             .then(response => {
+                setregexList([])
                 setLoading(false)
                 setData(response.data)
                 handleClose()
@@ -134,7 +136,7 @@ function HomePage() {
         setPricing([])
     }
     const handleChecked = (e, g, h) => {
-
+        checkbox.push(h)
         if (g == "Pricing") {
             if (e == true) {
                 pricing.push(h)
@@ -153,7 +155,7 @@ function HomePage() {
         }
 
     }
-
+  console.log(checkbox)
     return (<>
    { loading?<div className="loader">
             <div className="inner"></div>
@@ -285,7 +287,7 @@ function HomePage() {
                     <div className="price-box">
                         {item.data.map((value, index) => <div className="inner" key={index}>
                             <label htmlFor={value.id}>
-                                <input type="checkbox" name="free" id={value.id} onChange={(e) => handleChecked(e.target.checked, item.Header, value.id)} /><i className="far fa-check-circle"></i> {value.title}
+                                <input type="checkbox" name="free" id={value.id} value={checkbox} onChange={(e) => handleChecked(e.target.checked, item.Header, value.id)} /><i className="far fa-check-circle"></i> {value.title}
                             </label>
                         </div>)}
                     </div>
