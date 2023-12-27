@@ -62,10 +62,7 @@ function updateProduct() {
     const [productid, setproductId] = useState();
     const [oldprofilephoto, setoldprofilephoto] = useState({});
     var userId = {}
-    const QuillNoSSRWrapper = dynamic(import('react-quill'), {
-        ssr: false,
-        loading: () => <p>Loading ...</p>,
-    })
+   
 
     useEffect(() => {
         categoryList()
