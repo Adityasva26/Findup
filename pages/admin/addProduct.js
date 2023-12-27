@@ -11,7 +11,16 @@ import { useEffect, useState } from "react";
 const Loader = () => <div className="loader">
 <div className="inner"></div>
 </div>;
-const ReactQuill = dynamic(() => import('react-quill').then((mod) => mod.default || mod), { ssr: false ,loading: () => <Loader />,});
+const ReactQuill = dynamic(
+    async () => {
+      const { default: RQ } = await import("react-quill");
+  
+      return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />;
+    },
+    {
+      ssr: false
+    }
+  );
 
 function TextEditor({ value, onChange }) {
     const modules = {
