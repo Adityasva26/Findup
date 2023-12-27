@@ -9,16 +9,7 @@ import dynamic from "next/dynamic";
 import 'react-quill/dist/quill.snow.css'
 import { useEffect, useState } from "react";
 
-const ReactQuill = dynamic(
-    () =>
-      new Promise((resolve) => {
-        require.ensure([], (require) => {
-          resolve(require('react-quill'));
-        }, 'react-quill');
-      }),
-    { ssr: false }
-  );
-  
+const ReactQuill = dynamic(() => import('react-quill').then((mod) => mod.default || mod), { ssr: false });
 
 function TextEditor({ value, onChange }) {
     const modules = {

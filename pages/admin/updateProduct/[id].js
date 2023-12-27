@@ -12,16 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import 'react-quill/dist/quill.snow.css';
 
 // Import Quill dynamically to avoid SSR
-const ReactQuill = dynamic(
-    () =>
-      new Promise((resolve) => {
-        require.ensure([], (require) => {
-          resolve(require('react-quill'));
-        }, 'react-quill');
-      }),
-    { ssr: false }
-  );
-  
+const ReactQuill = dynamic(() => import('react-quill').then((mod) => mod.default || mod), { ssr: false });
 
 function TextEditor({ value, onChange }) {
     const modules = {
