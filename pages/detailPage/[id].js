@@ -14,7 +14,16 @@ import Stack from "@mui/material/Stack";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 
-const ReactQuill = dynamic(() => import('react-quill').then((mod) => mod.default || mod), { ssr: false });
+const ReactQuill = dynamic(
+  async () => {
+    const { default: RQ } = await import("react-quill");
+
+    return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />;
+  },
+  {
+    ssr: false
+  }
+);
 
 function TextEditor({ value, onChange }) {
     const modules = {
@@ -375,11 +384,7 @@ function DetailPage() {
                   <div className="col-md-12">
                     <div className="form-group">
                       <label>What is your review of the tool?</label>
-                      <QuillNoSSRWrapper
-                        theme="snow"
-                        value={value}
-                        onChange={setValue}
-                      />
+                    
                       <TextEditor
                        theme="snow"
                        value={value}

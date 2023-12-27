@@ -15,7 +15,16 @@ import { URL } from '../../utility/api';
 import 'react-quill/dist/quill.snow.css';
 
 // Import Quill dynamically to avoid SSR
-const ReactQuill = dynamic(() => import('react-quill').then((mod) => mod.default || mod), { ssr: false });
+const ReactQuill = dynamic(
+    async () => {
+      const { default: RQ } = await import("react-quill");
+  
+      return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />;
+    },
+    {
+      ssr: false
+    }
+  );
 
 function TextEditor({ value, onChange }) {
   const modules = {
