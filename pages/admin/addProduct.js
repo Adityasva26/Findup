@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 
 // Import Quill dynamically to avoid SSR
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+const ReactQuill = React.lazy(() => import('react-quill'), { ssr: false });
 
 function TextEditor({ value, onChange }) {
     const modules = {
