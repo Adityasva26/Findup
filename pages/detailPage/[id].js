@@ -199,7 +199,7 @@ function DetailPage() {
               <div className="top-details">
                 <div className="left">
                   <h3>{data?.data?.title}</h3>
-                  <a href={data?.data?.url} className="theme-btn">
+                  <a href={data?.data?.url} target="_blank" className="theme-btn">
                     Visit <i className="fas fa-link"></i>
                   </a>
                 </div>
