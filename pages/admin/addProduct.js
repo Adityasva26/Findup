@@ -1,4 +1,5 @@
 import Sidebar from "./adminSidebar";
+import React from "react";
 import AdminNavBar from "./adminnavbar";
 import axios from "axios";
 import { useRouter } from 'next/router'
@@ -8,9 +9,15 @@ import dynamic from "next/dynamic";
 import 'react-quill/dist/quill.snow.css'
 import { useEffect, useState } from "react";
 
-
+const errorLoading = err => {
+    console.log(
+      'An error has occured',
+      'Please refresh the page. Otherwise, it will refresh automatically in 10 seconds.'
+    );
+    setTimeout(() => window.location.reload(), 10000);
+  };
 // Import Quill dynamically to avoid SSR
-const ReactQuill = React.lazy(() => import('react-quill'), { ssr: false });
+const ReactQuill = React.lazy(() => import('react-quill').catch( errorLoading), { ssr: false });
 
 function TextEditor({ value, onChange }) {
     const modules = {
