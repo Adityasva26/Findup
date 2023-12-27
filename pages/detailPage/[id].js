@@ -13,6 +13,35 @@ import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
+
+const ReactQuill = dynamic(() => import('react-quill').then((mod) => mod.default || mod), { ssr: false });
+
+function TextEditor({ value, onChange }) {
+    const modules = {
+        toolbar: [
+            [{ header: '1' }, { header: '2' }, { font: [] }],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            ['bold', 'italic', 'underline'],
+            ['link'],
+            [{ image: 'system' }],
+        ],
+    };
+// done
+    const formats = [
+        'header',
+        'font',
+        'list',
+        'bold',
+        'italic',
+        'underline',
+        'link',
+        'image',
+    ];
+
+    return (
+<ReactQuill value={value} modules={modules} formats={formats} onChange={onChange} />
+    );
+}
 function DetailPage() {
   const router = useRouter();
   const id = router.query.id;
@@ -351,6 +380,11 @@ function DetailPage() {
                         value={value}
                         onChange={setValue}
                       />
+                      <TextEditor
+                       theme="snow"
+                       value={value}
+                       onChange={setValue}
+                       />
                       <p>
                         Your review will be submitted for approval and will be
                         visible to other users after it is approved. We do not

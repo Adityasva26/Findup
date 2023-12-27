@@ -111,7 +111,7 @@ function AddProduct() {
         }
     }
     }
-    function validateForm(fieldsValue) {
+  function validateForm(fieldsValue) {
         let fields = fieldsValue;
         let errors = {};
         let formIsValid = true;
@@ -127,18 +127,31 @@ function AddProduct() {
             formIsValid = false;
             errors.short_description = "*Please enter your short_description.";
         }
+        if (fields.short_description == "") {
+            formIsValid = false;
+            errors.short_description = "*Please enter your short_description.";
+        }
         if (fields.category == "") {
             formIsValid = false;
             errors.category = "*Please enter your category.";
         }
-        if (fields.feature == "") {
+        // if (fields.feature == "") {
+        //     formIsValid = false;
+        //     errors.feature = "*Please enter your feature.";
+        // }
+        // if (fields.pricing == "") {
+        //     formIsValid = false;
+        //     errors.pricing = "*Please enter your pricing.";
+        // }
+        if (image == undefined) {
             formIsValid = false;
-            errors.feature = "*Please enter your feature.";
+            errors.image = "*Please sellect your Image.";
         }
-        if (fields.pricing == "") {
+        if (value == "") {
             formIsValid = false;
-            errors.pricing = "*Please enter your pricing.";
+            errors.discription = "*Please enter your discription.";
         }
+       
         setErrors(errors);
         return formIsValid;
 
@@ -167,21 +180,21 @@ function AddProduct() {
                                                 <div className="form-group">
                                                     <label>Tool Name</label>
                                                     <input type="text" placeholder="Copy AI" onChange={(e) => setData({ name: e.target.value, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
-                                                    <p>{errors.name}</p>
+                                                    <span style={{color:"red"}}>{errors.name}</span>
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label>Website URL</label>
                                                     <input type="text" placeholder="https://copy.ai" onChange={(e) => setData({ name: data.name, url: e.target.value, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
-                                                    <p>{errors.url}</p>
+                                                    <span style={{color:"red"}}>{errors.url}</span>
                                                 </div>
                                             </div>
                                             <div className="col-md-12">
                                                 <div className="form-group">
                                                     <label>Tool's short description (Optional)</label>
                                                     <input type="text" placeholder="Please provide a short description" onChange={(e) => setData({ name: data.name, url: data.url, short_description: e.target.value, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
-                                                    <p>{errors.short_description}</p>
+                                                    <span style={{color:"red"}}>{errors.short_description}</span>
                                                 </div>
                                             </div>
                                             <div className="col-md-12">
@@ -192,9 +205,11 @@ function AddProduct() {
                                             name="description"
                                         /> */}
                                                     <TextEditor
+                                                    theme="snow"
                                                         value={value}
                                                         onChange={setValue}
                                                     />
+                                                      <span style={{color:"red"}}>{errors.discription}</span>
                                                     {/* <textarea onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: e.target.value, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}></textarea> */}
                                                 </div>
                                             </div>
@@ -204,6 +219,7 @@ function AddProduct() {
                                                     <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: e.target.value, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}>
                                                         {categoryListing?.Category?.map((e, index) => <option key={index} value={e.id}>{e.title}</option>)}
                                                     </select>
+                
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
@@ -212,6 +228,7 @@ function AddProduct() {
                                                     <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: e.target.value, pricing: data.pricing, price: data.price, association: data.association })}>
                                                         {categoryListing?.features?.map((e, index) => <option key={index} value={e.id}>{e.title}</option>)}
                                                     </select>
+                           
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
@@ -220,6 +237,7 @@ function AddProduct() {
                                                     <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: e.target.value, price: data.price, association: data.association })}>
                                                         {categoryListing?.pricings?.map((e, index) => <option key={index} value={e.id}>{e.title}</option>)}
                                                     </select>
+                                         
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
@@ -227,6 +245,7 @@ function AddProduct() {
                                                     <label>Starting Price (Optional)</label>
                                                     <input type="text" name="" placeholder="$10/mo" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: e.target.value, association: data.association })} />
                                                 </div>
+                                                <span style={{color:"red"}}>{errors.url}</span>
                                             </div>
                                             <div className="col-md-6">
                                                 <div className="form-group">
@@ -234,6 +253,7 @@ function AddProduct() {
                                                     <input type="file" name="" onChange={(e, fields) => {
                                                         handleChange(e, fields)
                                                     }} />
+                                                      <span style={{color:"red"}}>{errors.image}</span>
                                                 </div>
                                             </div>
                                             <div className="col-md-12">
