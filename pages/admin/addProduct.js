@@ -8,8 +8,10 @@ import { URL } from '../../utility/api';
 import dynamic from "next/dynamic";
 import 'react-quill/dist/quill.snow.css'
 import { useEffect, useState } from "react";
-
-const ReactQuill = dynamic(() => import('react-quill').then((mod) => mod.default || mod), { ssr: false });
+const Loader = () => <div className="loader">
+<div className="inner"></div>
+</div>;
+const ReactQuill = dynamic(() => import('react-quill').then((mod) => mod.default || mod), { ssr: false ,loading: () => <Loader />,});
 
 function TextEditor({ value, onChange }) {
     const modules = {
