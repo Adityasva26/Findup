@@ -14,7 +14,7 @@ import { URL } from '@/utility/api';
 import 'react-quill/dist/quill.snow.css';
 
 // Import Quill dynamically to avoid SSR
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+const ReactQuill = dynamic(() => import('react-quill').then((mod) => mod.default || mod), { ssr: false });
 
 
 function UpdateNewsletter() {
