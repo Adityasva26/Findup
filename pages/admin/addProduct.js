@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 
 // Import Quill dynamically to avoid SSR
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: true });
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 function TextEditor({ value, onChange }) {
     const modules = {
@@ -35,7 +35,7 @@ function TextEditor({ value, onChange }) {
     ];
 
     return (
-        <ReactQuill value={value} modules={modules} formats={formats} onChange={onChange} />
+<ReactQuill value={value} modules={modules} formats={formats} onChange={onChange} />
     );
 }
 
