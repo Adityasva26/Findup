@@ -52,7 +52,7 @@ function Header() {
 
     useEffect(() => {
 
-
+        handleMenuItemClick()
 
         setuserData(JSON?.parse(window?.localStorage?.getItem("data")))
 
