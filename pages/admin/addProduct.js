@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 
 // Import Quill dynamically to avoid SSR
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: true });
 
 function TextEditor({ value, onChange }) {
     const modules = {
@@ -76,7 +76,7 @@ function AddProduct() {
         }
         else {
             console.error("fdgdgsdfgsd")
-            // if (validateForm(data)) {
+            if (validateForm(data)) {
 
             const FormData = require('form-data');
             let data1 = new FormData();
@@ -111,7 +111,7 @@ function AddProduct() {
                 });
         }
     }
-    // }
+    }
     function validateForm(fieldsValue) {
         let fields = fieldsValue;
         let errors = {};
@@ -144,6 +144,7 @@ function AddProduct() {
         return formIsValid;
 
     }
+    console.log("adata",data)
     return (<>
 
 
