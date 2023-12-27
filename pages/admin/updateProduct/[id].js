@@ -61,24 +61,32 @@ function updateProduct() {
     const [errors, setErrors] = useState({});
     const [productid, setproductId] = useState();
     const [oldprofilephoto, setoldprofilephoto] = useState({});
+    const [loading, setLoading] = useState(false);
     var userId = {}
    
 
     useEffect(() => {
         categoryList()
-
+        getByid()
         userId = JSON.parse(window.localStorage.getItem("adminData"))
     }, [])
-    useEffect(() => { getByid() }, [id])
+ 
     async function getByid() {
-        axios.post(`${URL}productforid`, { id: id, user_id: "" })
+        setLoading(true)
+        axios.post(`${URL}productforid`, { id: router.query.id, user_id: "" })
             .then(response => {
+
+
+                console.log( response)
+                setLoading(false)
+
                 setData({ name: response.data.data.title, url: response.data.data.url, short_description: response.data.data.short_discription, description: response.data.data.discription, category: response.data.data.category, pricing: response.data.data.pricing_category, price: response.data.data.price, feature: response.data.data.features , association:response.data.data.association})
                 setproductId(response.data.data.id)
                 setValue(response.data.data.discription)
                 setImage(response.data.data.images)
             })
             .catch(error => {
+                setLoading(false)
                 console.log(error);
             });
     }
@@ -186,11 +194,13 @@ function updateProduct() {
         return formIsValid;
 
     }
-
+ console.log("data",data)
     return (<>
 
 
-        <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /></head>
+{ loading?<div className="loader">
+            <div className="inner"></div>
+        </div>:  <>  <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /></head>
         <div className="d-flex" id="wrapper">
             <Sidebar />
             <div id="page-content-wrapper" className="bg-white" style={{ background: "#fff" }}>
@@ -209,21 +219,21 @@ function updateProduct() {
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label>Tool Name</label>
-                                                    <input type="text" placeholder="Copy AI" onChange={(e) => setData({ name: e.target.value, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
+                                                    <input type="text" placeholder="Copy AI" value={data?.name} onChange={(e) => setData({ name: e.target.value, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
                                                     <span style={{color:"red"}}>{errors.name}</span>
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label>Website URL</label>
-                                                    <input type="text" placeholder="https://copy.ai" onChange={(e) => setData({ name: data.name, url: e.target.value, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
+                                                    <input type="text" placeholder="https://copy.ai"value={data?.url} onChange={(e) => setData({ name: data.name, url: e.target.value, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
                                                     <span style={{color:"red"}}>{errors.url}</span>
                                                 </div>
                                             </div>
                                             <div className="col-md-12">
                                                 <div className="form-group">
                                                     <label>Tool's short description (Optional)</label>
-                                                    <input type="text" placeholder="Please provide a short description" onChange={(e) => setData({ name: data.name, url: data.url, short_description: e.target.value, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
+                                                    <input type="text" placeholder="Please provide a short description" value={data?.short_description} onChange={(e) => setData({ name: data.name, url: data.url, short_description: e.target.value, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })} />
                                                     <span style={{color:"red"}}>{errors.short_description}</span>
                                                 </div>
                                             </div>
@@ -246,7 +256,7 @@ function updateProduct() {
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label>Select categories (max 3)</label>
-                                                    <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: e.target.value, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}>
+                                                    <select value={data?.category} onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: e.target.value, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}>
                                                         {categoryListing?.Category?.map((e, index) => <option key={index} value={e.id}>{e.title}</option>)}
                                                     </select>
                 
@@ -255,7 +265,7 @@ function updateProduct() {
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label>Select features (optional)</label>
-                                                    <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: e.target.value, pricing: data.pricing, price: data.price, association: data.association })}>
+                                                    <select value={data?.feature} onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: e.target.value, pricing: data.pricing, price: data.price, association: data.association })}>
                                                         {categoryListing?.features?.map((e, index) => <option key={index} value={e.id}>{e.title}</option>)}
                                                     </select>
                            
@@ -264,7 +274,7 @@ function updateProduct() {
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label>Pricing - Select freemium if your tool has both paid and free versions</label>
-                                                    <select onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: e.target.value, price: data.price, association: data.association })}>
+                                                    <select value={data?.pricing} onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: e.target.value, price: data.price, association: data.association })}>
                                                         {categoryListing?.pricings?.map((e, index) => <option key={index} value={e.id}>{e.title}</option>)}
                                                     </select>
                                          
@@ -273,7 +283,7 @@ function updateProduct() {
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label>Starting Price (Optional)</label>
-                                                    <input type="text" name="" placeholder="$10/mo" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: e.target.value, association: data.association })} />
+                                                    <input type="text" value={data?.price} name="" placeholder="$10/mo" onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: data.description, category: data.category, feature: data.feature, pricing: data.pricing, price: e.target.value, association: data.association })} />
                                                 </div>
                                                 <span style={{color:"red"}}>{errors.url}</span>
                                             </div>
@@ -313,6 +323,7 @@ function updateProduct() {
                 </div>
             </div>
         </div>
+        </>}
     </>);
 }
 
