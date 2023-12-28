@@ -161,14 +161,7 @@ function updateProduct() {
             formIsValid = false;
             errors.url = "*Please enter your url.";
         }
-        if (fields.short_description == "") {
-            formIsValid = false;
-            errors.short_description = "*Please enter your short_description.";
-        }
-        if (fields.short_description == "") {
-            formIsValid = false;
-            errors.short_description = "*Please enter your short_description.";
-        }
+       
         if (fields.category == "") {
             formIsValid = false;
             errors.category = "*Please enter your category.";
