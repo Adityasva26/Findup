@@ -10,7 +10,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
 import { URL } from '../../utility/api';
 import GoogleLogin from 'react-google-login';
-import { gapi } from 'gapi-script';
 function Header() {
     const router = useRouter()
     const [show, setShow] = useState(false);
@@ -29,12 +28,8 @@ function Header() {
     const [picture, setPicture] = useState('');
     const [password, setPassworderror] = useState('');
     const [successMsg, setSuccmsg] = useState('');
-    const clientId="955888838803-4ecdcai17mrv6sklsrvv3lhufmic6kd1.apps.googleusercontent.com"
-    useEffect(()=>{
-        gapi.load("client.auth2",()=>{
-            gapi.auth2.init({clientId:clientId})
-        })
-    },[])
+
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -295,7 +290,7 @@ function Header() {
                                         <div className="lg-icon">
                                             <a>
                                             <GoogleLogin
-                                                clientId={clientId}
+                                                clientId="955888838803-4ecdcai17mrv6sklsrvv3lhufmic6kd1.apps.googleusercontent.com"
                                                 onSuccess={responseFacebook}
                                                 onFailure={(err) => console.log("login failed", err)}
                                                 cookiePolicy={'single_host_origin'}
