@@ -12,6 +12,7 @@ import { URL } from '../../utility/api';
 import GoogleLogin from 'react-google-login';
 function Header() {
     const router = useRouter()
+    const clientId="955888838803-4ecdcai17mrv6sklsrvv3lhufmic6kd1.apps.googleusercontent.com"
     const [show, setShow] = useState(false);
     const [userData, setuserData] = useState();
     const [registerForm, setregisterForm] = useState({ name: "", email: "", password: "" });
@@ -75,20 +76,20 @@ function Header() {
 
     const responseFacebook = (response) => {
         console.log( "data", response)
-        // if (response.status !== "unknown") {
+        if (response.status !== "unknown") {
 
-        //     axios.post(`${URL}socialregister`, { email: response.email, full_name: response.name, social_id: response.userID, social_name: response.graphDomain })
-        //         .then(response => {
+            axios.post(`${URL}socialregister`, { email: response.email, full_name: response.name, social_id: response.userID, social_name: response.graphDomain })
+                .then(response => {
 
-        //             window.localStorage.setItem("data", JSON.stringify(response.data.data))
-        //             setuserData(response.data.data)
-        //             handleClose()
-        //             router.reload(window.location.pathname)
-        //         })
-        //         .catch(error => {
-        //             console.log(error);
-        //         });
-        // }
+                    window.localStorage.setItem("data", JSON.stringify(response.data.data))
+                    setuserData(response.data.data)
+                    handleClose()
+                    router.reload(window.location.pathname)
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
     }
     function logout() {
         localStorage.removeItem("data");
@@ -290,7 +291,7 @@ function Header() {
                                         <div className="lg-icon">
                                             <a>
                                             <GoogleLogin
-                                                clientId="955888838803-4ecdcai17mrv6sklsrvv3lhufmic6kd1.apps.googleusercontent.com"
+                                                clientId={clientId}
                                                 onSuccess={responseFacebook}
                                                 onFailure={(err) => console.log("login failed", err)}
                                                 cookiePolicy={'single_host_origin'}
