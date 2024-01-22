@@ -312,6 +312,7 @@ function Header() {
                                                 onSuccess={responseGoogle}
                                                 onFailure={(err) => console.log("login failed", err)}
                                                 cookiePolicy={'single_host_origin'}
+                                                isSignedIn={true}
                                             />
                                             </a>
 
