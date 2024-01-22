@@ -91,6 +91,23 @@ function Header() {
                 });
         }
     }
+    const responseGoogle = (response) => {
+        console.log( "data", response)
+        if (response.status !== "unknown") {
+
+            axios.post(`${URL}socialregister`, { email: response.email, full_name: response.name, social_id: response.userID, social_name: response.graphDomain })
+                .then(response => {
+
+                    window.localStorage.setItem("data", JSON.stringify(response.data.data))
+                    setuserData(response.data.data)
+                    handleClose()
+                    router.reload(window.location.pathname)
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }
     function logout() {
         localStorage.removeItem("data");
         setuserData()
@@ -292,7 +309,7 @@ function Header() {
                                             <a>
                                             <GoogleLogin
                                                 clientId={clientId}
-                                                onSuccess={responseFacebook}
+                                                onSuccess={responseGoogle}
                                                 onFailure={(err) => console.log("login failed", err)}
                                                 cookiePolicy={'single_host_origin'}
                                             />
