@@ -12,7 +12,7 @@ import { URL } from '../../utility/api';
 import GoogleLogin from 'react-google-login';
 function Header() {
     const router = useRouter()
-    const clientId="955888838803-4ecdcai17mrv6sklsrvv3lhufmic6kd1.apps.googleusercontent.com"
+    const clientId="933506337701-ho2kkhp68gulaf21uisjphgjj1d4u9q2.apps.googleusercontent.com"
     const [show, setShow] = useState(false);
     const [userData, setuserData] = useState();
     const [registerForm, setregisterForm] = useState({ name: "", email: "", password: "" });
