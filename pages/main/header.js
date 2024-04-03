@@ -221,6 +221,9 @@ function Header() {
                                         <li>
                                             <Link href="/main/discover" onClick={handleMenuItemClick}>Discover</Link>
                                         </li>
+                                        <li>
+                                            <Link href="/main/Deal" onClick={handleMenuItemClick}>Deal</Link>
+                                        </li>
                                         <li className="drop-down">
                                             <a href="#">Submit</a>
                                             <ul className="sub-menu">
