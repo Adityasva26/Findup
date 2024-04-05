@@ -17,84 +17,89 @@ import 'react-quill/dist/quill.snow.css';
 // Import Quill dynamically to avoid SSR
 const ReactQuill = dynamic(
     async () => {
-      const { default: RQ } = await import("react-quill");
-  
-      return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />;
+        const { default: RQ } = await import("react-quill");
+
+        return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />;
     },
     {
-      ssr: false
+        ssr: false
     }
-  );
+);
 
 function TextEditor({ value, onChange }) {
-  const modules = {
-    toolbar: [
-      [{ header: '1' }, { header: '2' }, { font: [] }],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      ['bold', 'italic', 'underline'],
-      ['link'],
-      [{ image: 'system' }],
-    ],
-  };
+    const modules = {
+        toolbar: [
+            [{ header: '1' }, { header: '2' }, { font: [] }],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            ['bold', 'italic', 'underline'],
+            ['link'],
+            [{ image: 'system' }],
+        ],
+    };
 
-  const formats = [
-    'header',
-    'font',
-    'list',
-    'bold',
-    'italic',
-    'underline',
-    'link',
-    'image',
-  ];
+    const formats = [
+        'header',
+        'font',
+        'list',
+        'bold',
+        'italic',
+        'underline',
+        'link',
+        'image',
+    ];
 
-  return (
-    <ReactQuill value={value} modules={modules} formats={formats} onChange={onChange} />
-  );
+    return (
+        <ReactQuill value={value} modules={modules} formats={formats} onChange={onChange} />
+    );
 }
 function AddNewsletter() {
-  
-        const router = useRouter()
-        const [value, setValue] = useState('')
-        const [data,setData]=useState({name:""})
-        const [image, setImage] = useState()
-        const [categoryListing, setcategoryListing] = useState({})
-        const [errors, setErrors] = useState({});
-        const [userId, setuserId] = useState({});
-        function handleChange(e, fieldsValue) {
-            setImage(e.target.files[0]);
-        }
-       
-        useEffect(()=>{ categoryList()
-            setuserId( JSON.parse(window.localStorage.getItem("adminData")))
-        },[])
-      
-        const categoryList = () => {
-           
-            axios.post(`${URL}dropdown`,{type:"news"})
-                .then((response) => {
-                    setcategoryListing(response.data.data)
-                })
-                .catch((error) => {
-                    console.error(error);
-                })
-        }
-        const submitForm = () => {
-            console.log(value)
-            if (!!userId==false){
-                console.log(userId)
+
+    const router = useRouter()
+    const [value, setValue] = useState('')
+    const [data, setData] = useState({ name: "", link: "", price: "", discountedPrice: "", discountCode: "" })
+    const [image, setImage] = useState()
+    const [categoryListing, setcategoryListing] = useState({})
+    const [errors, setErrors] = useState({});
+    const [userId, setuserId] = useState({});
+    function handleChange(e, fieldsValue) {
+        setImage(e.target.files[0]);
+    }
+
+    useEffect(() => {
+        categoryList()
+        setuserId(JSON.parse(window.localStorage.getItem("adminData")))
+    }, [])
+
+    const categoryList = () => {
+
+        axios.post(`${URL}dropdown`, { type: "news" })
+            .then((response) => {
+                setcategoryListing(response.data.data)
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+    const submitForm = () => {
+        console.log(value)
+        if (!!userId == false) {
+            console.log(userId)
             toast.error("login before submiting form")
-            }
-            else{
-                console.log(value)
+        }
+        else {
+            console.log(value)
             if (validateForm(data)) {
                 console.log(value)
                 const FormData = require('form-data');
                 let data1 = new FormData();
                 data1.append('title', data.name);
+                data1.append('link', data.link);
+                data1.append('price', data.price);
+                data1.append('discountedPrice', data.discountedPrice);
+                data1.append('discountCode', data.discountCode);
                 data1.append('paragraph', value);
-                data1.append('image',image)
-    
+                data1.append('image', image)
+
                 let config = {
                     method: 'post',
                     maxBodyLength: Infinity,
@@ -104,7 +109,7 @@ function AddNewsletter() {
                     },
                     data: data1
                 };
-                console.error("data",data)
+                console.error("data", data)
                 axios.request(config)
                     .then((response) => {
                         toast.success(response.data.message)
@@ -113,30 +118,41 @@ function AddNewsletter() {
                     .catch((error) => {
                         console.log(error);
                     });
-            }}
-        }
-        function validateForm(fieldsValue) {
-            let fields = fieldsValue;
-            let errors = {};
-            let formIsValid = true;
-            if (fields.name == "") {
-                console.error("fields.name")
-                formIsValid = false;
-                errors.name = "*Please enter your name.";
             }
-            // if (fields.url == "") {
-            //     console.error("url")
-            //     formIsValid = false;
-            //     errors.url = "*Please enter your url.";
-            // }
-            // if (fields.category == "") {
-            //     console.error("category")
-            //     formIsValid = false;
-            //     errors.category = "*Please enter your category.";
-            // }
-            setErrors(errors);
-            return formIsValid;
         }
+    }
+    function validateForm(fieldsValue) {
+        let fields = fieldsValue;
+        let errors = {};
+        let formIsValid = true;
+        if (fields.name == "") {
+            console.error("fields.name")
+            formIsValid = false;
+            errors.name = "*Please enter your name.";
+        }
+        if (fields.link == "") {
+            console.error("link")
+            formIsValid = false;
+            errors.link = "*Please enter your link.";
+        }
+        if (fields.price == "") {
+            console.error("price")
+            formIsValid = false;
+            errors.price = "*Please enter your price.";
+        }
+        if (fields.discountedPrice == "") {
+            console.error("discountedPrice")
+            formIsValid = false;
+            errors.discountedPrice = "*Please enter your discountedPrice.";
+        }
+        if (fields.discountCode == "") {
+            console.error("discountCode")
+            formIsValid = false;
+            errors.discountCode = "*Please enter your discountCode.";
+        }
+        setErrors(errors);
+        return formIsValid;
+    }
     return (<>
 
 
@@ -160,51 +176,83 @@ function AddNewsletter() {
                                                 <div className="form-group">
                                                     <label>Title</label>
                                                     <input type="text" placeholder="Copy AI"
-                                                    onChange={(e)=>setData({name:e.target.value,url:data.url,category:data.category})} 
+                                                        onChange={(e) => setData({ name: e.target.value, link: data.link, price: data.price, discountedPrice: data.discountedPrice, discountCode: data.discountCode })}
                                                     />
                                                     <p>{errors.name}</p>
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
                                                 <div className="form-group">
-                                                    <label>News Title</label>
-                                                    <input type="text" placeholder="Copy AI"
-                                                    onChange={(e)=>setData({name:e.target.value,url:data.url,category:data.category})} 
+                                                    <label>Link</label>
+                                                    <input type="text" placeholder="Link"
+                                                        onChange={(e) => setData({ name: data.name, link: e.target.value, price: data.price, discountedPrice: data.discountedPrice, discountCode: data.discountCode })}
                                                     />
-                                                    <p>{errors.name}</p>
+                                                    <p>{errors.link}</p>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Price</label>
+                                                        <input type="number" placeholder="price"
+                                                            onChange={(e) => setData({ name: data.name, link: data.link, price: e.target.value, discountedPrice: data.discountedPrice, discountCode: data.discountCode })}
+                                                        />
+                                                        <p>{errors.price}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Discounted Price</label>
+                                                        <input type="number" placeholder="Discounted Price"
+                                                            onChange={(e) => setData({ name: data.name, link: data.link, price: data.price, discountedPrice: e.target.value, discountCode: data.discountCode })}
+                                                        />
+                                                        <p>{errors.discountedPrice}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Discount Code</label>
+                                                        <input type="text" placeholder="Discount Code"
+                                                            onChange={(e) => setData({ name: data.name, link: data.link, price: data.price, discountedPrice: data.discountedPrice, discountCode: e.target.value })}
+                                                        />
+                                                        <p>{errors.price}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>upload Image</label>
+                                                        <input type="file" name=""
+                                                            onChange={(e, fields) => {
+                                                                handleChange(e, fields)
+                                                            }}
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="col-md-12">
-                                    <div className="form-group">
-                                        <label>Tool Description (Optional)</label>
-                                        {/* <CKEditor
+                                                <div className="form-group">
+                                                    <label>Tool Description (Optional)</label>
+                                                    {/* <CKEditor
                                             editor={ClassicEditor}
                                             name="description"
                                         /> */}
-                                         <TextEditor
-                          value={value}
-                          onChange={setValue}
-                        />
-                                        {/* <textarea onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: e.target.value, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}></textarea> */}
-                                    </div>
-                                </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <label>upload Image</label>
-                                                    <input type="file" name=""
-                                                         onChange={(e, fields) => {
-                                                        handleChange(e, fields)
-                                                    }}
+                                                    <TextEditor
+                                                        value={value}
+                                                        onChange={setValue}
                                                     />
+                                                    {/* <textarea onChange={(e) => setData({ name: data.name, url: data.url, short_description: data.short_description, description: e.target.value, category: data.category, feature: data.feature, pricing: data.pricing, price: data.price, association: data.association })}></textarea> */}
                                                 </div>
                                             </div>
-                                            <div className="col-md-12">
-                                                <div className="form-group">
-                                                    <button type="submit" className="theme-btn"
-                                                     onClick={(e) => submitForm()}
-                                                    >Submit</button>
-                                                </div>
+
+                                            {/* <div className="col-md-12"> */}
+                                            <div className="form-group">
+                                                <button type="submit" className="theme-btn"
+                                                    onClick={(e) => submitForm()}
+                                                >Submit</button>
                                             </div>
+                                            {/* </div> */}
                                         </div>
 
                                     </div>

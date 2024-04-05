@@ -5,9 +5,13 @@ import axios from "axios";
 import moment from "moment/moment";
 import ReactHtmlParser from "react-html-parser";
 import { URL } from '../../utility/api';
+import Modal from 'react-bootstrap/Modal';
 
 function Deal() {
     const [data,setData]=useState([])
+    const [show, setShow] = useState(false);
+    const [code, discountedCode] = useState('');
+    const handleClose = () => setShow(false);
     useEffect(()=>{homeApi()},[])
     const homeApi = (e) => {  
         axios.get(`${URL}DealList`)
@@ -56,7 +60,8 @@ function Deal() {
                                   
                                 </div>
                                 <div className="save-btns">
-                                    {/* <a href="#"><img src="../img/web.png" /></a> */}
+                                    <a href="#" onClick={()=>{setShow(true); discountedCode(item.discountCode)}}>{item?.price}</a>
+                                    <a href="#">{item?.discountedPrice}</a>
                                     <a href="#"><p>{moment(item?.created_at).format('LL')}</p></a>
                                 </div>
                             </div>
@@ -68,6 +73,14 @@ function Deal() {
             </div>
         </div>
         <Footer />
+        <Modal show={show} onHide={handleClose} className="login_frm-cls">
+                <Modal.Header closeButton>
+                    <Modal.Title> DiscountCode</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+<h1>{code}</h1>
+                </Modal.Body>
+                </Modal>
 
     </>);
 }
